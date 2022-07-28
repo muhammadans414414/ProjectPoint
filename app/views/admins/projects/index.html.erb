@@ -1,0 +1,35 @@
+
+<h1 class="text-center mt-5"> All Projects </h1>
+<div class="text-center">
+<%= link_to "New Project", new_admins_project_path, class: 'btn btn-sm btn-success text-center'%>
+</div>
+<table class="table table-striped mt-1">
+<thead>
+  <tr>
+    <th>Project Name</th>
+    <th>Status</th>
+    <th>Url</th>
+  </tr>
+</thead>
+<tbody>
+  <div >
+    <% @projects.each do |project| %>
+    <tr>
+    <td>  <%= project.name %></td>
+    <td>  <%= project.status %></td>
+    <% if project.url.nil?%>
+    <td>  Not Available</td>
+    <%else%>
+    <td>  <%=project.url %></td>
+        <%end%>
+    <td><%= link_to "Details", admins_project_path(project), class: 'btn btn-sm btn-primary'%>  </td>
+
+    </tr>
+<%end%>
+
+</div>
+
+ 
+
+</tbody>
+</table>

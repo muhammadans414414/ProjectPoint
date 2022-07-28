@@ -1,0 +1,43 @@
+<h1 class="text-center mt-5"> Create New Project </h1>
+
+
+<div class="text-center">
+<%= form_with model:[:admins,@project] do |f| %>
+
+    <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    </div>
+
+    <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description, autofocus: true, autocomplete: "description" %>
+    </div>
+
+
+    <div class="field">
+    <%= f.label :status %>
+    <%= f.select :status,Project.statuses %>
+    </div>
+
+    <div class="field">
+    <%= f.label :url %>
+    <%= f.text_field :url%>
+    </div>
+
+    <div class="field">
+    <%= f.label :serveremail %>
+    <%= f.text_field :server_email %>
+    </div>
+
+    <div class="field">
+    <%= f.label :serverpassword %>
+    <%= f.text_field :server_password %>
+    </div>
+
+
+    <%= f.submit class: 'btn btn-success mt-2' %>
+
+
+<%end%>
+</div>

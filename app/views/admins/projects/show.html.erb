@@ -1,0 +1,40 @@
+
+<h1 class="text-center mt-5"> Project Name : <%=@project.name%> </h1>
+<table class="table table-striped mt-1">
+<thead>
+  <tr>
+    <th>Project Name</th>
+    <th>Project Description</th>
+    <th>Status</th>
+    <th>Url</th>
+    <th>Server Email</th>
+    <th>Server password</th>
+
+
+
+  </tr>
+</thead>
+<tbody>
+  <div>
+    
+    <td> <%= @project.name%> </td>
+    <td> <%= @project.description%> </td>
+    <td> <%= @project.status%> </td>
+    <td> <%= @project.url%> </td>
+    <td> <%= @project.server_email%> </td>
+    <td> <%= @project.server_password%> </td>
+
+
+    <td><%= link_to "Delete", admins_project_path(@project),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} , class: 'btn btn-sm btn-primary'%>  </td>
+
+    <td><%= link_to "Update", edit_admins_project_path(@project), class: 'btn btn-sm btn-secondary'%>  </td>
+
+
+
+</div>
+
+ 
+
+</tbody>
+</table>
+

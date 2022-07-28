@@ -5,12 +5,28 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
+  
+  <% if user_signed_in? %>
+    <% if current_user.role.name==Admin  %>
+    <%= render "layouts/Shared/admin_navbar" %>
+    <% else %>
+    <%= render "layouts/Shared/developer_navbar" %>
+    <%end%>
+  <%end%>
+
+  <% if notice %>
+  <p class="notice bg-success"><%= notice %></p>
+  <%end%>
+  <% if alert %>
+  <p class="alert bg-danger"><%= alert %></p>
+  <%end%>
+
     <%= yield %>
   </body>
 </html>

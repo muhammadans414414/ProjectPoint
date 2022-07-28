@@ -1,0 +1,34 @@
+
+<h1 class="text-center mt-5"> All Developers </h1>
+
+<table class="table table-striped mt-1">
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Role</th>
+  </tr>
+</thead>
+<tbody>
+  <div>
+  <% @developers.each do |developer| %>
+    <tr>
+    <td>  <%= developer.name %></td>
+    <td>  <%= developer.email %></td>
+    <td>  <%= developer.role.name %></td>
+    
+    <td><%= link_to "Delete", "/admins/developers/"+developer.id.to_s,  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} , class: 'btn btn-sm btn-danger'%>  </td>
+
+    <td><%= link_to "edit", edit_admins_developer_path(developer), class: 'btn btn-sm btn-secondary'%>  </td>
+
+
+
+    </tr>
+<%end%>
+
+</div>
+
+ 
+
+</tbody>
+</table>
