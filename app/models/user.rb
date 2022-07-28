@@ -15,4 +15,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable, :confirmable, :lockable
 
   validates :fname, :lname, :email, :cell, presence: true
+
+
+  def combined_name
+    "#{self.fname} #{self.lname}"
+  end
+
 end

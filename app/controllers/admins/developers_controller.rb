@@ -1,6 +1,6 @@
 class Admins::DevelopersController < ApplicationController
     def index
-        @developers=User.where("role_id > ?",1)
+        @developers=User.joins(:role).where("roles.name =?","developer")
     end
 
     # def show

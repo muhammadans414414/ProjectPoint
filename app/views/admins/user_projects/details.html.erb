@@ -1,0 +1,20 @@
+
+
+<h1> Projects </h1>
+
+
+<% @projects.each do |project|%>
+    
+   
+
+    <h3> <%=project.project.full_name %></h3>
+    <p><%=project.project.short_name%> </p>
+
+    <td><%= link_to "Remove project", "/admins/delete_user_project/"+project.id.to_s, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  ,class: 'btn btn-sm btn-danger'%>  </td>
+
+    <hr/>
+
+
+
+
+<%end%>

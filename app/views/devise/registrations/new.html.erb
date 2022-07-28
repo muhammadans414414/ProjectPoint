@@ -20,7 +20,7 @@
 
   <div class="field">
     <%= f.label :"Role" %><br />
-    <%= f.collection_select :role_id,Role.all, :id, :name, prompt: true ,autofocus: true%>
+    <%= f.collection_select :role_id,Role.where(name:Developer), :id, :name, prompt: true ,autofocus: true%>
   </div>
 
   <div class="field">
