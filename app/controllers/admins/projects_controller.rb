@@ -41,7 +41,7 @@ class Admins::ProjectsController < ApplicationController
         @project=Project.find(params[:id])
 
         if @project.destroy
-        redirect_to admins_projects_path, alert: "book deleted", status: 303
+        redirect_to admins_projects_path, alert: "Project deleted", status: 303
         else
             render :index
         end
@@ -52,7 +52,8 @@ class Admins::ProjectsController < ApplicationController
     private
 
     def project_params
-        params.require(:project).permit(:name,:description,:status,:server_email,:url,:server_password)
+        params.require(:project).permit(:full_name,:short_name,:staging_url,:staging_test_username,:staging_test_password,:staging_database_name,
+        :live_url,:live_test_username,:live_test_password,:live_database_name,:status,:ssh_url_ip)
     end
 
 

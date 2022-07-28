@@ -1,15 +1,20 @@
 
-<h1 class="text-center mt-5"> Project Name : <%=@project.name%> </h1>
+<h1 class="text-center mt-5"> Project Name : <%=@project.full_name%> </h1>
 <table class="table table-striped mt-1">
 <thead>
   <tr>
-    <th>Project Name</th>
-    <th>Project Description</th>
+    <th>Full Name</th>
+    <th>Short Name</th>
+    <th>Staging Url</th>
+    <th>Staging Test Username</th>
+    <th>Staging Test Password</th>
+    <th>Staging Database Name</th>
+    <th>Live Url</th>
+    <th>Live Test Username</th>
+    <th>Live Test Password</th>
+    <th>Live Database Name</th>
     <th>Status</th>
-    <th>Url</th>
-    <th>Server Email</th>
-    <th>Server password</th>
-
+    <th>Ssh/Url/Ip</th>
 
 
   </tr>
@@ -17,13 +22,19 @@
 <tbody>
   <div>
     
-    <td> <%= @project.name%> </td>
-    <td> <%= @project.description%> </td>
-    <td> <%= @project.status%> </td>
-    <td> <%= @project.url%> </td>
-    <td> <%= @project.server_email%> </td>
-    <td> <%= @project.server_password%> </td>
+    <td> <%= @project.full_name%> </td>
+    <td> <%= @project.short_name%> </td>
+    <td> <%= @project.staging_url%> </td>
+    <td> <%= @project.staging_test_username%> </td>
+    <td> <%= @project.staging_test_password%> </td>
+    <td> <%= @project.staging_database_name%> </td>
 
+    <td> <%= @project.live_url%> </td>
+    <td> <%= @project.live_test_username%> </td>
+    <td> <%= @project.live_test_password%> </td>
+    <td> <%= @project.live_database_name%> </td>
+    <td> <%= @project.status%> </td>
+    <td> <%= @project.ssh_url_ip%> </td>
 
     <td><%= link_to "Delete", admins_project_path(@project),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} , class: 'btn btn-sm btn-primary'%>  </td>
 

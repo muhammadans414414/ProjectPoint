@@ -8,20 +8,16 @@
   <tr>
     <th>Project Name</th>
     <th>Status</th>
-    <th>Url</th>
+    <th>Live Url</th>
   </tr>
 </thead>
 <tbody>
   <div >
     <% @projects.each do |project| %>
     <tr>
-    <td>  <%= project.name %></td>
+    <td>  <%= project.full_name %></td>
     <td>  <%= project.status %></td>
-    <% if project.url.nil?%>
-    <td>  Not Available</td>
-    <%else%>
-    <td>  <%=project.url %></td>
-        <%end%>
+    <td>  <%=project.live_url %></td>
     <td><%= link_to "Details", admins_project_path(project), class: 'btn btn-sm btn-primary'%>  </td>
 
     </tr>
