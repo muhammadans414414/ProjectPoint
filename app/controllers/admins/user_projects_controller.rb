@@ -1,4 +1,5 @@
 class Admins::UserProjectsController < ApplicationController
+    load_and_authorize_resource
     def new
         @user_project=UserProject.new
     end

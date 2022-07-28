@@ -17,13 +17,11 @@ class ApplicationController < ActionController::Base
        
     end
 
-    # def after_update_path_for(resource)
-    #     if current_user.role.name == Admin 
-    #         admins_admins_path
-    #     else
-    #         developers_developers_path
-    #     end
-       
-    # end
+
+    rescue_from CanCan::AccessDenied do | exception |
+        redirect_to root_url, alert: exception.message
+      end
+
+     
 
 end
