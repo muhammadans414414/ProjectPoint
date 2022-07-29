@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :admins do
-    resources :admins
+    resources :users
     resources :projects
     resources :developers
     resources :user_projects

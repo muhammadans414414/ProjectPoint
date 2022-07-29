@@ -14,7 +14,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable, :lockable
 
-  validates :fname, :lname, :email, :cell, presence: true
+  validates :fname, :lname, :email, :password, :cell, presence: true
 
 
   def combined_name

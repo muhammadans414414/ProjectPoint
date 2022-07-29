@@ -2,16 +2,26 @@
 
 
 <div class="text-center">
-<%= form_with model:[:admins,@project] do |f| %>
+<%= form_with model:[:admins,@project],data:{turbo:false} do |f| %>
 
     <div class="field">
     <%= f.label :"Full Name" %>
     <%= f.text_field :full_name, autofocus: true%>
+    <% @project.errors.full_messages_for(:full_name).each do |message| %>
+        <div class="alert bg-danger">
+        <%= message %>
+        </div>
+    <% end %>
     </div>
 
     <div class="field">
     <%= f.label :"Short Name" %>
     <%= f.text_field :short_name, autofocus: true%>
+    <% @project.errors.full_messages_for(:short_name).each do |message| %>
+        <div class="alert bg-danger">
+        <%= message %>
+        </div>
+    <% end %>
     </div>
 
     <div class="field">

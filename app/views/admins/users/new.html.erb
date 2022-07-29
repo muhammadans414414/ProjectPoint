@@ -1,0 +1,79 @@
+
+
+<h1> create User </h1>
+
+
+
+<%= form_with model:[:admins,@user],data:{turbo:false} do |f| %>
+
+
+    <div class="field">
+    <%= f.label :"first name" %><br />
+    <%= f.text_field :fname, autofocus: true%>
+   <% @user.errors.full_messages_for(:fname).each do |message| %>
+        <div class="alert bg-danger">
+        <%= message %>
+        </div>
+    <% end %>
+
+    </div>
+
+    <div class="field">
+    <%= f.label :"last name" %><br />
+    <%= f.text_field :lname, autofocus: true%>
+    <% @user.errors.full_messages_for(:lname).each do |message| %>
+      <div class="alert bg-danger">
+      <%= message %>
+      </div>
+  <% end %>
+    </div>
+
+    <div class="field">
+    <%= f.label :"Phone" %><br />
+    <%= f.text_field :cell, autofocus: true%>
+    <% @user.errors.full_messages_for(:cell).each do |message| %>
+      <div class="alert bg-danger">
+      <%= message %>
+      </div>
+  <% end %>
+    </div>
+
+  <div class="field">
+    <%= f.label :"Role" %><br />
+    <%= f.collection_select :role_id,Role.all, :id, :name, prompt: true ,autofocus: true%>
+    <% @user.errors.full_messages_for(:role_id).each do |message| %>
+      <div class="alert bg-danger">
+      <%= message %>
+      </div>
+  <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <% @user.errors.full_messages_for(:email).each do |message| %>
+      <div class="alert bg-danger">
+      <%= message %>
+      </div>
+  <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% @user.errors.full_messages_for(:password).each do |message| %>
+      <div class="alert bg-danger">
+      <%= message %>
+      </div>
+  <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+

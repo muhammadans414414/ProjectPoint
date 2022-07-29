@@ -32,6 +32,10 @@ Rails Projects</a>
               <%= link_to 'Assign Projects',  new_admins_user_project_path, class: 'nav-link btn btn-warning mr-5 btn-sm font-weight-bold font-italic' %>
               </li>
 
+              <li>
+              <%= link_to 'Create User',  new_admins_user_path, class: 'nav-link btn btn-warning mr-5 btn-sm font-weight-bold font-italic' %>
+              </li>
+
            <% else %>
           <li class="nav-item">
               <%= link_to 'Sign In', new_user_session_path,  class: 'nav-link btn btn-warning mr-5 btn-sm font-weight-bold font-italic' %>
