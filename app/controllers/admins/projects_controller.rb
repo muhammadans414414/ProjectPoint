@@ -2,6 +2,12 @@ class Admins::ProjectsController < ApplicationController
     load_and_authorize_resource
     def index
         @projects=Project.all
+
+        respond_to do |format|
+            format.xlsx 
+            format.html { render :index }
+          end
+
     end
 
     def show

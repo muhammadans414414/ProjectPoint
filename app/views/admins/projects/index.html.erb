@@ -2,6 +2,7 @@
 <h1 class="text-center mt-5"> All Projects </h1>
 <div class="text-center">
 <%= link_to "New Project", new_admins_project_path, class: 'btn btn-sm btn-success text-center'%>
+<%= link_to 'Download as Excel',admins_projects_path(format: :xlsx)%>
 </div>
 <table class="table table-striped mt-1">
 <thead>

@@ -82,6 +82,14 @@ GEM
       marcel (~> 1.0.0)
       mini_mime (>= 0.1.3)
       ssrf_filter (~> 1.0)
+    caxlsx (3.2.0)
+      htmlentities (~> 4.3, >= 4.3.4)
+      marcel (~> 1.0)
+      nokogiri (~> 1.10, >= 1.10.4)
+      rubyzip (>= 1.3.0, < 3)
+    caxlsx_rails (0.6.3)
+      actionpack (>= 3.1)
+      caxlsx (>= 3.0)
     choice (0.2.0)
     coderay (1.1.3)
     concurrent-ruby (1.1.10)
@@ -100,6 +108,7 @@ GEM
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    htmlentities (4.3.4)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -198,6 +207,7 @@ GEM
       rexml
     ruby-vips (2.1.4)
       ffi (~> 1.12)
+    rubyzip (2.3.2)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -236,6 +246,8 @@ DEPENDENCIES
   bootsnap
   cancancan
   carrierwave (~> 2.0)
+  caxlsx
+  caxlsx_rails
   debug
   devise
   importmap-rails
@@ -245,6 +257,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.3, >= 7.0.3.1)
   rails-erd
+  rubyzip (>= 1.2.1)
   sprockets-rails
   stimulus-rails
   turbo-rails
