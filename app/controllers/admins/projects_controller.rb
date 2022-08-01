@@ -6,12 +6,21 @@ class Admins::ProjectsController < ApplicationController
         respond_to do |format|
             format.xlsx 
             format.html { render :index }
+            format.pdf do
+                render pdf: "Projects #{@projects.count}", template: 'admins/projects/index', formats: [:html]
+              end
           end
 
     end
 
     def show
         @project=Project.find(params[:id])
+        respond_to do |format|
+            format.html
+            format.pdf do
+              render pdf: "Project_#{@project.id}", template: 'admins/projects/projects', formats: [:html]
+            end
+          end
     end
 
     def new

@@ -1,5 +1,5 @@
 class Admins::UserProjectsController < ApplicationController
-    load_and_authorize_resource
+    
     def new
         @user_project=UserProject.new
     end
@@ -13,11 +13,9 @@ class Admins::UserProjectsController < ApplicationController
     end
 
     def details
-        @projects=User.find(params[:id]).user_projects.all
-        # debugger
+        @projects=User.find(params[:id]).user_projects.all        
     end
-
-
+    
     def destroy
         @project=UserProject.find(params[:id])
         @project.destroy
