@@ -1,38 +1,27 @@
-
 <h1 class="text-center mt-5"> All Developers </h1>
-
 <table class="table table-striped mt-1">
-<thead>
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Role</th>
-    <th>Email</th>
-    <th>Assigned Projects</th>
-
-  </tr>
-</thead>
-<tbody>
-  <div>
-  <% @developers.each do |developer| %>
+  <thead>
     <tr>
-    <td>  <%= developer.fname %></td>
-    <td>  <%= developer.lname %></td>
-    <td>  <%= developer.role.name %></td>
-    <td>  <%= developer.email %></td>
-    <td>  <%= developer.user_projects.count %></td>
-    
-
-    <td><%= link_to "Delete", "/admins/developers/"+developer.id.to_s,  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} , class: 'btn btn-sm btn-danger'%>  </td>
-    <td><%= link_to "See Projects", "/admins/user_projects_details/"+developer.id.to_s, class: 'btn btn-sm btn-primary'%>  </td>
-
-
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Role</th>
+      <th>Email</th>
+      <th>Assigned Projects</th>
     </tr>
-<%end%>
-
-</div>
-
- 
-
-</tbody>
+  </thead>
+  <tbody>
+    <div>
+      <% @developers.each do |developer| %>
+        <tr>
+          <td>  <%= developer.fname %></td>
+          <td>  <%= developer.lname %></td>
+          <td>  <%= developer.role.name %></td>
+          <td>  <%= developer.email %></td>
+          <td>  <%= developer.user_projects.count %></td>
+          <td><%= link_to "Delete", "/admins/developers/"+developer.id.to_s,  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} , class: 'btn btn-sm btn-danger'%>  </td>
+          <td><%= link_to "See Projects", "/admins/user_projects_details/"+developer.id.to_s, class: 'btn btn-sm btn-primary'%>  </td>
+        </tr>
+      <%end%>
+    </div>
+  </tbody>
 </table>

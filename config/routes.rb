@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'home#index'
   devise_for :users
@@ -8,13 +10,11 @@ Rails.application.routes.draw do
     resources :developers
     resources :user_projects
 
-    get "user_projects_details/:id",to:"user_projects#details"
-    delete "delete_user_project/:id",to:"user_projects#destroy"
-
+    get 'user_projects_details/:id', to: 'user_projects#details'
+    delete 'delete_user_project/:id', to: 'user_projects#destroy'
   end
 
   namespace :developers do
     resources :developers
   end
-
 end

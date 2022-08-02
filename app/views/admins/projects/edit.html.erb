@@ -1,82 +1,64 @@
 <h1 class="text-center mt-5"> Edit Project </h1>
-
-
 <div class="text-center">
-<%= form_with model:[:admins,@project],data:{turbo:false} do |f| %>
-
+  <%= form_with model:[:admins,@project],data:{turbo:false} do |f| %>
     <div class="field">
-    <%= f.label :"Full Name" %>
-    <%= f.text_field :full_name, autofocus: true%>
-    <% @project.errors.full_messages_for(:full_name).each do |message| %>
+      <%= f.label :"Full Name" %>
+      <%= f.text_field :full_name, autofocus: true%>
+      <% @project.errors.full_messages_for(:full_name).each do |message| %>
         <div class="alert bg-danger">
-        <%= message %>
+          <%= message %>
         </div>
-    <% end %>
+      <% end %>
     </div>
-
     <div class="field">
-    <%= f.label :"Short Name" %>
-    <%= f.text_field :short_name, autofocus: true%>
-    <% @project.errors.full_messages_for(:short_name).each do |message| %>
+      <%= f.label :"Short Name" %>
+      <%= f.text_field :short_name, autofocus: true%>
+      <% @project.errors.full_messages_for(:short_name).each do |message| %>
         <div class="alert bg-danger">
-        <%= message %>
+          <%= message %>
         </div>
-    <% end %>
+      <% end %>
     </div>
-
     <div class="field">
-    <%= f.label :"Staging Url" %>
-    <%= f.text_area :staging_url, autofocus: true%>
+      <%= f.label :"Staging Url" %>
+      <%= f.text_area :staging_url, autofocus: true%>
     </div>
-
     <div class="field">
-    <%= f.label :"Staging Test Username" %>
-    <%= f.text_field :staging_test_username, autofocus: true%>
+      <%= f.label :"Staging Test Username" %>
+      <%= f.text_field :staging_test_username, autofocus: true%>
     </div>
-
     <div class="field">
-    <%= f.label :"Staging Test Password" %>
-    <%= f.text_field :staging_test_password, autofocus: true%>
+      <%= f.label :"Staging Test Password" %>
+      <%= f.text_field :staging_test_password, autofocus: true%>
     </div>
-
     <div class="field">
-    <%= f.label :"Staging Database Name" %>
-    <%= f.text_field :staging_database_name, autofocus: true%>
+      <%= f.label :"Staging Database Name" %>
+      <%= f.text_field :staging_database_name, autofocus: true%>
     </div>
-
     <div class="field">
-    <%= f.label :"Live Url" %>
-    <%= f.text_area :live_url, autofocus: true%>
+      <%= f.label :"Live Url" %>
+      <%= f.text_area :live_url, autofocus: true%>
     </div>
-    
-
     <div class="field">
-    <%= f.label :"Live Test Username" %>
-    <%= f.text_field :live_test_username, autofocus: true%>
+      <%= f.label :"Live Test Username" %>
+      <%= f.text_field :live_test_username, autofocus: true%>
     </div>
-
     <div class="field">
-    <%= f.label :"Live Test Password" %>
-    <%= f.text_field :live_test_password, autofocus: true%>
+      <%= f.label :"Live Test Password" %>
+      <%= f.text_field :live_test_password, autofocus: true%>
     </div>
-
     <div class="field">
-    <%= f.label :"Live Database Name" %>
-    <%= f.text_field :live_database_name, autofocus: true%>
+      <%= f.label :"Live Database Name" %>
+      <%= f.text_field :live_database_name, autofocus: true%>
     </div>
-
     <div class="field">
-    <%= f.label :status %>
-    <%= f.select :status,Project.statuses%>
+      <%= f.label :status %>
+      <%= f.select :status,Project.statuses%>
     </div>
-
     <div class="field">
-    <%= f.label :"SSH/URL/IP" %>
-    <%= f.text_area :ssh_url_ip, autofocus: true%>
+      <%= f.label :"SSH/URL/IP" %>
+      <%= f.text_area :ssh_url_ip, autofocus: true%>
     </div>
-
-
     <%= f.submit class: 'btn btn-success mt-2' %>
-
-<%end%>
+  <%end%>
 </div>

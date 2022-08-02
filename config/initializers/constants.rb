@@ -1,2 +1,4 @@
-Admin= "admin"
-Developer= "developer"
+# frozen_string_literal: true
+
+Admin = 'admin'
+Developer = 'developer'

@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 class AddConfirmableToDevise < ActiveRecord::Migration[7.0]
   def up
-  
     add_index :users, :confirmation_token, unique: true
     # User.reset_column_information # Need for some types of updates, but not for update_all.
     # To avoid a short time window between running the migration and updating all existing

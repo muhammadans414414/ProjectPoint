@@ -9,24 +9,20 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-  
-  <% if user_signed_in? %>
-    <% if current_user.role.name==Admin  %>
-    <%= render "layouts/Shared/admin_navbar" %>
-    <% else %>
-    <%= render "layouts/Shared/developer_navbar" %>
+    <% if user_signed_in? %>
+      <% if current_user.role.name==Admin  %>
+        <%= render "layouts/Shared/admin_navbar" %>
+      <% else %>
+        <%= render "layouts/Shared/developer_navbar" %>
+      <%end%>
     <%end%>
-  <%end%>
-
-  <% if notice %>
-  <p class="notice bg-success"><%= notice %></p>
-  <%end%>
-  <% if alert %>
-  <p class="alert bg-danger"><%= alert %></p>
-  <%end%>
-
+    <% if notice %>
+      <p class="notice bg-success"><%= notice %></p>
+    <%end%>
+    <% if alert %>
+      <p class="alert bg-danger"><%= alert %></p>
+    <%end%>
     <%= yield %>
   </body>
 </html>

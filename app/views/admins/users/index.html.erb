@@ -1,37 +1,28 @@
-
-
-
 <h1> All Users </h1>
-
-
 <table class="table table-striped mt-1">
-<thead>
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email</th>
-    <th>Cell</th>
-    <th>Role</th>
-    <th>Email Confirmed</th>
-  </tr>
-</thead>
-<tbody>
-  <div >
-    <% @users.each do |user| %>
+  <thead>
     <tr>
-    <td>  <%= user.fname %></td>
-    <td>  <%= user.lname %></td>
-    <td>  <%=user.email %></td>
-    <td>  <%=user.cell %></td>
-    <td>  <%=user.role.name %></td>
-    <td>  <%=user.confirmed?%></td>
-    <td><%= link_to "Delete", admins_user_path(user),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} , class: 'btn btn-sm btn-danger'%>  </td>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Cell</th>
+      <th>Role</th>
+      <th>Email Confirmed</th>
     </tr>
-<%end%>
-
-</div>
-
- 
-
-</tbody>
+  </thead>
+  <tbody>
+    <div >
+      <% @users.each do |user| %>
+        <tr>
+          <td>  <%= user.fname %></td>
+          <td>  <%= user.lname %></td>
+          <td>  <%=user.email %></td>
+          <td>  <%=user.cell %></td>
+          <td>  <%=user.role.name %></td>
+          <td>  <%=user.confirmed?%></td>
+          <td><%= link_to "Delete", admins_user_path(user),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} , class: 'btn btn-sm btn-danger'%>  </td>
+        </tr>
+      <%end%>
+    </div>
+  </tbody>
 </table>
