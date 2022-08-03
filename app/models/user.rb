@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_one_attached :profile_image
   belongs_to :role
-  mount_uploader :profile_image, ProfileImageUploader
+
   has_many :user_projects, dependent: :destroy
   has_many :projects, through: :user_projects, dependent: :destroy
   devise :database_authenticatable, :registerable,

@@ -21,7 +21,7 @@
     <%= f.label :"Profile Image" %><br />
     <%= f.file_field :profile_image, autofocus: true%>
   </div>
-  <p> <%=current_user.profile_image_url%></p>
+  <%= image_tag(@user.profile_image,class: 'w-25')%>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>

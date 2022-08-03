@@ -13,7 +13,7 @@ gem 'sprockets-rails'
 
 # Use postgresql as the database for Active Record
 gem 'cancancan'
-gem 'carrierwave', '~> 2.0'
+
 gem 'caxlsx'
 gem 'caxlsx_rails'
 gem 'devise'
