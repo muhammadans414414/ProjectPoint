@@ -5,25 +5,39 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up) do |u|
-      u.permit(:fname, :lname, :email, :password, :role_id, :password_confirmation, :profile_image, :cell)
-    end
-    devise_parameter_sanitizer.permit(:account_update) do |u|
-      u.permit(:fname, :lname, :email, :password, :password_confirmation, :profile_image, :cell, :role_id,
-               :current_password)
-    end
-  end
+  protected
 
-  def after_sign_in_path_for(_resource)
-    if current_user.role.name == Admin
-      admins_users_path
-    else
-      developers_developers_path
-    end
-  end
+      def configure_permitted_parameters
+        devise_parameter_sanitizer.permit(:sign_up) do |u|
+          u.permit(:fname, :lname, :email, :password, :role_id, :password_confirmation, :profile_image, :cell)
+        end
+        devise_parameter_sanitizer.permit(:account_update) do |u|
+          u.permit(:fname, :lname, :email, :password, :password_confirmation, :profile_image, :cell, :role_id,
+                  :current_password)
+        end
+      end
 
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, alert: exception.message
-  end
+      def after_sign_in_path_for(resource)
+        if current_user.is_admin? 
+          admins_users_path
+        else
+          developers_developers_path
+        end
+      end
+
+      def user_root_path
+          if current_user.is_admin?
+            admins_users_path
+          else
+            developers_developers_path
+          end
+      end
+
+      rescue_from CanCan::AccessDenied do |exception|
+        if current_user.is_admin?
+          redirect_to admins_users_path, alert: exception.message
+        else
+          redirect_to developers_developers_path, alert: exception.message
+        end
+      end
 end

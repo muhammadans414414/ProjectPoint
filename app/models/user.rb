@@ -12,4 +12,9 @@ class User < ApplicationRecord
   def combined_name
     "#{fname} #{lname}"
   end
+
+  def is_admin?
+    self.role.name == Admin
+  end
+
 end
