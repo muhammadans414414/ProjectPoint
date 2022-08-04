@@ -1,0 +1,13 @@
+
+  <% @users.each do |user| %>
+        <tr>
+          <td>  <%= user.fname %></td>
+          <td>  <%= user.lname %></td>
+          <td>  <%=user.email %></td>
+          <td>  <%=user.cell %></td>
+          <td>  <%=user.role.name %></td>
+          <td>  <%=user.confirmed?%></td>
+          <td><%= link_to "Delete", admins_user_path(user),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} , class: 'btn btn-sm btn-danger'%>  </td>
+        </tr>
+      <%end%>
+

@@ -12,7 +12,6 @@ module Admins
     end
 
     def create
-      debugger
       @user = User.new(user_params)
       if @user.save
         redirect_to admins_users_path
@@ -25,6 +24,14 @@ module Admins
       @user = User.find(params[:id])
       @user.destroy
       redirect_to admins_users_path
+    end
+
+    def searchuser
+      @users=User.where(role_id:params[:data])
+        respond_to do |format|
+          format.js
+          format.html {admins_users_path}
+      end
     end
 
     private

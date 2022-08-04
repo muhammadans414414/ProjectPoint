@@ -1,4 +1,12 @@
 <h1> All Users </h1>
+
+
+<%= form_with do |form| %>
+<%= form.label :"Role Name" %>
+<%= form.collection_select :id, Role.all, :id, :name, prompt: true , id: "ctg"%>
+<%end%>
+
+
 <table class="table table-striped mt-1">
   <thead>
     <tr>
@@ -10,8 +18,7 @@
       <th>Email Confirmed</th>
     </tr>
   </thead>
-  <tbody>
-    <div >
+  <tbody id="abc">    
       <% @users.each do |user| %>
         <tr>
           <td>  <%= user.fname %></td>
@@ -23,6 +30,37 @@
           <td><%= link_to "Delete", admins_user_path(user),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} , class: 'btn btn-sm btn-danger'%>  </td>
         </tr>
       <%end%>
-    </div>
+    
   </tbody>
 </table>
+
+<script>
+
+$(document).ready(function()
+
+{
+   $('select').on("change",function(e){
+    
+       var role=e.target.value;
+    //    console.log(data_book)
+       $.ajax({
+        type:"GET",
+        url: "/toggleusers",
+        data: {data: role},
+       
+
+        success: function(data){
+            
+            console.log("ok"+role);
+},
+    error: function(XMLHttpRequest, textStatus, errorThrown){
+     console.log(XMLHttpRequest.responseText);
+    }
+    });
+
+   });
+}
+);
+
+
+</script>
