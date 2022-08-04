@@ -1,0 +1,6 @@
+<h1> Users </h1>
+<% @users.each do |user|%>
+  <h1><%=user.user.combined_name%> </h1>
+  <td><%= link_to "Delete Developer", "/admins/delete_user_project/"+user.id.to_s, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  ,class: 'btn btn-sm btn-danger'%>  </td>
+   <hr/>
+<%end%>

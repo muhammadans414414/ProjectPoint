@@ -1,0 +1,20 @@
+<h1> Assign Project </h1>
+<%= form_with model:[:admins,@user_project], data:{turbo:false} do |f| %>
+  
+
+  <div class="field">
+    <%= f.hidden_field :project_id,  project_id:@user_project.project_id%>
+  </div>
+  <div class="field">
+    <%= f.label :"User" %>
+    <%= f.collection_select :user_id, User.joins(:role).where('roles.name =?', 'developer'), :id, "combined_name", prompt:true%>
+    <% @user_project.errors.full_messages_for(:project_id).each do |message| %>
+      <div class="alert bg-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <%= f.submit "Assign Project" %>
+  </div>
+<%end%>
