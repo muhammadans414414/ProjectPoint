@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_03_095754) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_05_100908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,83 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_03_095754) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "contact_informations", force: :cascade do |t|
+    t.string "mobile", null: false
+    t.string "residence_phone", null: false
+    t.string "coordinator"
+    t.string "office_phone"
+    t.string "official_email", null: false
+    t.string "personal_email", null: false
+    t.text "residence_address", null: false
+    t.text "permanent_address", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_contact_informations_on_user_id"
+  end
+
+  create_table "dependents", force: :cascade do |t|
+    t.string "name"
+    t.string "phone", null: false
+    t.string "residence_phone", null: false
+    t.date "date_of_birth"
+    t.text "address", null: false
+    t.string "cnic"
+    t.string "nationality"
+    t.string "action"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_dependents_on_user_id"
+  end
+
+  create_table "educations", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "major", null: false
+    t.string "institute"
+    t.date "graduation_date", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_educations_on_user_id"
+  end
+
+  create_table "emergency_contacts", force: :cascade do |t|
+    t.string "name"
+    t.integer "relation"
+    t.string "mobile", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_emergency_contacts_on_user_id"
+  end
+
+  create_table "personal_informations", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name"
+    t.string "father_name", null: false
+    t.date "date_of_birth"
+    t.integer "marital_status"
+    t.string "spouse_name"
+    t.integer "religion"
+    t.string "cnic", null: false
+    t.date "cnic_expiry_date"
+    t.boolean "disability", default: false, null: false
+    t.string "designation", null: false
+    t.string "employee_code", null: false
+    t.string "place_of_birth"
+    t.string "domicile"
+    t.string "nationality"
+    t.string "passport_number"
+    t.date "passport_validity_date"
+    t.string "height"
+    t.bigint "user_id", null: false
+    t.integer "disability_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_personal_informations_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -107,6 +184,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_03_095754) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "contact_informations", "users"
+  add_foreign_key "dependents", "users"
+  add_foreign_key "educations", "users"
+  add_foreign_key "emergency_contacts", "users"
+  add_foreign_key "personal_informations", "users"
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"
   add_foreign_key "users", "roles"
