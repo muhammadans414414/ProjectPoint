@@ -1,0 +1,271 @@
+
+
+<div class="text-center">
+  <%= form_with model:[:admins,@personal_information] do |f| %>
+    <div class="field">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:first_name).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:last_name).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+ 
+    <div class="field">
+      <%= f.label :father_name %>
+      <%= f.text_field :father_name, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:father_name).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :date_of_birth %>
+      <%= f.date_field :date_of_birth%>
+      <% @personal_information.errors.full_messages_for(:date_of_birth).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>  
+    
+     <div class="field">
+      <%= f.label :marital_status %>
+      <%= f.select :marital_status, PersonalInformation.marital_statuses.keys,prompt: "Please Select",autofocus: true %>
+      <% @personal_information.errors.full_messages_for(:marital_status).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+  <div class="field">
+      <%= f.label :spouse_name %>
+      <%= f.text_field :spouse_name, autofocus: true, disabled: true%>
+   
+    </div>
+
+      <div class="field">
+      <%= f.label :religion %>
+      <%= f.select :religion, PersonalInformation.religions.keys,autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:religion).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :cnic %>
+      <%= f.text_field :cnic, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:cnic).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+   <div class="field">
+      <%= f.label :cnic_expiry_date %>
+      <%= f.date_field:cnic_expiry_date, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:cnic_expiry_date).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+        <div class="field">
+      <%= f.label :disability %>
+      <%= f.check_box :disability, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:disability).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+      <div id="abc">
+
+    </div>
+
+
+<div class="field">
+      <%= f.label :disability_type %>
+      <%= f.select :disability_type, PersonalInformation.disability_types.keys, {prompt:"Please Select"},disabled: true%>
+      
+    </div>
+
+
+<div class="field">
+      <%= f.label :designation %>
+      <%= f.text_field :designation, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:designation).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+<div class="field">
+      <%= f.label :employee_code %>
+      <%= f.text_field :employee_code, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:employee_code).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+  <div class="field">
+      <%= f.label :place_of_birth %>
+      <%= f.text_field :place_of_birth, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:place_of_birth).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+<div class="field">
+      <%= f.label :domicile %>
+      <%= f.text_field :domicile, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:domicile).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+<div class="field">
+      <%= f.label :nationality %>
+      <%= f.text_field :nationality, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:nationality).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+<div class="field">
+      <%= f.label :passport_number %>
+      <%= f.text_field :passport_number, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:passport_number).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+<div class="field">
+      <%= f.label :passport_validity_date %>
+      <%= f.date_field :passport_validity_date, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:passport_validity_date).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+
+
+
+
+<div class="field">
+      <%= f.label :height %>
+      <%= f.text_field :height, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:height).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+<div class="field">
+      <%= f.label :profile_image %>
+      <%= f.file_field :profile_image, autofocus: true%>
+      
+    </div>
+
+
+
+
+
+
+    <%= f.submit class: 'btn btn-success mt-2' %>
+  <%end%>
+</div>
+
+<script>
+
+$(document).ready(function()
+
+{
+    
+   $('#personal_information_marital_status').on("change",function(e){
+   
+       var marital_status=e.target.value;
+       alert(marital_status);
+     
+     if (marital_status=='married'){
+      $("#personal_information_spouse_name").prop( "disabled", false );
+     }
+     else{
+      $("#personal_information_spouse_name").prop( "disabled", true );
+     }
+   });
+
+
+ $('input[type="checkbox"]').click(function(){
+            if($(this).prop("checked") == true){
+                 $("#personal_information_disability_type").prop( "disabled", false );
+            }
+            else if($(this).prop("checked") == false){
+               $("#personal_information_disability_type").prop( "disabled", true );
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+);
+</script>

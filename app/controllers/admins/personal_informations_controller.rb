@@ -1,0 +1,32 @@
+class Admins::PersonalInformationsController < ApplicationController
+    def new
+        @personal_information=PersonalInformation.new
+    end
+    def create
+        @personal_information=PersonalInformation.new(personal_information_params)
+        @personal_information.user_id=current_user.id
+        if @personal_information.save
+            redirect_to root_path
+        else
+            render :new
+        end
+    end
+
+    def update
+        @personal_information=PersonalInformation.find(params[:id])
+        if @personal_information.update(personal_information_params)
+            redirect_to root_path
+        else
+            puts "error"
+        end
+    end
+
+
+
+    private
+    def personal_information_params
+    params.require(:personal_information).permit!
+    end
+
+
+end

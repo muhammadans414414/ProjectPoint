@@ -1,0 +1,54 @@
+
+<h1 class="text-center mt-5"> Create New Project </h1>
+<div class="text-center">
+  <%= form_with model:[:admins,@education] do |f| %>
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title, autofocus: true%>
+      <% @education.errors.full_messages_for(:title).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :major %>
+      <%= f.text_field :major, autofocus: true%>
+      <% @education.errors.full_messages_for(:major).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :institute %>
+      <%= f.text_field :institute, autofocus: true%>
+      <% @education.errors.full_messages_for(:institute).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :graduation_date %>
+      <%= f.date_field :graduation_date, autofocus: true%>
+      <% @education.errors.full_messages_for(:graduation_date).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field">
+      
+    
+         <%= f.hidden_field :user_id,  user_id:@education.user_id%>      
+    </div>
+
+    <%= f.submit class: 'btn btn-success mt-2' %>
+  <%end%>
+</div>

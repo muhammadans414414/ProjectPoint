@@ -13,6 +13,10 @@
         <li>
           <%= link_to 'Update Profile',  edit_user_registration_path, class: 'nav-link btn btn-warning mr-5 btn-sm font-weight-bold font-italic' %>
         </li>
+
+        <li>
+          <%= link_to 'See Profile',  "/admins/profile_details", class: 'nav-link btn btn-warning mr-5 btn-sm font-weight-bold font-italic' %>
+        </li>
       <% else %>
         <li class="nav-item">
           <%= link_to 'Sign In', new_user_session_path,  class: 'nav-link btn btn-warning mr-5 btn-sm font-weight-bold font-italic' %>

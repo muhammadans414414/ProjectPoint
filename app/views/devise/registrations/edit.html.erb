@@ -1,27 +1,11 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put },data:{turbo: false}) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="field">
-    <%= f.label :"first name" %><br />
-    <%= f.text_field :fname, autofocus: true%>
-  </div>
-  <div class="field">
-    <%= f.label :"last name" %><br />
-    <%= f.text_field :lname, autofocus: true%>
-  </div>
-  <div class="field">
-    <%= f.label :"Phone" %><br />
-    <%= f.text_field :cell, autofocus: true%>
-  </div>
+  
   <div class="field">
     <%= f.label :"Role" %><br />
     <%= f.collection_select :role_id,Role.all, :id, :name, prompt: true ,autofocus: true%>
   </div>
-  <div class="field">
-    <%= f.label :"Profile Image" %><br />
-    <%= f.file_field :profile_image, autofocus: true%>
-  </div>
-  <%= image_tag(@user.profile_image,class: 'w-25') if @user.profile_image?%>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>

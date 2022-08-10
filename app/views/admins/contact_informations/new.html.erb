@@ -1,0 +1,90 @@
+
+<div class="text-center">
+  <%= form_with model:[:admins,@contact_information] do |f| %>
+    <div class="field">
+      <%= f.label :mobile %>
+      <%= f.text_field :mobile, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:mobile).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :residence_phone %>
+      <%= f.text_field :residence_phone, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:residence_phone).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :coordinator %>
+      <%= f.text_field :coordinator, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:coordinator).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+ <div class="field">
+      <%= f.label :office_phone %>
+      <%= f.text_field :office_phone, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:office_phone).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+     <div class="field">
+      <%= f.label :official_email %>
+      <%= f.text_field :official_email, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:official_email).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+     <div class="field">
+      <%= f.label :personal_email %>
+      <%= f.text_field :personal_email, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:personal_email).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+    <div class="field">
+      <%= f.label :residence_address %>
+      <%= f.text_field :residence_address, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:residence_address).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+     <div class="field">
+      <%= f.label :permanent_address %>
+      <%= f.text_field :permanent_address, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:permanent_address).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= f.submit class: 'btn btn-success mt-2' %>
+  <%end%>
+</div>

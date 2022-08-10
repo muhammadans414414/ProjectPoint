@@ -2,10 +2,16 @@
 
 module Admins
   class UsersController < ApplicationController
-    load_and_authorize_resource
+    # load_and_authorize_resource
     def index
       @users = User.all
     end
+
+
+    def edit
+      @user=User.find(params[:id])
+    end
+
 
     def new
       @user = User.new
@@ -34,10 +40,22 @@ module Admins
       end
     end
 
+    def profile_details
+      @data = User.joins(:role,:personal_information,:contact_information,:emergency_contacts,:educations,:dependents).select("*").where("users.id=?",current_user.id)
+      @emergency_contacts=current_user.emergency_contacts
+      @educations=current_user.educations
+      @dependents=current_user.dependents
+      @personal_information=current_user.personal_information
+      @contact_information=current_user.contact_information
+
+    end
+
+
+
     private
 
     def user_params
-      params.require(:user).permit(:fname, :lname, :email, :password, :role_id, :cell)
+      params.require(:user).permit(:email, :password, :role_id)
     end
   end
 end

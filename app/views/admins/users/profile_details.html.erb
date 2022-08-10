@@ -1,0 +1,563 @@
+
+
+<div class="container">
+
+<div style="width:100%;height:auto;background-color:grey;">
+
+<%= image_tag(@personal_information.profile_image,style:"width:100px;height:100px;")  if @personal_information.profile_image.attached?%>
+<p><%= @personal_information.combined_name %><p>
+<p><%= @personal_information.employee_code %><p>
+<p><%= @personal_information.designation %><p>
+<p><%= @contact_information.mobile %><p>
+<p><%= @contact_information.official_email %><p>
+
+
+<p><%= @personal_information.cnic %><p>
+
+
+
+</div>
+
+
+
+
+
+
+  <!-- Nav pills -->
+  <ul class="nav nav-pills" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="pill" href="#home">Profile Information</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#menu1">Education</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#menu2">Dependents</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="home" class="container tab-pane active"><br>
+      <h3>Personal Information</h3>
+  <% if @personal_information.nil?%>
+  <p> <%= link_to "Add Personal Information", new_admins_personal_information_path, class: 'btn btn-primary btn-sm'%></p>
+  <%else%>
+        <div class="text-center">
+  <%= form_with model:[:admins,@personal_information] do |f| %>
+    <div class="field">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:first_name).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:last_name).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+ 
+    <div class="field">
+      <%= f.label :father_name %>
+      <%= f.text_field :father_name, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:father_name).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :date_of_birth %>
+      <%= f.date_field :date_of_birth%>
+      <% @personal_information.errors.full_messages_for(:date_of_birth).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>  
+    
+     <div class="field">
+      <%= f.label :marital_status %>
+      <%= f.select :marital_status, PersonalInformation.marital_statuses.keys,prompt: "Please Select",autofocus: true %>
+      <% @personal_information.errors.full_messages_for(:marital_status).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+  <div class="field">
+      <%= f.label :spouse_name %>
+      <%= f.text_field :spouse_name, autofocus: true, disabled: true%>
+   
+    </div>
+
+      <div class="field">
+      <%= f.label :religion %>
+      <%= f.select :religion, PersonalInformation.religions.keys,autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:religion).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :cnic %>
+      <%= f.text_field :cnic, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:cnic).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+   <div class="field">
+      <%= f.label :cnic_expiry_date %>
+      <%= f.date_field:cnic_expiry_date, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:cnic_expiry_date).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+        <div class="field">
+      <%= f.label :disability %>
+      <%= f.check_box :disability, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:disability).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+      <div id="abc">
+
+    </div>
+
+
+<div class="field">
+      <%= f.label :disability_type %>
+        <%= f.select :disability_type, PersonalInformation.disability_types.keys, {prompt:"Please Select",include_blank: true},disabled: true%>
+      <% @personal_information.errors.full_messages_for(:disability_type).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+<div class="field">
+      <%= f.label :designation %>
+      <%= f.text_field :designation, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:designation).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+<div class="field">
+      <%= f.label :employee_code %>
+      <%= f.text_field :employee_code, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:employee_code).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+  <div class="field">
+      <%= f.label :place_of_birth %>
+      <%= f.text_field :place_of_birth, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:place_of_birth).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+<div class="field">
+      <%= f.label :domicile %>
+      <%= f.text_field :domicile, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:domicile).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+<div class="field">
+      <%= f.label :nationality %>
+      <%= f.text_field :nationality, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:nationality).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+<div class="field">
+      <%= f.label :passport_number %>
+      <%= f.text_field :passport_number, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:passport_number).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+<div class="field">
+      <%= f.label :passport_validity_date %>
+      <%= f.date_field :passport_validity_date, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:passport_validity_date).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+
+
+
+
+<div class="field">
+      <%= f.label :height %>
+      <%= f.text_field :height, autofocus: true%>
+      <% @personal_information.errors.full_messages_for(:height).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+<div class="field">
+      <%= f.label :profile_image %>
+      <%= f.file_field :profile_image, autofocus: true%>
+      
+    </div>
+
+
+
+
+
+
+    <%= f.submit class: 'btn btn-success mt-2' %>
+  <%end%>
+</div>
+
+<%end%>
+
+
+
+
+
+
+
+
+
+     <h3>Contact Information Information</h3>
+<% if @contact_information.nil?%>
+<p> <%= link_to "Add Contact Information", new_admins_contact_information_path, class: 'btn btn-primary btn-sm'%></p>
+<%else%>
+<div class="text-center">
+  <%= form_with model:[:admins,@contact_information] do |f| %>
+    <div class="field">
+      <%= f.label :mobile %>
+      <%= f.text_field :mobile, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:mobile).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :residence_phone %>
+      <%= f.text_field :residence_phone, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:residence_phone).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :coordinator %>
+      <%= f.text_field :coordinator, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:coordinator).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+ <div class="field">
+      <%= f.label :office_phone %>
+      <%= f.text_field :office_phone, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:office_phone).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+     <div class="field">
+      <%= f.label :official_email %>
+      <%= f.text_field :official_email, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:official_email).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+     <div class="field">
+      <%= f.label :personal_email %>
+      <%= f.text_field :personal_email, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:personal_email).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+    <div class="field">
+      <%= f.label :residence_address %>
+      <%= f.text_field :residence_address, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:residence_address).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+     <div class="field">
+      <%= f.label :permanent_address %>
+      <%= f.text_field :permanent_address, autofocus: true%>
+      <% @contact_information.errors.full_messages_for(:permanent_address).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= f.submit class: 'btn btn-success mt-2' %>
+  <%end%>
+</div>
+
+<%end%>
+
+
+
+
+
+
+
+     
+     <h3>Emergency Contact Information</h3>
+
+
+
+  <table class="table table-striped mt-1">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Relation</th>
+      <th>Mobile</th>
+    </tr>
+    </thead>
+    <tbody>
+  
+
+ <% @emergency_contacts.each do |data|%>
+  <tr>
+     <td><p><%= data.name%></p></td>
+      <td><p><%= data.relation%></p></td>
+      <td><p><%= data.mobile%></p></td>
+        <td><%= link_to "Delete", admins_emergency_contact_path(data), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-sm btn-danger' %></td>
+      <td><%= link_to "Edit", edit_admins_emergency_contact_path(data), class: 'btn btn-primary btn-sm' %></td>
+  </tr>
+
+<%end%>
+
+</tbody>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+      
+      
+    </div>
+    
+    <div id="menu1" class="container tab-pane fade"><br>
+      <h3>Education</h3>
+<p> <%= link_to "Add Education", new_admins_education_path, class: 'btn btn-primary btn-sm'%></p>
+<table class="table table-striped mt-1">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Major</th>
+      <th>institute</th>
+      <th>Graduation Date</th>
+    </tr>
+    </thead>
+    <tbody>
+  
+
+  <% @educations.each do |data|%>
+  <tr>
+     <td> <p><%= data.major%></p> </td>
+      <td><p><%= data.title%></p></td>
+      <td><p><%= data.institute%></p></td>
+      <td><p><%= data.graduation_date%></p></td>
+
+      <td><%= link_to "Delete", admins_education_path(data), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-sm btn-danger' %></td>
+      <td><%= link_to "Edit", edit_admins_education_path(data), class: 'btn btn-primary btn-sm' %></td>
+      
+
+  </tr>
+
+<%end%>
+
+</tbody>
+
+</table>
+       
+
+
+    </div>
+    <div id="menu2" class="container tab-pane fade"><br>
+    <h3>Dependents</h3>
+    <p> <%= link_to "Add Dependent", new_admins_dependent_path, class: 'btn btn-primary btn-sm'%></p>
+
+      <table class="table table-striped mt-1">
+  <thead>
+    <tr>
+      <th>Name</th>
+     
+      <th>Residence Phone</th>
+      <th>Mobile</th>
+       <th>Date of birth</th>
+      <th>Address</th>
+      <th>CNIC</th>
+      <th>nationality</th>
+      <th>Action</th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+  
+
+    <% @dependents.each do |data|%>
+  <tr>
+      
+    <td>  <p><%= data.name%></p></td>
+      <td><p><%= data.phone%></p></td>
+      <td><p><%= data.residence_phone%></p></td>
+      <td><p><%= data.date_of_birth%></p></td>
+       <td><p><%= data.address%></p></td>
+      <td><p><%= data.cnic%></p></td>
+      <td><p><%= data.nationality%></p></td>
+      <td><p><%= data.action%></p></td>
+
+  <td><%= link_to "Delete", admins_dependent_path(data), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-sm btn-danger' %></td>
+      <td><%= link_to "Edit", edit_admins_dependent_path(data), class: 'btn btn-primary btn-sm' %></td>
+  </tr>
+<%end%>
+
+</tbody>
+
+
+
+
+      
+    </div>
+  </div>
+</div>
+
+<script>
+
+$(document).ready(function()
+
+{
+    
+   $('#personal_information_marital_status').on("change",function(e){
+   
+       var marital_status=e.target.value;
+       alert(marital_status);
+     
+     if (marital_status=='married'){
+      $("#personal_information_spouse_name").prop( "disabled", false );
+     }
+     else{
+      $("#personal_information_spouse_name").prop( "disabled", true );
+     }
+   });
+
+
+ $('input[type="checkbox"]').click(function(){
+            if($(this).prop("checked") == true){
+              alert("checked");
+                 $("#personal_information_disability_type").prop( "disabled", false );
+            }
+            else if($(this).prop("checked") == false){
+               $("#personal_information_disability_type").prop( "disabled", true );
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+);
+</script>

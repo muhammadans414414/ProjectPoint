@@ -1,0 +1,41 @@
+
+<div class="text-center">
+  <%= form_with model:[:admins,@emergency_contact] do |f| %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name, autofocus: true%>
+      <% @emergency_contact.errors.full_messages_for(:name).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :relation %>
+      <%= f.select :relation,EmergencyContact.relations.keys,prompt:"please select relation"%>
+      <% @emergency_contact.errors.full_messages_for(:relation).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+      <div class="field">
+      <%= f.label :mobile %>
+      <%= f.text_field :mobile%>
+      <% @emergency_contact.errors.full_messages_for(:mobile).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+     <div class="field">
+      
+    
+         <%= f.hidden_field :user_id,  user_id:@emergency_contact.user_id%>      
+    </div>
+
+    <%= f.submit class: 'btn btn-success mt-2' %>
+  <%end%>
+</div>

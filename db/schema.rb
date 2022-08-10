@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_05_100908) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_08_142626) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -116,6 +116,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_100908) do
     t.integer "disability_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "blood_group"
+    t.string "profile_image"
     t.index ["user_id"], name: "index_personal_informations_on_user_id"
   end
 
@@ -170,10 +172,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_100908) do
     t.string "unlock_token"
     t.datetime "locked_at"
     t.bigint "role_id", null: false
-    t.string "fname"
-    t.string "lname"
-    t.string "cell"
-    t.text "profile_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

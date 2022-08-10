@@ -1,0 +1,95 @@
+
+<div class="text-center">
+  <%= form_with model:[:admins,@dependent] do |f| %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name, autofocus: true%>
+      <% @dependent.errors.full_messages_for(:name).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :phone %>
+      <%= f.text_field :phone, autofocus: true%>
+      <% @dependent.errors.full_messages_for(:phone).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :residence_phone %>
+      <%= f.text_field :residence_phone, autofocus: true%>
+      <% @dependent.errors.full_messages_for(:residence_phone).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :date_of_birth %>
+      <%= f.date_field :date_of_birth, autofocus: true%>
+      <% @dependent.errors.full_messages_for(:date_of_birth).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :address %>
+      <%= f.text_area :address, autofocus: true%>
+      <% @dependent.errors.full_messages_for(:address).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :cnic %>
+      <%= f.text_field :cnic, autofocus: true%>
+      <% @dependent.errors.full_messages_for(:cnic).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :nationality %>
+      <%= f.text_field :nationality, autofocus: true%>
+      <% @dependent.errors.full_messages_for(:nationality).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :action %>
+      <%= f.text_field :action, autofocus: true%>
+      <% @dependent.errors.full_messages_for(:action).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class="field">
+      
+    
+         <%= f.hidden_field :user_id,  user_id:@dependent.user_id%>      
+    </div>
+
+    <%= f.submit class: 'btn btn-success mt-2' %>
+  <%end%>
+</div>

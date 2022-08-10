@@ -2,8 +2,6 @@
 <table class="table table-striped mt-1">
   <thead>
     <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
       <th>Role</th>
       <th>Email</th>
       <th>Assigned Projects</th>
@@ -13,8 +11,7 @@
     <div>
       <% @developers.each do |developer| %>
         <tr>
-          <td>  <%= developer.fname %></td>
-          <td>  <%= developer.lname %></td>
+        
           <td>  <%= developer.role.name %></td>
           <td>  <%= developer.email %></td>
           <td>  <%= developer.user_projects.count %></td>
