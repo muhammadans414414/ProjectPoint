@@ -1,12 +1,19 @@
 
-  <% @users.each do |user| %>
-        <tr>
-         
-          <td>  <%=user.email %></td>
-        
-          <td>  <%=user.role.name %></td>
-          <td>  <%=user.confirmed?%></td>
-          <td><%= link_to "Delete", admins_user_path(user),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} , class: 'btn btn-sm btn-danger'%>  </td>
-        </tr>
-      <%end%>
+<% @users.each do |user| %>
+      
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                   <%=user.email %>
+                </th>
+                <td class="py-4 px-6">
+                    <%=user.role.name %>
+                </td>
+                <td class="py-4 px-6">
+                  <%=user.confirmed?%>
+                </td>
+                <td class="py-4 px-6">
+                    <%= link_to "Delete", admins_user_path(user),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}%>  
+                </td>
+            </tr>
 
+<%end%>

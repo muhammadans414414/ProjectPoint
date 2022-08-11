@@ -34,11 +34,13 @@ module Admins
 
     def searchuser
       @users=User.where(role_id:params[:data])
+      
         respond_to do |format|
           format.js
           format.html {admins_users_path}
       end
     end
+
 
     def profile_details
       @data = User.joins(:role,:personal_information,:contact_information,:emergency_contacts,:educations,:dependents).select("*").where("users.id=?",current_user.id)

@@ -6,42 +6,76 @@
 
 
 
-<h1 class="text-center mt-5"> All Projects </h1>
+<h1 class="text-center mt-5 my-5"> All Projects </h1>
 <div class="text-center">
-  <%= link_to "New Project", new_admins_project_path, class: 'btn btn-sm btn-success text-center'%>
-  <%= link_to 'Download as Excel',admins_projects_path(format: :xlsx), class: 'btn btn-sm btn-secondary'%>
-  <%= link_to 'Download as Pdf',admins_projects_path(format: :pdf), class: 'btn btn-sm btn-primary'%>
+  <%= link_to "New Project", new_admins_project_path, class: 'bg-green-900 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
+  <%= link_to 'Download as Excel',admins_projects_path(format: :xlsx), class: 'bg-sky-600 px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white'%>
+  <%= link_to 'Download as Pdf',admins_projects_path(format: :pdf), class: 'bg-purple-700 px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white'%>
 </div>
-<table class="table table-striped mt-1">
-  <thead>
-    <tr>
-      <th>Project Name</th>
-      <th>Status</th>
-      <th>Live Url</th>
-      <th>Total Assigned Developers</th>
-      <th>Assigned Developers Details</th>
-    </tr>
-  </thead>
-  <tbody id="abc">
-    <div>
-      <% @projects.each do |project| %>
-        <tr>
-          <td>  <%= project.full_name %></td>
-          <td>  <%= project.status %></td>
-          <td>  <%=project.live_url %></td>
 
-          <td> <%=project.user_projects.count%> </td>
-          <td><%= link_to "See Developers ", "/admins/project_users/"+project.id.to_s, class: 'btn btn-sm btn-primary'%> </td>
-          <td><%= link_to "Details", admins_project_path(project), class: 'btn btn-sm btn-primary'%>  </td>
-          <td><%= link_to "Details Pdf", admins_project_path(project,format: :pdf), class: 'btn btn-sm btn-primary'%>  </td>
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg my-12">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                   Project Name
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Status
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Live Url
+                </th>
 
-          <td><%= link_to "Assign Developer", "/admins/project_id/"+project.id.to_s, class: 'btn btn-sm btn-primary'%>  </td>
-        </tr>
-      <%end%>
-    </div>
-  </tbody>
-</table>
+                <th scope="col" class="py-3 px-6">
+                  Total Assigned Developers
+                </th>
 
+                <th scope="col" class="py-3 px-6">
+                    Assigned Developers Details
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    
+                </th>
+            </tr>
+        </thead>
+        <tbody id="abc">
+         <% @projects.each do |project| %>
+      
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  <%= project.full_name %>
+                </th>
+                <td class="py-4 px-6">
+                 <%= project.status %>
+                </td>
+                <td class="py-4 px-6">
+                 <%=project.live_url %>
+                </td>
+                <td class="py-4 px-6">
+                   <%=project.user_projects.count%> 
+                </td>
+
+                <td class="py-4 px-6">
+                <%= link_to "See Developers ", "/admins/project_users/"+project.id.to_s, class:'bg-blue-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%> 
+                </td>
+
+                <td class="py-4 px-6">
+                 <%= link_to "Details", admins_project_path(project), class:'bg-green-700 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%> 
+                 </td>
+
+                 <td class="py-4 px-6">
+                 <%= link_to "Details Pdf", admins_project_path(project,format: :pdf), class:'bg-purple-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>  
+                 </td>
+
+                 <td class="py-4 px-6">
+                 <%= link_to "Assign Developer", "/admins/project_id/"+project.id.to_s, class:'bg-cyan-500 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%> 
+                 </td>
+            </tr>
+            <%end%>      
+        </tbody>
+    </table>
+</div>
 
 <script>
 
@@ -74,4 +108,8 @@ $(document).ready(function()
 
 
 </script>
+
+
+
+
 
