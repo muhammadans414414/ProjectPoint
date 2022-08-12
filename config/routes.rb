@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "toggleusers",to:"admins/users#searchuser"
   get "toggleprojects",to:"admins/projects#searchproject"
 
+  
   namespace :admins do
     resources :users
     resources :projects
