@@ -1,14 +1,15 @@
 
-<h1> All Users </h1>
+<p class="text-4xl text-center m-10"> All Users </p>
 
+<div class="m-10">
 
 <%= form_with do |form| %>
 <%= form.label :"Role Name" %>
-<%= form.collection_select :id, Role.all, :id, :name, prompt: true , id: "ctg"%>
+<%= form.collection_select :id, Role.all, :id, :name,{prompt:"Please Select"},class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
 <%end%>
 
 
-<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+<div class="mt-6 overflow-x-auto relative shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -41,14 +42,14 @@
                   <%=user.confirmed?%>
                 </td>
                 <td class="py-4 px-6">
-                    <%= link_to "Delete", admins_user_path(user),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}%>  
+                    <%= link_to "Delete", admins_user_path(user),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'},class:"bg-red-500 p-3 rounded-lg text-white"%>  
                 </td>
             </tr>
             <%end%>      
         </tbody>
     </table>
 </div>
-
+</div>
 
 
 <script>

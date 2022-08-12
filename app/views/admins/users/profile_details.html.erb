@@ -4,49 +4,54 @@
 
 
 
-<div style="width:100%;height:auto;background-color:grey;">
+<div class="h-auto bg-slate-100 mx-8 border-1 rounded-lg">
 
  <% if @personal_information.nil?%>
- <p>No Data</p>
+ 
  <%else%>
-<%= image_tag(@personal_information.profile_image,style:"width:100px;height:100px;")  if @personal_information.profile_image.attached?%>
-<p><%= @personal_information.combined_name %><p>
-<p><%= @personal_information.employee_code %><p>
-<p><%= @personal_information.designation %><p>
-<p><%= @contact_information.mobile %><p>
-<p><%= @contact_information.official_email %><p>
+ <div class="flex">
+
+<div class="m-10 px-5">
+<%= image_tag(@personal_information.profile_image,style:"width:100px;height:100px;",class:"rounded-full")  if @personal_information.profile_image.attached?%>
+</div>
+
+  <div class="flex">
+  <div class="p-5">
+  <p class="text-2xl my-5"><%= @personal_information.combined_name.upcase %></p>
+  <h3>Employee Code</h3>
+  <h3>Designation</h3>
+  <h3>Email</h3>
+  <h3>Mobile</h3>
+  <h3>CNIC</h3>
+  </div>
+
+  <div class="mt-16 p-7 border-l-2 border-slate-300">
+  <p class="text-red-500"><%= @personal_information.employee_code %><p>
+  <p class="text-red-500"><%= @personal_information.designation %><p>
+  <p class="text-red-500"><%= @contact_information.mobile %><p>
+  <p class="text-red-500"><%= @contact_information.official_email %><p>
+  <p class="text-red-500"><%= @personal_information.cnic %><p>
+  </div>
+
+  </div>
 
 
-<p><%= @personal_information.cnic %><p>
-
+</div>
 
 <%end%>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- This is an example component -->
-<div class="mx-auto">
+<div class="m-12">
     
-    <div class="border-b border-gray-200 dark:border-gray-700 mb-4">
-        <ul class="flex flex-wrap -mb-px" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
-            <li class="mr-2" role="presentation">
+    <div class="border-b border-gray-200 dark:border-gray-700 mb-4 ">
+        <ul class="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+            <li class="mr-2 nav-item flex-auto text-center " role="presentation">
                 <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Personal Information</button>
             </li>
-            <li class="mr-2" role="presentation">
+            <li class="mr-2 nav-item flex-auto text-center" role="presentation">
                 <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="true">Education</button>
             </li>
-            <li class="mr-2" role="presentation">
+            <li class="mr-2 nav-item flex-auto text-center" role="presentation">
                 <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Dependents</button>
             </li>
         </ul>
@@ -57,53 +62,74 @@
            <% if @personal_information.nil?%>
   <p class="my-8"><%= link_to "Add Personal Information", new_admins_personal_information_path,class:'bg-blue-400  p-3 rounded-md hover:bg-slate-500 text-white'%><br><p>
   <%else%>
-        <div class="text-center">
-  <%= form_with model:[:admins,@personal_information] do |f| %>
-    <div class="field">
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name, autofocus: true%>
-      <% @personal_information.errors.full_messages_for(:first_name).each do |message| %>
-        <div class="alert bg-danger">
-          <%= message %>
-        </div>
-      <% end %>
-    </div>
-    
-    <div class="field">
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name, autofocus: true%>
-      <% @personal_information.errors.full_messages_for(:last_name).each do |message| %>
-        <div class="alert bg-danger">
-          <%= message %>
-        </div>
-      <% end %>
-    </div>
+        <div class="">
+  <%= form_with model:[:admins,@personal_information], class:"px-5" do |f| %>
 
- 
-    <div class="field">
-      <%= f.label :father_name %>
-      <%= f.text_field :father_name, autofocus: true%>
-      <% @personal_information.errors.full_messages_for(:father_name).each do |message| %>
-        <div class="alert bg-danger">
-          <%= message %>
-        </div>
-      <% end %>
-    </div>
+  <div class="flex flex-wrap -mx-3 mb-6"> 
 
 
-    <div class="field">
-      <%= f.label :date_of_birth %>
-      <%= f.date_field :date_of_birth%>
-      <% @personal_information.errors.full_messages_for(:date_of_birth).each do |message| %>
-        <div class="alert bg-danger">
-          <%= message %>
-        </div>
-      <% end %>
-    </div>  
-    
-     <div class="field">
-      <%= f.label :marital_status %>
-      <%= f.select :marital_status, PersonalInformation.marital_statuses.keys,prompt: "Please Select",autofocus: true %>
+          <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                  First Name
+                </label>
+                <%= f.text_field :first_name, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
+                <% @personal_information.errors.full_messages_for(:first_name).each do |message| %>
+                  <div class="alert bg-danger">
+                    <%= message %>
+                  </div>
+                <% end %>
+              </div>
+              
+              <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                  Last Name
+                </label>
+                <%= f.text_field :last_name, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
+                <% @personal_information.errors.full_messages_for(:last_name).each do |message| %>
+                  <div class="alert bg-danger">
+                    <%= message %>
+                  </div>
+                <% end %>
+              </div>
+
+          
+              <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                  Father Name
+                </label>
+                <%= f.text_field :father_name, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
+                <% @personal_information.errors.full_messages_for(:father_name).each do |message| %>
+                  <div class="alert bg-danger">
+                    <%= message %>
+                  </div>
+                <% end %>
+              </div>
+
+
+              <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                  Date of Birth
+                </label>
+                <%= f.date_field :date_of_birth,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
+                <% @personal_information.errors.full_messages_for(:date_of_birth).each do |message| %>
+                  <div class="alert bg-danger">
+                    <%= message %>
+                  </div>
+                <% end %>
+              </div>  
+</div>
+
+
+    <%# ---------------------------------------------------------------- second row personal information %>
+
+       <div class="flex flex-wrap -mx-3 mb-6"> 
+
+
+      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Marital Status
+        </label>
+      <%= f.select :marital_status, PersonalInformation.marital_statuses.keys,{prompt:"Please Select"},autofocus: true,class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
       <% @personal_information.errors.full_messages_for(:marital_status).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -111,15 +137,22 @@
       <% end %>
     </div>
 
-  <div class="field">
-      <%= f.label :spouse_name %>
-      <%= f.text_field :spouse_name, autofocus: true, disabled: true%>
+
+  <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Spouse Name
+      </label>
+      <%= f.text_field :spouse_name, autofocus: true, disabled: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
    
     </div>
 
-      <div class="field">
-      <%= f.label :religion %>
-      <%= f.select :religion, PersonalInformation.religions.keys,autofocus: true%>
+
+
+      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Religion
+        </label>
+      <%= f.select :religion, PersonalInformation.religions.keys,{prompt:"Please Select"},class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
       <% @personal_information.errors.full_messages_for(:religion).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -128,9 +161,11 @@
     </div>
 
 
-    <div class="field">
-      <%= f.label :cnic %>
-      <%= f.text_field :cnic, autofocus: true%>
+    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        CNIC
+        </label>
+      <%= f.text_field :cnic, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @personal_information.errors.full_messages_for(:cnic).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -138,10 +173,15 @@
       <% end %>
     </div>
 
+</div>
 
-   <div class="field">
-      <%= f.label :cnic_expiry_date %>
-      <%= f.date_field:cnic_expiry_date, autofocus: true%>
+<%# ----------------------------------------------------------------------------- third row personal Information %>
+<div class="flex flex-wrap -mx-3 mb-6"> 
+   <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        CNIC Expiry Date
+        </label>
+      <%= f.date_field:cnic_expiry_date, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @personal_information.errors.full_messages_for(:cnic_expiry_date).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -150,9 +190,11 @@
     </div>
 
 
-        <div class="field">
-      <%= f.label :disability %>
-      <%= f.check_box :disability, autofocus: true%>
+      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0 text-center">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Check if you have disability
+        </label>
+      <%= f.check_box :disability, autofocus: true,class:"w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 border-2 border-purple-600"%>
       <% @personal_information.errors.full_messages_for(:disability).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -160,14 +202,12 @@
       <% end %>
     </div>
 
-      <div id="abc">
 
-    </div>
-
-
-<div class="field">
-      <%= f.label :disability_type %>
-        <%= f.select :disability_type, PersonalInformation.disability_types.keys, {prompt:"Please Select",include_blank: true},disabled: true%>
+<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Disability Type
+        </label>
+        <%= f.select :disability_type, PersonalInformation.disability_types.keys, {prompt:"Please Select",include_blank: true},disabled: true,class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
       <% @personal_information.errors.full_messages_for(:disability_type).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -176,9 +216,11 @@
     </div>
 
 
-<div class="field">
-      <%= f.label :designation %>
-      <%= f.text_field :designation, autofocus: true%>
+<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Designation
+        </label>
+      <%= f.text_field :designation, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @personal_information.errors.full_messages_for(:designation).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -186,9 +228,17 @@
       <% end %>
     </div>
 
-<div class="field">
-      <%= f.label :employee_code %>
-      <%= f.text_field :employee_code, autofocus: true%>
+    </div>
+
+<%# ------------------------------------------------- forth row %>
+
+<div class="flex flex-wrap -mx-3 mb-6"> 
+
+<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Employee Code
+        </label>
+      <%= f.text_field :employee_code, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @personal_information.errors.full_messages_for(:employee_code).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -196,9 +246,11 @@
       <% end %>
     </div>
 
-  <div class="field">
-      <%= f.label :place_of_birth %>
-      <%= f.text_field :place_of_birth, autofocus: true%>
+  <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Place of Birth
+        </label>
+      <%= f.text_field :place_of_birth, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @personal_information.errors.full_messages_for(:place_of_birth).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -207,9 +259,11 @@
     </div>
 
 
-<div class="field">
-      <%= f.label :domicile %>
-      <%= f.text_field :domicile, autofocus: true%>
+<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Domicile
+        </label>
+      <%= f.text_field :domicile, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @personal_information.errors.full_messages_for(:domicile).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -219,9 +273,11 @@
 
 
 
-<div class="field">
-      <%= f.label :nationality %>
-      <%= f.text_field :nationality, autofocus: true%>
+<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Nationality
+        </label>
+      <%= f.text_field :nationality, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @personal_information.errors.full_messages_for(:nationality).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -230,9 +286,14 @@
     </div>
 
 
-<div class="field">
-      <%= f.label :passport_number %>
-      <%= f.text_field :passport_number, autofocus: true%>
+</div>
+<%# -------------------------------------------------------------------- fifth row personal Information%>
+<div class="flex flex-wrap -mx-3 mb-6"> 
+<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Passport Number
+        </label>
+      <%= f.text_field :passport_number, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @personal_information.errors.full_messages_for(:passport_number).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -241,9 +302,11 @@
     </div>
 
 
-<div class="field">
-      <%= f.label :passport_validity_date %>
-      <%= f.date_field :passport_validity_date, autofocus: true%>
+<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Passport Validity Date
+        </label>
+      <%= f.date_field :passport_validity_date, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @personal_information.errors.full_messages_for(:passport_validity_date).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -257,9 +320,11 @@
 
 
 
-<div class="field">
-      <%= f.label :height %>
-      <%= f.text_field :height, autofocus: true%>
+<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Height
+        </label>
+      <%= f.text_field :height, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @personal_information.errors.full_messages_for(:height).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -268,13 +333,15 @@
     </div>
 
 
-<div class="field">
-      <%= f.label :profile_image %>
-      <%= f.file_field :profile_image, autofocus: true%>
+<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Update Image
+        </label>
+      <%= f.file_field :profile_image, autofocus: true,class:"block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"%>
       
     </div>
 
-
+</div>
 
 
 
@@ -288,27 +355,40 @@
 
 
 
-
+<%# ------------------------------------------------------------------------------ end personal information %>
 <hr/>
+
+
 <h3 class="my-8">Contact Information Information</h3>
+
 <% if @contact_information.nil?%>
 <p class="my-8"> <%= link_to "Add Contact Information", new_admins_contact_information_path, class:'bg-blue-400  p-3 rounded-md hover:bg-slate-500 text-white'%></p>
 <%else%>
-<div class="text-center">
+
+<div class="">
   <%= form_with model:[:admins,@contact_information] do |f| %>
-    <div class="field">
-      <%= f.label :mobile %>
-      <%= f.text_field :mobile, autofocus: true%>
+
+   <div class="flex flex-wrap -mx-3 mb-6">
+
+      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Mobile
+      </label>
+      <%= f.text_field :mobile, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @contact_information.errors.full_messages_for(:mobile).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
         </div>
       <% end %>
     </div>
+
+
     
-    <div class="field">
-      <%= f.label :residence_phone %>
-      <%= f.text_field :residence_phone, autofocus: true%>
+    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Residence Phone
+      </label>
+      <%= f.text_field :residence_phone, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @contact_information.errors.full_messages_for(:residence_phone).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -316,9 +396,11 @@
       <% end %>
     </div>
 
-    <div class="field">
-      <%= f.label :coordinator %>
-      <%= f.text_field :coordinator, autofocus: true%>
+    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Coordinator
+      </label>
+      <%= f.text_field :coordinator, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @contact_information.errors.full_messages_for(:coordinator).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -326,9 +408,11 @@
       <% end %>
     </div>
 
- <div class="field">
-      <%= f.label :office_phone %>
-      <%= f.text_field :office_phone, autofocus: true%>
+ <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Office Phone
+      </label>
+      <%= f.text_field :office_phone, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @contact_information.errors.full_messages_for(:office_phone).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -336,9 +420,17 @@
       <% end %>
     </div>
 
-     <div class="field">
-      <%= f.label :official_email %>
-      <%= f.text_field :official_email, autofocus: true%>
+    </div>
+
+<%# -------------------------------------------------------------------------------- second row contact information %>
+
+      <div class="flex flex-wrap -mx-3 mb-6">
+
+     <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Official Email
+      </label>
+      <%= f.text_field :official_email, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @contact_information.errors.full_messages_for(:official_email).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -348,9 +440,11 @@
 
 
 
-     <div class="field">
-      <%= f.label :personal_email %>
-      <%= f.text_field :personal_email, autofocus: true%>
+     <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Personal Email
+      </label>
+      <%= f.text_field :personal_email, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @contact_information.errors.full_messages_for(:personal_email).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -360,9 +454,11 @@
 
 
 
-    <div class="field">
-      <%= f.label :residence_address %>
-      <%= f.text_field :residence_address, autofocus: true%>
+    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Residence Address
+      </label>
+      <%= f.text_field :residence_address, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @contact_information.errors.full_messages_for(:residence_address).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -370,9 +466,11 @@
       <% end %>
     </div>
 
-     <div class="field">
-      <%= f.label :permanent_address %>
-      <%= f.text_field :permanent_address, autofocus: true%>
+     <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Permanent Address
+      </label>
+      <%= f.text_field :permanent_address, autofocus: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"%>
       <% @contact_information.errors.full_messages_for(:permanent_address).each do |message| %>
         <div class="alert bg-danger">
           <%= message %>
@@ -380,7 +478,9 @@
       <% end %>
     </div>
 
-    <%= f.submit class: 'btn btn-success mt-2' %>
+    </div>
+
+    <%= f.submit class:'bg-purple-400 rounded-md hover:bg-slate-500 text-white py-3 rounded-2xl my-3 px-3'  %>
   <%end%>
 </div>
 <%end%>
@@ -644,6 +744,7 @@ $(document).ready(function()
       $("#personal_information_spouse_name").prop( "disabled", true );
      }
    });
+
 
 
  $('input[type="checkbox"]').click(function(){

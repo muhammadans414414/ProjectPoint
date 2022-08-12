@@ -7,7 +7,7 @@
   </div>
   <div class="field">
     <%= f.label :"User" %>
-    <%= f.collection_select :user_id, User.joins(:role).where('roles.name =?', 'developer'), :id, "combined_name", prompt:true%>
+    <%= f.collection_select :user_id, User.joins(:role).where('roles.name =?', 'developer'), :id, "email", prompt:true%>
     <% @user_project.errors.full_messages_for(:project_id).each do |message| %>
       <div class="alert bg-danger">
         <%= message %>
