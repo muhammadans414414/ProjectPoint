@@ -21,6 +21,7 @@ gem 'pg', '~> 1.1'
 gem 'rubyzip', '>= 1.2.1'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'material_icons'
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
 

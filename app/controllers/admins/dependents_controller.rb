@@ -9,7 +9,7 @@ class Admins::DependentsController < ApplicationController
         @dependent = Dependent.new(dependent_params)
         
         if @dependent.save
-          redirect_to admins_users_path
+          redirect_to admins_profile_details_path
         else
           render :new, status: :unprocessable_entity
         end
@@ -23,7 +23,7 @@ class Admins::DependentsController < ApplicationController
       def update
         @dependent = Dependent.find(params[:id])
         if @dependent.update(dependent_params)
-          redirect_to admins_users_path
+          redirect_to admins_profile_details_path
         else
           render :edit
         end
@@ -35,7 +35,7 @@ class Admins::DependentsController < ApplicationController
 
         @dependent.destroy
 
-        redirect_to admins_users_path
+        redirect_to admins_profile_details_path
       end
 
 

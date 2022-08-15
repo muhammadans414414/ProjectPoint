@@ -10,7 +10,7 @@ class Admins::EducationsController < ApplicationController
         @education = Education.new(education_params)
         
         if @education.save
-          redirect_to admins_users_path
+          redirect_to admins_profile_details_path
         else
           render :new, status: :unprocessable_entity
         end
@@ -24,7 +24,7 @@ class Admins::EducationsController < ApplicationController
       def update
         @education = Education.find(params[:id])
         if @education.update(education_params)
-          redirect_to admins_users_path
+          redirect_to admins_profile_details_path
         else
           render :edit
         end
@@ -36,7 +36,7 @@ class Admins::EducationsController < ApplicationController
 
         @education.destroy
 
-        redirect_to admins_users_path
+        redirect_to admins_profile_details_path
       end
 
 

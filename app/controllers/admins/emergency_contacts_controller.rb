@@ -9,7 +9,7 @@ class Admins::EmergencyContactsController < ApplicationController
         @emergency_contact = EmergencyContact.new(emergency_contact_params)
         
         if @emergency_contact.save
-          redirect_to admins_users_path
+          redirect_to admins_profile_details_path
         else
           render :new, status: :unprocessable_entity
         end
@@ -23,7 +23,7 @@ class Admins::EmergencyContactsController < ApplicationController
       def update
         @emergency_contact = EmergencyContact.find(params[:id])
         if @emergency_contact.update(emergency_contact_params)
-          redirect_to admins_users_path
+          redirect_to admins_profile_details_path
         else
           render :edit
         end
@@ -35,7 +35,7 @@ class Admins::EmergencyContactsController < ApplicationController
 
         @emergency_contact.destroy
 
-        redirect_to admins_users_path
+        redirect_to admins_profile_details_path
       end
 
 

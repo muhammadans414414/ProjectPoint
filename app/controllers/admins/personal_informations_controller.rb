@@ -6,7 +6,7 @@ class Admins::PersonalInformationsController < ApplicationController
         @personal_information=PersonalInformation.new(personal_information_params)
         @personal_information.user_id=current_user.id
         if @personal_information.save
-            redirect_to root_path
+            redirect_to admins_profile_details_path
         else
             render :new
         end
@@ -15,7 +15,7 @@ class Admins::PersonalInformationsController < ApplicationController
     def update
         @personal_information=PersonalInformation.find(params[:id])
         if @personal_information.update(personal_information_params)
-            redirect_to root_path
+            redirect_to admins_profile_details_path
         else
             puts "error"
         end

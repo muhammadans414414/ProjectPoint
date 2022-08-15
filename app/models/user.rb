@@ -21,4 +21,6 @@ class User < ApplicationRecord
     self.role.name == Admin
   end
 
+  validates :email, :password, :role_id,presence: true
+  
 end

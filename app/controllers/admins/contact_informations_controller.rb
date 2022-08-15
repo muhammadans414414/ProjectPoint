@@ -9,7 +9,7 @@ class Admins::ContactInformationsController < ApplicationController
         @contact_information = ContactInformation.new(contact_information_params)
         @contact_information.user_id=current_user.id
         if @contact_information.save
-          redirect_to admins_users_path
+          redirect_to admins_profile_details_path
         else
           render :new, status: :unprocessable_entity
         end
@@ -18,7 +18,7 @@ class Admins::ContactInformationsController < ApplicationController
       def update
         @contact_information=ContactInformation.find(params[:id])
         if @contact_information.update(contact_information_params)
-          redirect_to admins_users_path
+          redirect_to admins_profile_details_path
         else
 
         end

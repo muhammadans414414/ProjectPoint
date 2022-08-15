@@ -2,10 +2,10 @@
 
 module Admins
   class UserProjectsController < ApplicationController
-    def new
-      @user_project = UserProject.new
-      authorize! :read, @user_project
-    end
+    # def new
+    #   @user_project = UserProject.new
+    #   authorize! :read, @user_project
+    # end
 
     def create
      
@@ -14,7 +14,7 @@ module Admins
       if @user_project.save
         redirect_to admins_projects_path
       else
-        render :new
+        render :assigndeveloper
       end
     end
 

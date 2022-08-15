@@ -9,7 +9,9 @@
                      <%= form_with model:[:admins,@user_project], data:{turbo:false} do |f| %>
                      <%= f.collection_select :user_id, User.joins(:role).where('roles.name =?', 'developer'), :id, "email",{prompt:"Please Select"},autofocus: true,class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
 
-
+        <% @user_project.errors.full_messages_for(:user_id).each do |message| %>
+      <div class="bg-red-500 m-2 p-3"><%= message %></div>
+    <% end %>   
                       <%= f.hidden_field :project_id,  project_id:@user_project.project_id%>
 
                       <div class="text-center">

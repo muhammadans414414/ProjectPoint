@@ -1,3 +1,10 @@
+
+<% if @projects.empty? %>
+
+<h1 class="text-center text-4xl my-8"> No Assigned Projects </h1>
+<%else%>
+
+
 <h1 class="text-center text-4xl my-8"> Assigned Projects </h1>
 
 
@@ -26,3 +33,4 @@
         </tbody>
     </table>
 </div>
+<%end%>

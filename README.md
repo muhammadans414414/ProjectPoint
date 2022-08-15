@@ -1,24 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project Point is a simple project Management application.
 
-Things you may want to cover:
+Things you should do after cloning this app:
 
-* Ruby version
+* create database and migrate pending migrations at your end
 
-* System dependencies
+* Run seeder file with the following command
 
-* Configuration
+* "rails db:seed"
 
-* Database creation
+* Run "bundle install" command
 
-* Database initialization
+App Information:
 
-* How to run the test suite
+* Ruby version is ruby-3.0.0.
 
-* Services (job queues, cache servers, search engines, etc.)
+* Rails version is 7.0.3.
 
-* Deployment instructions
+* TailwindCss is used for styling.
 
-* ...
+* Jquery is also used for filtering functionalities.
+
+ Functionalities
+
+ * Separate namespaces for admin and simple users/developers
+
+ * Complete crud for users (admins and users/developers)
+
+ * Perfectly managed user profile with diverse details like personal information, emergency contacts, education certificates and much more.
+
+ * Email Notifications also provided for sign up process and many more (you will explore once you see the interface)
+
+ * Admin has the prevelidge to see all the projects(crud), users (crud), assign projects to developers and vice versa.
