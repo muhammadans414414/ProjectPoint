@@ -9,5 +9,7 @@ class PersonalInformation < ApplicationRecord
       "#{first_name} #{last_name}"
   end
 
+  validates :first_name,presence:true
+
 end
 
