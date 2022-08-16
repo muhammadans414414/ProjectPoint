@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     resources :educations
     resources :dependents
     resources :personal_informations
-    resources :contact_informations
     resources :emergency_contacts
     get 'user_projects_details/:id', to: 'user_projects#details'
     delete 'delete_user_project/:id', to: 'user_projects#destroy'

@@ -1,0 +1,85 @@
+<h1 class="text-center font-bold my-5"> Project Name : <%=@project.project.full_name%> </h1>
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="py-3 px-6">
+          Full Name
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Short Name
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Staging Url
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Staging Test Username
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Staging Test Password
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Staging Database Name
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Live Url
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Live Test Username
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Live Test Password
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Live Database Name
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Status
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Ssh/Url/Ip
+        </th>
+      </tr>
+    </thead>
+    <tbody id="#abc">
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <%= @project.project.full_name%>
+        </th>
+        <td class="py-4 px-6">
+          <%= @project.project.short_name%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.project.staging_url%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.project.staging_test_username%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.project.staging_test_password%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.project.staging_database_name%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.project.live_url%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.project.live_test_username%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.project.live_test_password%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.project.live_database_name%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.project.status%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.project.ssh_url_ip%>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

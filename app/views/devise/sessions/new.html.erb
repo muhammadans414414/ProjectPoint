@@ -12,7 +12,7 @@
           alt="Sample image"
         />
       </div>
-      <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
+      <div class="xl:ml-20 xl:w-3/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name),data: {turbo: false}) do |f| %>
          
 
@@ -41,14 +41,16 @@
 
           
 
-          <div class="text-center lg:text-left">
+          <div class="text-right">
             
-              <%= f.submit "Log in",class:"inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"  %>
+              <%= f.submit "Log in",class:"mb-2 inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"  %>
              
+         
             
           </div>
         <%end%>
-          <%= render "devise/shared/links" %>
+        <%= render "devise/shared/links" %>
+        
       </div>
     </div>
   </div>

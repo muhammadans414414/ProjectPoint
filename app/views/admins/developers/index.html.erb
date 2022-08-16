@@ -1,57 +1,47 @@
 <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="py-3 px-6">
-                   Email
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Role
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Assigned Projects
-                </th>
-
-                <th scope="col" class="py-3 px-6">
-                  
-                </th>
-
-                <th scope="col" class="py-3 px-6">
-                    
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    
-                </th>
-            </tr>
-        </thead>
-        <tbody id="#abc">
-          <% @developers.each do |developer| %>
-      
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  <%= developer.role.name %>
-                </th>
-                <td class="py-4 px-6">
-                  <%= developer.email %>
-                </td>
-                <td class="py-4 px-6">
-                 <%= developer.user_projects.count %>
-                </td>
-                <td class="py-4 px-6">
-                    <%= link_to "Delete", "/admins/developers/"+developer.id.to_s,  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-red-500 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>  
-                </td>
-
-                <td class="py-4 px-6">
-                 <%= link_to "See Projects", "/admins/user_projects_details/"+developer.id.to_s, class:'bg-green-400 px-5 py-3 rounded-md hover:bg-slate-300 text-white'%> 
-                </td>
-
-                <td class="py-4 px-6">
-                 <%= link_to "Assign Project", "/admins/developer_id/"+developer.id.to_s, class:'bg-purple-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white' %> 
-                </td>
-            </tr>
-            <%end%>      
-        </tbody>
-    </table>
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="py-3 px-6">
+          Email
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Role
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Assigned Projects
+        </th>
+        <th scope="col" class="py-3 px-6">
+        </th>
+        <th scope="col" class="py-3 px-6">
+        </th>
+        <th scope="col" class="py-3 px-6">
+        </th>
+      </tr>
+    </thead>
+    <tbody id="#abc">
+      <% @developers.each do |developer| %>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <%= developer.role.name %>
+          </th>
+          <td class="py-4 px-6">
+            <%= developer.email %>
+          </td>
+          <td class="py-4 px-6">
+            <%= developer.user_projects.count %>
+          </td>
+          <td class="py-4 px-6">
+            <%= link_to "Delete", "/admins/developers/"+developer.id.to_s,  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-red-500 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
+          </td>
+          <td class="py-4 px-6">
+            <%= link_to "See Projects", "/admins/user_projects_details/"+developer.id.to_s, class:'bg-green-400 px-5 py-3 rounded-md hover:bg-slate-300 text-white'%>
+          </td>
+          <td class="py-4 px-6">
+            <%= link_to "Assign Project", "/admins/developer_id/"+developer.id.to_s, class:'bg-purple-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white' %>
+          </td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
 </div>
-
-

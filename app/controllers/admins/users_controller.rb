@@ -48,8 +48,7 @@ module Admins
       @educations=current_user.educations
       @dependents=current_user.dependents
       @personal_information=current_user.personal_information
-      @contact_information=current_user.contact_information
-
+     
     end
 
 

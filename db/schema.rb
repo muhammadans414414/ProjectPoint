@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_08_142626) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_16_045144) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,21 +40,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_08_142626) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
-
-  create_table "contact_informations", force: :cascade do |t|
-    t.string "mobile", null: false
-    t.string "residence_phone", null: false
-    t.string "coordinator"
-    t.string "office_phone"
-    t.string "official_email", null: false
-    t.string "personal_email", null: false
-    t.text "residence_address", null: false
-    t.text "permanent_address", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_contact_informations_on_user_id"
   end
 
   create_table "dependents", force: :cascade do |t|
@@ -118,6 +103,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_08_142626) do
     t.datetime "updated_at", null: false
     t.integer "blood_group"
     t.string "profile_image"
+    t.string "mobile", null: false
+    t.string "residence_phone", null: false
+    t.string "coordinator"
+    t.string "office_phone"
+    t.string "official_email", null: false
+    t.string "personal_email", null: false
+    t.text "residence_address", null: false
+    t.text "permanent_address", null: false
     t.index ["user_id"], name: "index_personal_informations_on_user_id"
   end
 
@@ -171,7 +164,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_08_142626) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.bigint "role_id", null: false
+    t.integer "role_id", default: 10, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -182,7 +175,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_08_142626) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "contact_informations", "users"
   add_foreign_key "dependents", "users"
   add_foreign_key "educations", "users"
   add_foreign_key "emergency_contacts", "users"

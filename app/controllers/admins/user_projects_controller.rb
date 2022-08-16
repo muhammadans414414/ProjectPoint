@@ -11,10 +11,22 @@ module Admins
      
       @user_project = UserProject.new(user_project_params)
       
-      if @user_project.save
-        redirect_to admins_projects_path
+      @data=UserProject.all
+      @status=true
+      @data.each do |record|
+        if(record.user_id==@user_project.user_id && record.project_id==@user_project.project_id)
+          @status=false
+        end
+      end
+      debugger
+      if @status
+        if @user_project.save
+          redirect_to admins_projects_path
+        else
+          render :assigndeveloper
+        end
       else
-        render :assigndeveloper
+        redirect_to admins_projects_path, alert: "You have already assigned this project to this developer"
       end
     end
 

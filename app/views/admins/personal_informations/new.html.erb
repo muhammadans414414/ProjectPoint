@@ -261,7 +261,7 @@
 
 <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-        Height
+        Height (CM)
         </label>
       <%= f.text_field :height, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
       <% @personal_information.errors.full_messages_for(:height).each do |message| %>
@@ -270,6 +270,129 @@
         </div>
       <% end %>
     </div>
+
+    <%# --------------------------------------------------- adding contact  attributes %>
+
+
+
+<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Mobile
+        </label>
+     <%= f.text_field :mobile, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+      <% @personal_information.errors.full_messages_for(:mobile).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+</div>
+
+
+
+<%# ------------------------------------------ %>
+<div class="flex flex-wrap -mx-3 mb-6"> 
+
+<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Residence Phone
+        </label>
+      <%= f.text_field :residence_phone, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+      <% @personal_information.errors.full_messages_for(:residence_phone).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+  <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Coordinator
+        </label>
+      <%= f.text_field :coordinator, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+      <% @personal_information.errors.full_messages_for(:coordinator).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Office Phone
+        </label>
+      <%= f.text_field :office_phone, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+      <% @personal_information.errors.full_messages_for(:office_phone).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Official Email
+        </label>
+      <%= f.text_field :official_email, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+      <% @personal_information.errors.full_messages_for(:official_email).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+</div>
+
+
+
+<%# ----------------- %>
+
+
+
+<div class="flex flex-wrap -mx-3 mb-6"> 
+
+<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Personal Email
+        </label>
+     <%= f.text_field :personal_email, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+      <% @personal_information.errors.full_messages_for(:personal_email).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+  <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        Residence Address
+        </label>
+      <%= f.text_field :residence_address, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+      <% @personal_information.errors.full_messages_for(:residence_address).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+
+<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+       Permanent Address
+        </label>
+      <%= f.text_field :permanent_address, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+      <% @personal_information.errors.full_messages_for(:permanent_address).each do |message| %>
+        <div class="alert bg-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
 
 
 <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
@@ -281,11 +404,31 @@
             
     </div>
 
+
 </div>
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%# ------------------------------------------------------------------------- contact attributes end %>
     <%= f.submit class:'bg-purple-400 rounded-md hover:bg-slate-500 text-white py-3 rounded-2xl my-3 px-3' %>
   <%end%>
 </div>
