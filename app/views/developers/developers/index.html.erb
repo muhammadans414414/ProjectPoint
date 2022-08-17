@@ -1,40 +1,42 @@
-<% if @projects.empty? %>
-  <h1 class="text-center text-4xl my-8"> No Assigned Projects </h1>
-<%else%>
-  <h1 class="text-center text-4xl my-8"> Assigned Projects </h1>
-  <div class="overflow-x-auto relative shadow-md sm:rounded-lg my-12">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-        <tr>
-          <th scope="col" class="py-3 px-6">
-            Project Full Name
-          </th>
-          <th scope="col" class="py-3 px-6">
-            Project Short Name
-          </th>
-          <th scope="col" class="py-3 px-6">
-            Project Status
-          </th>
-        </tr>
-      </thead>
-      <tbody id="abc">
-        <% @projects.each do |project|%>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              <%=project.project.full_name %>
+<div class="mt-[10rem]">
+  <% if @projects.empty? %>
+    <h1 class="text-center text-4xl my-8"> No Assigned Projects </h1>
+  <%else%>
+    <h1 class="text-center text-4xl my-8"> Assigned Projects </h1>
+    <div class="overflow-x-auto relative shadow-md sm:rounded-lg my-12">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="py-3 px-6">
+              Project Full Name
             </th>
-            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              <%=project.project.short_name %>
+            <th scope="col" class="py-3 px-6">
+              Project Short Name
             </th>
-            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              <%=project.project.status %>
-            </th>
-            <th scope="row" class="">
-              <%=link_to "See Details",developers_developer_path(project),class:"bg-cyan-500 px-5 py-3 rounded-md hover:bg-slate-500 text-white"%>
+            <th scope="col" class="py-3 px-6">
+              Project Status
             </th>
           </tr>
-        <%end%>
-      </tbody>
-    </table>
-  </div>
-<%end%>
+        </thead>
+        <tbody id="abc">
+          <% @projects.each do |project|%>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <%=project.project.full_name %>
+              </th>
+              <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <%=project.project.short_name %>
+              </th>
+              <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <%=project.project.status %>
+              </th>
+              <th scope="row" class="">
+                <%=link_to "See Details",developers_developer_path(project),class:"bg-cyan-500 px-5 py-3 rounded-md hover:bg-slate-500 text-white"%>
+              </th>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  <%end%>
+</div>

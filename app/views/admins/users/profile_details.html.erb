@@ -1,15 +1,14 @@
 <!-- component -->
 <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
-<div class="h-auto bg-slate-100 mx-8 border-1 rounded-lg">
+<div class="h-auto bg-slate-100 mx-8 border-1 rounded-lg mt-[10rem]">
   <% if @personal_information.nil? %>
-  <%else%>
     <div class="flex">
       <div class="m-10 px-5">
-        <%= image_tag(@personal_information.profile_image,style:"width:100px;height:100px;",class:"rounded-full")  if @personal_information.profile_image.attached?%>
+        <%= image_tag("avatar.png",style:"width:100px;height:100px;",class:"rounded-full")%>
       </div>
       <div class="flex">
         <div class="p-5">
-          <p class="text-2xl my-5"><%= @personal_information.combined_name.upcase %></p>
+          <p class="text-2xl my-5">NA</p>
           <h3>Employee Code</h3>
           <h3>Designation</h3>
           <h3>Email</h3>
@@ -17,579 +16,601 @@
           <h3>CNIC</h3>
         </div>
         <div class="mt-16 p-7 border-l-2 border-slate-300">
-          <p class="text-red-500"><%= @personal_information.employee_code %>
+          <p class="text-red-500">NA</p>
+          <p class="text-red-500">NA</p>
+          <p class="text-red-500"> NA         
+            <p class="text-red-500">NA</p>
+            <p class="text-red-500">  NA    </div>
+          </div>
+        </div>
+      <%else%>
+        <div class="flex">
+        <% if @personal_information.profile_image.attached?%>
+          <div class="m-10 px-5">
+            <%= image_tag(@personal_information.profile_image,style:"width:100px;height:100px;",class:"rounded-full")%>
+          </div>
+          <%else%>
+          <div class="m-10 px-5">
+        <%= image_tag("avatar.png",style:"width:100px;height:100px;",class:"rounded-full")%>
+          <%end%>
+          </div>
+          <div class="flex">
+            <div class="p-5">
+              <p class="text-2xl my-5"><%= @personal_information.combined_name.upcase %></p>
+              <h3>Employee Code</h3>
+              <h3>Designation</h3>
+              <h3>Email</h3>
+              <h3>Mobile</h3>
+              <h3>CNIC</h3>
+            </div>
+            <div class="mt-16 p-7 border-l-2 border-slate-300">
+              <p class="text-red-500"><%= @personal_information.employee_code %></p>
+              <p class="text-red-500"><%= @personal_information.designation %></p>
+              <p class="text-red-500"><%= @personal_information.mobile %></p>
+              <p class="text-red-500"><%= @personal_information.official_email %></p>
+              <p class="text-red-500"><%= @personal_information.cnic %></p>
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+    <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+      <ul class="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+        <li class="mr-2 nav-item flex-auto text-center " role="presentation">
+          <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Personal Information</button>
+        </li>
+        <li class="mr-2 nav-item flex-auto text-center" role="presentation">
+          <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Emergency Contacts</button>
+        </li>
+        <li class="mr-2 nav-item flex-auto text-center" role="presentation">
+          <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Educations</button>
+        </li>
+        <li class="mr-2 nav-item flex-auto text-center" role="presentation">
+          <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">Dependents</button>
+        </li>
+      </ul>
+    </div>
+    <div id="myTabContent">
+      <div class="p-4 bg-gray-50 rounded-lg dark:bg-gray-800 " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <% if @personal_information.nil?%>
+          <p class="my-8"><%= link_to "Add Personal Information", new_admins_personal_information_path,class:'bg-blue-400  p-3 rounded-md hover:bg-slate-500 text-white'%><br>
             <p>
-              <p class="text-red-500"><%= @personal_information.designation %>
-                <p>
-                  <p class="text-red-500"><%= @personal_information.mobile %>
-                    <p>
-                      <p class="text-red-500"><%= @personal_information.official_email %>
-                        <p>
-                          <p class="text-red-500"><%= @personal_information.cnic %>
-                            <p>
-                            </div>
-                          </div>
+            <%else%>
+              <div class="">
+                <%= form_with model:[:admins,@personal_information], class:"px-5" do |f| %>
+                  <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        First Name
+                      </label>
+                      <%= f.text_field :first_name, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:first_name).each do |message| %>
+                        <div class="bg-red-500 p-2 m-2">
+                          <%= message %>
                         </div>
-                      <%end%>
+                      <% end %>
                     </div>
-                    <div class="m-12">
-                      <div class="border-b border-gray-200 dark:border-gray-700 mb-4 ">
-                        <ul class="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
-                          <li class="mr-2 nav-item flex-auto text-center " role="presentation">
-                            <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Personal Information</button>
-                          </li>
-                          <li class="mr-2 nav-item flex-auto text-center" role="presentation">
-                            <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="emergency-tab" data-tabs-target="#emergency" type="button" role="tab" aria-controls="emergency" aria-selected="false">Emergency Contacts</button>
-                          </li>
-                          <li class="mr-2 nav-item flex-auto text-center" role="presentation">
-                            <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="true">Education</button>
-                          </li>
-                          <li class="mr-2 nav-item flex-auto text-center" role="presentation">
-                            <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Dependents</button>
-                          </li>
-                        </ul>
-                      </div>
-                      <div id="myTabContent">
-                        <div class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                          <% if @personal_information.nil?%>
-                            <p class="my-8"><%= link_to "Add Personal Information", new_admins_personal_information_path,class:'bg-blue-400  p-3 rounded-md hover:bg-slate-500 text-white'%><br>
-                              <p>
-                              <%else%>
-                                <div class="">
-                                  <%= form_with model:[:admins,@personal_information], class:"px-5" do |f| %>
-                                    <div class="flex flex-wrap -mx-3 mb-6">
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          First Name
-                                        </label>
-                                        <%= f.text_field :first_name, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:first_name).each do |message| %>
-                                          <div class="bg-red-500 p-2 m-2">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Last Name
-                                        </label>
-                                        <%= f.text_field :last_name, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:last_name).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Father Name
-                                        </label>
-                                        <%= f.text_field :father_name, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:father_name).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Date of Birth
-                                        </label>
-                                        <%= f.date_field :date_of_birth,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight  focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:date_of_birth).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                    </div>
-                                    <%# ---------------------------------------------------------------- second row personal information %>
-                                    <div class="flex flex-wrap -mx-3 mb-6">
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Marital Status
-                                        </label>
-                                        <%= f.select :marital_status, PersonalInformation.marital_statuses.keys,{prompt:"Please Select"},autofocus: true,class:"bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-blue-300 border-2 border-gray-300" %>
-                                        <% @personal_information.errors.full_messages_for(:marital_status).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Spouse Name
-                                        </label>
-                                        <%= f.text_field :spouse_name, autofocus: true, disabled: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Religion
-                                        </label>
-                                        <%= f.select :religion, PersonalInformation.religions.keys,{prompt:"Please Select"},class:"border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
-                                        <% @personal_information.errors.full_messages_for(:religion).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          CNIC
-                                        </label>
-                                        <%= f.text_field :cnic, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:cnic).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                    </div>
-                                    <%# ----------------------------------------------------------------------------- third row personal Information %>
-                                    <div class="flex flex-wrap -mx-3 mb-6">
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          CNIC Expiry Date
-                                        </label>
-                                        <%= f.date_field:cnic_expiry_date, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:cnic_expiry_date).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0 text-center">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Check if you have disability
-                                        </label>
-                                        <%= f.check_box :disability, autofocus: true,class:"w-4 h-4  rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 border-2 border-purple-600"%>
-                                        <% @personal_information.errors.full_messages_for(:disability).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Disability Type
-                                        </label>
-                                        <%= f.select :disability_type, PersonalInformation.disability_types.keys, {prompt:"Please Select",include_blank: true},disabled: true,class:"border border-gray-300 bg-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
-                                        <% @personal_information.errors.full_messages_for(:disability_type).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Designation
-                                        </label>
-                                        <%= f.text_field :designation, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:designation).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                    </div>
-                                    <%# ------------------------------------------------- forth row %>
-                                    <div class="flex flex-wrap -mx-3 mb-6">
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Employee Code
-                                        </label>
-                                        <%= f.text_field :employee_code, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:employee_code).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Place of Birth
-                                        </label>
-                                        <%= f.text_field :place_of_birth, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:place_of_birth).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Domicile
-                                        </label>
-                                        <%= f.text_field :domicile, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:domicile).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Nationality
-                                        </label>
-                                        <%= f.text_field :nationality, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:nationality).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                    </div>
-                                    <%# -------------------------------------------------------------------- fifth row personal Information%>
-                                    <div class="flex flex-wrap -mx-3 mb-6">
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Passport Number
-                                        </label>
-                                        <%= f.text_field :passport_number, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:passport_number).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Passport Validity Date
-                                        </label>
-                                        <%= f.date_field :passport_validity_date, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:passport_validity_date).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Height (CM)
-                                        </label>
-                                        <%= f.text_field :height, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:height).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <%# --------------------------------------------------- adding contact  attributes %>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Mobile
-                                        </label>
-                                        <%= f.text_field :mobile, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:mobile).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                    </div>
-                                    <%# ------------------------------------------ %>
-                                    <div class="flex flex-wrap -mx-3 mb-6">
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Residence Phone
-                                        </label>
-                                        <%= f.text_field :residence_phone, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:residence_phone).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Coordinator
-                                        </label>
-                                        <%= f.text_field :coordinator, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:coordinator).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Office Phone
-                                        </label>
-                                        <%= f.text_field :office_phone, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:office_phone).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Official Email
-                                        </label>
-                                        <%= f.text_field :official_email, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:official_email).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                    </div>
-                                    <%# ----------------- %>
-                                    <div class="flex flex-wrap -mx-3 mb-6">
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Personal Email
-                                        </label>
-                                        <%= f.text_field :personal_email, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:personal_email).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Residence Address
-                                        </label>
-                                        <%= f.text_field :residence_address, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:residence_address).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Permanent Address
-                                        </label>
-                                        <%= f.text_field :permanent_address, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
-                                        <% @personal_information.errors.full_messages_for(:permanent_address).each do |message| %>
-                                          <div class="alert bg-danger">
-                                            <%= message %>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                          Add Image
-                                        </label>
-                                        <%= f.file_field :profile_image, autofocus: true,class:"block w-full text-sm text-gray-900 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"%>
-                                      </div>
-                                    </div>
-                                    <%# ------------------------------------------------------------------------- contact attributes end %>
-                                    <%= f.submit class:'bg-purple-400 rounded-md hover:bg-slate-500 text-white py-3 rounded-2xl my-3 px-3' %>
-                                  <%end%>
-                                </div>
-                              <%end%>
-                              <%# ------------------------------------------------------------------------------ end personal information %>
-                            </div>
-                            <div id="emergency">
-                              <p class="my-8 text-right"> <%= link_to "Add Emergency Contact", new_admins_emergency_contact_path, class:'bg-blue-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%></p>
-                              <div class="overflow-x-auto relative shadow-md sm:rounded-lg my-12">
-                                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                    <tr>
-                                      <th scope="col" class="py-3 px-6">
-                                        Name
-                                      </th>
-                                      <th scope="col" class="py-3 px-6">
-                                        Relation
-                                      </th>
-                                      <th scope="col" class="py-3 px-6">
-                                        Mobile
-                                      </th>
-                                    </tr>
-                                  </thead>
-                                  <tbody id="#abc">
-                                    <% @emergency_contacts.each do |data|%>
-                                      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                          <%= data.name%>
-                                        </th>
-                                        <td class="py-4 px-6">
-                                          <%= data.relation%>
-                                        </td>
-                                        <td class="py-4 px-6">
-                                          <%= data.mobile%>
-                                        </td>
-                                        <td class="py-4 px-6">
-                                          <%= link_to "Delete", admins_emergency_contact_path(data), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-red-600 px-5 py-3 rounded-md hover:bg-slate-500 text-white' %>
-                                        </td>
-                                        <td class="py-4 px-6">
-                                          <%= link_to "Edit", edit_admins_emergency_contact_path(data),class:'bg-cyan-600 px-5 py-3 rounded-md hover:bg-slate-500 text-white' %>
-                                        </td>
-                                      <%end%>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                              <div class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-                                <p class="text-right"><%= link_to "Add Education", new_admins_education_path, class:'bg-green-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%></p>
-                                <div class="overflow-x-auto relative shadow-md sm:rounded-lg my-12">
-                                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                      <tr>
-                                        <th scope="col" class="py-3 px-6">
-                                          Title
-                                        </th>
-                                        <th scope="col" class="py-3 px-6">
-                                          Major
-                                        </th>
-                                        <th scope="col" class="py-3 px-6">
-                                          institute
-                                        </th>
-                                        <th scope="col" class="py-3 px-6">
-                                          Graduation Date
-                                        </th>
-                                      </tr>
-                                    </thead>
-                                    <tbody id="#abc">
-                                      <% @educations.each do |data|%>
-                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                          <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            <%= data.major%>
-                                          </th>
-                                          <td class="py-4 px-6">
-                                            <%= data.title%>
-                                          </td>
-                                          <td class="py-4 px-6">
-                                            <%= data.institute%>
-                                          </td>
-                                          <td class="py-4 px-6">
-                                            <%= data.graduation_date%>
-                                          </td>
-                                          <td class="py-4 px-6">
-                                            <%= link_to "Delete", admins_education_path(data), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-purple-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white' %>
-                                          </td>
-                                          <td class="py-4 px-6">
-                                            <%= link_to "Edit", edit_admins_education_path(data), class:'bg-cyan-500 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
-                                          </td>
-                                        </tr>
-                                      <%end%>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                              <div class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-                                <p class="text-right"> <%= link_to "Add Dependent", new_admins_dependent_path, class:'bg-green-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%></p>
-                                <div class="overflow-x-auto relative shadow-md sm:rounded-lg my-12">
-                                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                      <tr>
-                                        <th scope="col" class="py-3 px-6">
-                                          Name
-                                        </th>
-                                        <th scope="col" class="py-3 px-6">
-                                          Residence Phone
-                                        </th>
-                                        <th scope="col" class="py-3 px-6">
-                                          Mobile
-                                        </th>
-                                        <th scope="col" class="py-3 px-6">
-                                          Date of birth
-                                        </th>
-                                        <th scope="col" class="py-3 px-6">
-                                          Address
-                                        </th>
-                                        <th scope="col" class="py-3 px-6">
-                                          CNIC
-                                        </th>
-                                        <th scope="col" class="py-3 px-6">
-                                          nationality
-                                        </th>
-                                        <th scope="col" class="py-3 px-6">
-                                          Action
-                                        </th>
-                                      </tr>
-                                    </thead>
-                                    <tbody id="#abc">
-                                      <% @dependents.each do |data|%>
-                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                          <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            <%= data.name%>
-                                          </th>
-                                          <td class="py-4 px-6">
-                                            <%= data.phone%>
-                                          </td>
-                                          <td class="py-4 px-6">
-                                            <%= data.residence_phone%>
-                                          </td>
-                                          <td class="py-4 px-6">
-                                            <%= data.date_of_birth%>
-                                          </td>
-                                          <td class="py-4 px-6">
-                                            <%= data.address%>
-                                          </td>
-                                          <td class="py-4 px-6">
-                                            <%= data.cnic%>
-                                          </td>
-                                          <td class="py-4 px-6">
-                                            <%= data.nationality%>
-                                          </td>
-                                          <td class="py-4 px-6">
-                                            <%= data.action%>
-                                          </td>
-                                          <td class="py-4 px-6">
-                                            <%= link_to "Delete", admins_dependent_path(data), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-purple-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white' %>
-                                          </td>
-                                          <td class="py-4 px-6">
-                                            <%= link_to "Edit", edit_admins_dependent_path(data), class:'bg-cyan-500 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
-                                          </td>
-                                        </tr>
-                                      <%end%>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                              <div class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
-                              </div>
-                            </div>
-                            <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
-                            <script>
-                              $(document).ready(function()
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Last Name
+                      </label>
+                      <%= f.text_field :last_name, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:last_name).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Father Name
+                      </label>
+                      <%= f.text_field :father_name, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:father_name).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Date of Birth
+                      </label>
+                      <%= f.date_field :date_of_birth,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight  focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:date_of_birth).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                  <%# ---------------------------------------------------------------- second row personal information %>
+                  <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Marital Status
+                      </label>
+                      <%= f.select :marital_status, PersonalInformation.marital_statuses.keys,{prompt:"Please Select"},autofocus: true,class:"bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-blue-300 border-2 border-gray-300" %>
+                      <% @personal_information.errors.full_messages_for(:marital_status).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Spouse Name
+                      </label>
+                      <%= f.text_field :spouse_name, autofocus: true, disabled: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Religion
+                      </label>
+                      <%= f.select :religion, PersonalInformation.religions.keys,{prompt:"Please Select"},class:"border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
+                      <% @personal_information.errors.full_messages_for(:religion).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        CNIC
+                      </label>
+                      <%= f.text_field :cnic, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:cnic).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                  <%# ----------------------------------------------------------------------------- third row personal Information %>
+                  <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        CNIC Expiry Date
+                      </label>
+                      <%= f.date_field:cnic_expiry_date, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:cnic_expiry_date).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0 text-center">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Check if you have disability
+                      </label>
+                      <%= f.check_box :disability, autofocus: true,class:"w-4 h-4  rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 border-2 border-purple-600"%>
+                      <% @personal_information.errors.full_messages_for(:disability).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Disability Type
+                      </label>
+                      <%= f.select :disability_type, PersonalInformation.disability_types.keys, {prompt:"Please Select",include_blank: true},disabled: true,class:"border border-gray-300 bg-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
+                      <% @personal_information.errors.full_messages_for(:disability_type).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Designation
+                      </label>
+                      <%= f.text_field :designation, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:designation).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                  <%# ------------------------------------------------- forth row %>
+                  <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Employee Code
+                      </label>
+                      <%= f.text_field :employee_code, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:employee_code).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Place of Birth
+                      </label>
+                      <%= f.text_field :place_of_birth, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:place_of_birth).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Domicile
+                      </label>
+                      <%= f.text_field :domicile, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:domicile).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Nationality
+                      </label>
+                      <%= f.text_field :nationality, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:nationality).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                  <%# -------------------------------------------------------------------- fifth row personal Information%>
+                  <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Passport Number
+                      </label>
+                      <%= f.text_field :passport_number, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:passport_number).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Passport Validity Date
+                      </label>
+                      <%= f.date_field :passport_validity_date, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:passport_validity_date).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Height (CM)
+                      </label>
+                      <%= f.text_field :height, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:height).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <%# --------------------------------------------------- adding contact  attributes %>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Mobile
+                      </label>
+                      <%= f.text_field :mobile, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:mobile).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                  <%# ------------------------------------------ %>
+                  <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Residence Phone
+                      </label>
+                      <%= f.text_field :residence_phone, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:residence_phone).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Coordinator
+                      </label>
+                      <%= f.text_field :coordinator, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:coordinator).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Office Phone
+                      </label>
+                      <%= f.text_field :office_phone, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:office_phone).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Official Email
+                      </label>
+                      <%= f.text_field :official_email, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:official_email).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                  <%# ----------------- %>
+                  <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Personal Email
+                      </label>
+                      <%= f.text_field :personal_email, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:personal_email).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Residence Address
+                      </label>
+                      <%= f.text_field :residence_address, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:residence_address).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Permanent Address
+                      </label>
+                      <%= f.text_field :permanent_address, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      <% @personal_information.errors.full_messages_for(:permanent_address).each do |message| %>
+                        <div class="alert bg-danger">
+                          <%= message %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Update Profile Image
+                      </label>
+                      <%= f.file_field :profile_image, autofocus: true,class:"block w-full text-sm text-gray-900 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"%>
+                    </div>
+                  </div>
+                  <%# ------------------------------------------------------------------------- contact attributes end %>
+                  <%= f.submit class:'bg-purple-400 rounded-md hover:bg-slate-500 text-white py-3 rounded-2xl my-3 px-3' %>
+                <%end%>
+              </div>
+            <%end%>
+          </div>
+          <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+            <p class="mt-8 text-left font-bold text-2xl"> Emergency Contacts</p>
+            <p class="text-right"> <%= link_to "Add Emergency Contact", new_admins_emergency_contact_path, class:'bg-green-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%></p>
+            <div class="overflow-x-auto relative shadow-md sm:rounded-lg my-12">
+              <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" class="py-3 px-6">
+                      Name
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                      Relation
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                      Mobile
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="#abc">
+                  <% @emergency_contacts.each do |data|%>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <%= data.name%>
+                      </th>
+                      <td class="py-4 px-6">
+                        <%= data.relation%>
+                      </td>
+                      <td class="py-4 px-6">
+                        <%= data.mobile%>
+                      </td>
+                      <td class="py-4 px-6">
+                        <%= link_to "Delete", admins_emergency_contact_path(data), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-red-600 px-5 py-3 rounded-md hover:bg-slate-500 text-white' %>
+                        <%= link_to "Edit", edit_admins_emergency_contact_path(data),class:'bg-cyan-600 px-5 mx-3 py-3 rounded-md hover:bg-slate-500 text-white' %>
+                      </td>
+                    <%end%>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+              <p class="mt-8 text-left font-bold text-2xl"> Educations</p>
+              <p class="text-right"><%= link_to "Add Education", new_admins_education_path, class:'bg-green-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%></p>
+              <div class="overflow-x-auto relative shadow-md sm:rounded-lg my-12">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                      <th scope="col" class="py-3 px-6">
+                        Title
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        Major
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        institute
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        Graduation Date
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="#abc">
+                    <% @educations.each do |data|%>
+                      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <%= data.major%>
+                        </th>
+                        <td class="py-4 px-6">
+                          <%= data.title%>
+                        </td>
+                        <td class="py-4 px-6">
+                          <%= data.institute%>
+                        </td>
+                        <td class="py-4 px-6">
+                          <%= data.graduation_date%>
+                        </td>
+                        <td class="py-4 px-6">
+                          <%= link_to "Delete", admins_education_path(data), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-red-600 px-5 py-3 rounded-md hover:bg-slate-500 text-white' %>
+                          <%= link_to "Edit", edit_admins_education_path(data), class:'bg-cyan-500 px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white'%>
+                        </td>
+                      </tr>
+                    <%end%>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+              <p class="mt-8 text-left font-bold text-2xl"> Dependents</p>
+              <p class="text-right"> <%= link_to "Add Dependent", new_admins_dependent_path, class:'bg-green-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%></p>
+              <div class="overflow-x-auto relative shadow-md sm:rounded-lg my-12">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                      <th scope="col" class="py-3 px-6">
+                        Name
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        Residence Phone
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        Mobile
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        Date of birth
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        Address
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        CNIC
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        nationality
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="#abc">
+                    <% @dependents.each do |data|%>
+                      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <%= data.name%>
+                        </th>
+                        <td class="py-4 px-6">
+                          <%= data.phone%>
+                        </td>
+                        <td class="py-4 px-6">
+                          <%= data.residence_phone%>
+                        </td>
+                        <td class="py-4 px-6">
+                          <%= data.date_of_birth%>
+                        </td>
+                        <td class="py-4 px-6">
+                          <%= data.address%>
+                        </td>
+                        <td class="py-4 px-6">
+                          <%= data.cnic%>
+                        </td>
+                        <td class="py-4 px-6">
+                          <%= data.nationality%>
+                        </td>
+                        <td class="py-4 px-6">
+                          <%= data.action%>
+                        </td>
+                        <td class="py-4 px-6">
+                          <%= link_to "Delete", admins_dependent_path(data), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-red-600 px-5 py-3 rounded-md hover:bg-slate-500 text-white' %>
+                          <%= link_to "Edit", edit_admins_dependent_path(data), class:'bg-cyan-500 px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white'%>
+                        </td>
+                      </tr>
+                    <%end%>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
+          <script>
+            $(document).ready(function()
 
-                              {
+            {
 
-                                  var marriage_status=$("#personal_information_marital_status").val();
-                                  console.log(marriage_status);
+                var marriage_status=$("#personal_information_marital_status").val();
+                console.log(marriage_status);
 
-                                  if (marriage_status=="married"){
-                                    $("#personal_information_spouse_name").prop( "readonly", false );
-                                  }
+                if (marriage_status=="married"){
+                  $("#personal_information_spouse_name").prop( "readonly", false );
+                }
 
 
-                                  if ($("#personal_information_disability").is(":checked")) {
-                                     $("#personal_information_disability_type").prop( "disabled", false );
-                                  }
+                if ($("#personal_information_disability").is(":checked")) {
+                   $("#personal_information_disability_type").prop( "disabled", false );
+                }
 
 
 
 
 
-                                 $('#personal_information_marital_status').on("change",function(e){
+               $('#personal_information_marital_status').on("change",function(e){
 
-                                     var marital_status=e.target.value;
-                                     alert(marital_status);
+                   var marital_status=e.target.value;
+                   alert(marital_status);
 
-                                   if (marital_status=='married'){
-                                    $("#personal_information_spouse_name").prop( "readonly", false );
-                                   }
-                                   else{
-                                    $("#personal_information_spouse_name").prop( "readonly", true );
-                                   }
-                                 });
+                 if (marital_status=='married'){
+                  $("#personal_information_spouse_name").prop( "readonly", false );
+                 }
+                 else{
+                  $("#personal_information_spouse_name").prop( "readonly", true );
+                 }
+               });
 
 
 
-                               $('input[type="checkbox"]').click(function(){
-                                          if($(this).prop("checked") == true){
-                                            alert("checked");
-                                               $("#personal_information_disability_type").prop( "disabled", false );
-                                          }
-                                          else if($(this).prop("checked") == false){
-                                             $("#personal_information_disability_type").prop( "disabled", true );
-                                          }
-                                      });
+             $('input[type="checkbox"]').click(function(){
+                        if($(this).prop("checked") == true){
+                          alert("checked");
+                             $("#personal_information_disability_type").prop( "disabled", false );
+                        }
+                        else if($(this).prop("checked") == false){
+                           $("#personal_information_disability_type").prop( "disabled", true );
+                        }
+                    });
 
 
 
@@ -606,6 +627,6 @@
 
 
 
-                              }
-                              );
-                            </script>
+            }
+            );
+          </script>

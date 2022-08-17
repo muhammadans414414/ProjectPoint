@@ -1,115 +1,91 @@
-<h1 class="text-center font-bold my-5"> Project Name : <%=@project.full_name%> </h1>
-
+<h1 class="text-center font-bold my-5 mt-[10rem]"> Project Name : <%=@project.full_name%> </h1>
 <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="py-3 px-6">
-                   Full Name
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Short Name
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Staging Url
-                </th>
-
-                <th scope="col" class="py-3 px-6">
-                  Staging Test Username
-                </th>
-
-                <th scope="col" class="py-3 px-6">
-                    Staging Test Password
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Staging Database Name
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Live Url
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Live Test Username
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Live Test Password
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Live Database Name
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Status
-                </th>
-                 <th scope="col" class="py-3 px-6">
-                    Ssh/Url/Ip
-                </th>
-            </tr>
-        </thead>
-        <tbody id="#abc">
-         
-      
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  <%= @project.full_name%> 
-                </th>
-                <td class="py-4 px-6">
-                  <%= @project.short_name%>
-                </td>
-                <td class="py-4 px-6">
-                <%= @project.staging_url%>
-                </td>
-                <td class="py-4 px-6">
-                     <%= @project.staging_test_username%>
-                </td>
-
-                <td class="py-4 px-6">
-                  <%= @project.staging_test_password%> 
-                </td>
-
-                <td class="py-4 px-6">
-                 <%= @project.staging_database_name%>
-                </td>
-
-
-                <td class="py-4 px-6">
-                 <%= @project.live_url%>
-                </td>
-                <td class="py-4 px-6">
-                <%= @project.live_test_username%> 
-                </td>
-                <td class="py-4 px-6">
-                    <%= @project.live_test_password%> 
-                </td>
-
-                <td class="py-4 px-6">
-                 <%= @project.live_database_name%>
-                </td>
-
-                <td class="py-4 px-6">
-                 <%= @project.status%> 
-                </td>
-                <td class="py-4 px-6">
-                <%= @project.ssh_url_ip%>
-                </td>
-
-
-
-
-
-            
-
-                <td class="py-4 px-6">
-                <%= link_to "Delete", admins_project_path(@project),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-red-700 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%> 
-                </td>
-
-                <td class="py-4 px-6">
-                <%= link_to "Update", edit_admins_project_path(@project), class:'bg-cyan-900 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
-                </td>
-
-
-            </tr>
-            
-        </tbody>
-    </table>
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="py-3 px-6">
+          Full Name
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Short Name
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Staging Url
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Staging Test Username
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Staging Test Password
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Staging Database Name
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Live Url
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Live Test Username
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Live Test Password
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Live Database Name
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Status
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Ssh/Url/Ip
+        </th>
+      </tr>
+    </thead>
+    <tbody id="#abc">
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <%= @project.full_name%>
+        </th>
+        <td class="py-4 px-6">
+          <%= @project.short_name%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.staging_url%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.staging_test_username%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.staging_test_password%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.staging_database_name%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.live_url%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.live_test_username%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.live_test_password%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.live_database_name%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.status%>
+        </td>
+        <td class="py-4 px-6">
+          <%= @project.ssh_url_ip%>
+        </td>
+        <td class="py-4 px-6">
+          <%= link_to "Delete", admins_project_path(@project),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-red-700 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
+        </td>
+        <td class="py-4 px-6">
+          <%= link_to "Update", edit_admins_project_path(@project), class:'bg-cyan-900 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
-
