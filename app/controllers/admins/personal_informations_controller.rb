@@ -3,7 +3,7 @@ class Admins::PersonalInformationsController < ApplicationController
         @personal_information=PersonalInformation.new
     end
     def create
-        debugger
+        
         @personal_information=PersonalInformation.new(personal_information_params)
         @personal_information.user_id=current_user.id
         if @personal_information.save

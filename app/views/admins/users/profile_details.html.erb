@@ -590,7 +590,7 @@
                $('#personal_information_marital_status').on("change",function(e){
 
                    var marital_status=e.target.value;
-                   alert(marital_status);
+                  //  alert(marital_status);
 
                  if (marital_status=='married'){
                   $("#personal_information_spouse_name").prop( "readonly", false );
@@ -604,7 +604,7 @@
 
              $('input[type="checkbox"]').click(function(){
                         if($(this).prop("checked") == true){
-                          alert("checked");
+                          // alert("checked");
                              $("#personal_information_disability_type").prop( "disabled", false );
                         }
                         else if($(this).prop("checked") == false){

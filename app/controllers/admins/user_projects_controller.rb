@@ -18,7 +18,7 @@ module Admins
           @status=false
         end
       end
-      debugger
+      
       if @status
         if @user_project.save
           redirect_to admins_projects_path
