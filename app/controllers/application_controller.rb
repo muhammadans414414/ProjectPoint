@@ -21,10 +21,18 @@ class ApplicationController < ActionController::Base
       end
 
       def after_sign_in_path_for(resource)
-        if current_user.is_admin? 
-          admins_users_path
-        else
+        if current_user.is_guest? 
+          guests_guests_path
+        elsif current_user.is_developer?
           developers_developers_path
+        elsif current_user.is_technical_lead?
+          technical_leads_users_path
+        elsif current_user.is_engineering_manager?
+          engineering_managers_users_path
+        elsif current_user.is_director_general?
+          director_generals_users_path
+        elsif current_user.is_admin?
+          admins_users_path
         end
       end
 

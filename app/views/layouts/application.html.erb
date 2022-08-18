@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ProjectPoint</title>
+    <title>Visibility Point</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,10 +12,18 @@
   </head>
   <body>
     <% if user_signed_in? %>
-      <% if current_user.role.name==Admin  %>
-        <%= render "layouts/Shared/admin_navbar" %>
-      <% else %>
+      <% if current_user.role.name==Guest  %>
+        <%= render "layouts/Shared/guest_navbar" %>
+      <% elsif current_user.role.name==Developer %>
         <%= render "layouts/Shared/developer_navbar" %>
+      <% elsif current_user.role.name==TechnicalLead %>
+        <%= render "layouts/Shared/technical_lead_navbar" %>
+      <% elsif current_user.role.name==EngineeringManager %>
+        <%= render "layouts/Shared/engineering_manager_navbar" %>
+      <% elsif current_user.role.name==DirectorGeneral %>
+        <%= render "layouts/Shared/director_general_navbar" %>
+      <% elsif current_user.role.name==Admin %>
+        <%= render "layouts/Shared/admin_navbar" %>
       <%end%>
     <%end%>
     <% if notice %>

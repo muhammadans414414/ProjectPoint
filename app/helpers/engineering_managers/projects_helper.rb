@@ -1,0 +1,2 @@
+module EngineeringManagers::ProjectsHelper
+end

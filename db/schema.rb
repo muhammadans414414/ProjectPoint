@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_16_045144) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_17_145448) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -103,14 +103,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_045144) do
     t.datetime "updated_at", null: false
     t.integer "blood_group"
     t.string "profile_image"
-    t.string "mobile", null: false
-    t.string "residence_phone", null: false
+    t.string "mobile"
+    t.string "residence_phone"
     t.string "coordinator"
     t.string "office_phone"
     t.string "official_email", null: false
-    t.string "personal_email", null: false
+    t.string "personal_email"
     t.text "residence_address", null: false
-    t.text "permanent_address", null: false
+    t.text "permanent_address"
     t.index ["user_id"], name: "index_personal_informations_on_user_id"
   end
 
@@ -164,9 +164,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_045144) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.integer "role_id", default: 10, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "role_id", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
