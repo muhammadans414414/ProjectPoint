@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   namespace :developers do
     resources :developers
+    
   end
 
   namespace :technical_leads do
@@ -62,6 +63,7 @@ Rails.application.routes.draw do
     resources :projects
     resources :developers
     resources :user_projects
+    resources :user_skills
 
     get "profile_details",to:"users#profile_details"
     resources :educations

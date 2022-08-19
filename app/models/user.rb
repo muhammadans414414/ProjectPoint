@@ -9,6 +9,11 @@ class User < ApplicationRecord
   has_many :dependents, dependent: :destroy
   has_many :user_projects, dependent: :destroy
   has_many :projects, through: :user_projects, dependent: :destroy
+
+  belongs_to :technology
+  has_many :user_skills, dependent: :destroy
+  has_many :skills, through: :user_skills, dependent: :destroy
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
   

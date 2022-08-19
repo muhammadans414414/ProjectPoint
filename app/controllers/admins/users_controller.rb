@@ -48,6 +48,8 @@ module Admins
       @educations=current_user.educations
       @dependents=current_user.dependents
       @personal_information=current_user.personal_information
+
+      @user_skills=current_user.user_skills
      
     end
 
@@ -56,7 +58,7 @@ module Admins
     private
 
     def user_params
-      params.require(:user).permit(:email, :password, :role_id)
+      params.require(:user).permit(:email, :password, :role_id,:technology_id)
     end
   end
 end
