@@ -1,14 +1,8 @@
 <h1> Assign Project </h1>
 <%= form_with model:[:director_generals,@user_project], data:{turbo:false} do |f| %>
-
   <div class="field">
     <%= f.label :"Project" %>
-    <%= f.collection_select :project_id, Project.all, :id, :full_name, prompt:true%>
-    <% @user_project.errors.full_messages_for(:project_id).each do |message| %>
-      <div class="alert bg-danger">
-        <%= message %>
-      </div>
-    <% end %>
+    <%= f.collection_select :project_id, Project.all, :id, :full_name, prompt:true,required:true%>
   </div>
   <div>
     <%= f.submit "Assign Project" %>

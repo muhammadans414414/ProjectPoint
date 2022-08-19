@@ -16,11 +16,6 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
-  
-  
-  # def combined_name
-  #   "#{fname} #{lname}"
-  # end
 
   def is_guest?
     role.name == Guest
@@ -44,8 +39,5 @@ class User < ApplicationRecord
 
   def is_admin?
     role.name == Admin
-  end
-
-  validates :email, :password,presence: true
-  
+  end  
 end

@@ -16,6 +16,7 @@
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
 
+
           <!-- Email input -->
           <div class="mb-6">
           
@@ -24,7 +25,7 @@
           </div>
           <div class="mb-6">
 
-        <%= f.collection_select :technology_id, Technology.all,:id,:name,{prompt:"Please Select Technology Stack"},autofocus: true,class:"bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-blue-300 border-2 border-gray-300" %>
+        <%= f.collection_select :technology_id, Technology.all, :id, :name, { prompt: "Please Select Technology Stack" }, autofocus: true, class: "bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-blue-300 border-2 border-gray-300" %>
         </div>
 
           <!-- Password input -->

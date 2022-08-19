@@ -5,21 +5,11 @@
       <%= form_with model:[:engineering_managers,@project], data:{turbo:false} do |f| %>
         <div>
           <%= f.label :"Full Name" %>
-          <%=  f.text_field :full_name, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-          <% @project.errors.full_messages_for(:full_name).each do |message| %>
-            <div class="bg-red-500 m-2 p-2">
-              <%= message %>
-            </div>
-          <% end %>
+          <%=  f.text_field :full_name, autofocus: true,required:true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
         </div>
         <div>
           <%= f.label :"Short Name" %>
-          <%=  f.text_field :short_name, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-          <% @project.errors.full_messages_for(:short_name).each do |message| %>
-            <div class="bg-red-500 m-2 p-2">
-              <%= message %>
-            </div>
-          <% end %>
+          <%=  f.text_field :short_name, autofocus: true,required:true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
         </div>
         <div>
           <%= f.label :"Staging Url" %>
@@ -55,12 +45,7 @@
         </div>
         <div>
           <%= f.label :status %><br/>
-          <%= f.select :status,Project.statuses,{prompt:"Please Select"},autofocus: true,class:"bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
-          <% @project.errors.full_messages_for(:status).each do |message| %>
-            <div class="bg-red-500 m-2 p-2">
-              <%= message %>
-            </div>
-          <% end %>
+          <%= f.select :status,Project.statuses,{prompt:"Please Select"},autofocus: true,required:true,class:"bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
         </div>
         <div>
           <%= f.label :"SSH/URL/IP" %><br/>

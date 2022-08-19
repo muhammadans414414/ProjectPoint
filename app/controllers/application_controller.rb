@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
         if current_user.is_guest? 
           guests_guests_path
         elsif current_user.is_developer?
-          developers_developers_path
+          developers_users_path
         elsif current_user.is_technical_lead?
           technical_leads_users_path
         elsif current_user.is_engineering_manager?

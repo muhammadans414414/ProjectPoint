@@ -1,90 +1,60 @@
-<div class="bg-grey-lighter min-h-screen flex flex-col">
-            <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-                <div class="bg-white px-6 py-8 rounded shadow-xl text-black w-full">
-                    <h1 class="mb-8 text-3xl text-center">Add Project</h1>
-                      <%= form_with model:[:engineering_managers,@project], data:{turbo:false} do |f| %>
-                    
-                    <div>
-                      <%= f.label :"Full Name" %>
-                      <%=  f.text_field :full_name, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-                      <% @project.errors.full_messages_for(:full_name).each do |message| %>
-        <div class="bg-red-500 m-2 p-2">
-          <%= message %>
+<div class="bg-grey-lighter min-h-screen flex flex-col mt-[10rem]">
+  <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+    <div class="bg-white px-6 py-8 rounded shadow-xl text-black w-full">
+      <h1 class="mb-8 text-3xl text-center">Add Project</h1>
+      <%= form_with model:[:engineering_managers,@project], data:{turbo:false} do |f| %>
+        <div>
+          <%= f.label :"Full Name" %>
+          <%=  f.text_field :full_name, autofocus: true,required:true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
         </div>
-      <% end %>
-
-                    </div>
-
-                    <div>
-                      <%= f.label :"Short Name" %>
-                      <%=  f.text_field :short_name, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-                      <% @project.errors.full_messages_for(:short_name).each do |message| %>
-        <div class="bg-red-500 m-2 p-2">
-          <%= message %>
+        <div>
+          <%= f.label :"Short Name" %>
+          <%=  f.text_field :short_name, autofocus: true,required:true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
         </div>
-      <% end %>
-                    </div>
-
-                    <div>
-                     <%= f.label :"Staging Url" %>
-                      <%=  f.text_area :staging_url, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-                    </div>
-
-                    <div>
-                      <%= f.label :"Staging Test Username" %>
-                      <%=  f.text_field :staging_test_username, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-                    </div>
-
-                    <div>
-                      <%= f.label :"Staging Test Password" %>
-                      <%=  f.text_field :staging_test_password, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-                    </div>
-
-                     <div>
-                       <%= f.label :"Staging Database Name" %>
-                      <%=  f.text_field :staging_database_name, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-                    </div>
-
-                     <div>
-                       <%= f.label :"Live Url" %>
-                      <%=  f.text_area :live_url, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-                    </div>
-
-                    <div>
-                       <%= f.label :"Live Test Username" %>
-                      <%=  f.text_field :live_test_username, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-                    </div>
-
-                    <div>
-                        <%= f.label :"Live Test Password" %>
-                      <%=  f.text_field :live_test_password, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-                    </div>
-
-                    <div>
-                        <%= f.label :"Live Database Name" %>
-                      <%= f.text_field :live_database_name, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-                    </div>
-
-                    <div>
-                      <%= f.label :status %><br/>
-                       <%= f.select :status,Project.statuses,{prompt:"Please Select"},autofocus: true,class:"bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
-                                  <% @project.errors.full_messages_for(:status).each do |message| %>
-        <div class="bg-red-500 m-2 p-2">
-          <%= message %>
+        <div>
+          <%= f.label :"Staging Url" %>
+          <%=  f.text_area :staging_url, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
         </div>
-      <% end %>
-                    
-                    </div>
-
-                    <div>
-                       <%= f.label :"SSH/URL/IP" %><br/>
-                       <%= f.text_area :ssh_url_ip, autofocus: true, class:"block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-                    </div>
-
-                      <div class="text-center">
-                      <%= f.submit class:'bg-purple-400 rounded-md hover:bg-slate-500 text-white py-3 rounded-2xl my-3 px-3' %>
-                      </div>
-                   <%end%>
-                </div>      
-            </div>
+        <div>
+          <%= f.label :"Staging Test Username" %>
+          <%=  f.text_field :staging_test_username, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
+        </div>
+        <div>
+          <%= f.label :"Staging Test Password" %>
+          <%=  f.text_field :staging_test_password, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
+        </div>
+        <div>
+          <%= f.label :"Staging Database Name" %>
+          <%=  f.text_field :staging_database_name, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
+        </div>
+        <div>
+          <%= f.label :"Live Url" %>
+          <%=  f.text_area :live_url, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
+        </div>
+        <div>
+          <%= f.label :"Live Test Username" %>
+          <%=  f.text_field :live_test_username, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
+        </div>
+        <div>
+          <%= f.label :"Live Test Password" %>
+          <%=  f.text_field :live_test_password, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
+        </div>
+        <div>
+          <%= f.label :"Live Database Name" %>
+          <%= f.text_field :live_database_name, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
+        </div>
+        <div>
+          <%= f.label :status %><br/>
+          <%= f.select :status,Project.statuses,{prompt:"Please Select"},autofocus: true,required:true,class:"bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
+        </div>
+        <div>
+          <%= f.label :"SSH/URL/IP" %><br/>
+          <%= f.text_area :ssh_url_ip, autofocus: true, class:"block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+        </div>
+        <div class="text-center">
+          <%= f.submit class:'bg-purple-400 rounded-md hover:bg-slate-500 text-white py-3 rounded-2xl my-3 px-3' %>
+        </div>
+      <%end%>
+    </div>
+  </div>
 </div>

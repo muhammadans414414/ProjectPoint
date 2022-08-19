@@ -1,38 +1,32 @@
 <h1 class="text-center text-4xl my-8"> Projects </h1>
 <div class="overflow-x-auto relative shadow-md sm:rounded-lg my-12">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="py-3 px-6">
-                   Project Full Name
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Project Short Name
-                </th>
-                
-                <th scope="col" class="py-3 px-6">
-                    
-                </th>
-            </tr>
-        </thead>
-        <tbody id="abc">
-        <% @projects.each do |project|%>
-      
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  <%=project.project.full_name %>
-                </th>
-                <td class="py-4 px-6">
-                <%=project.project.short_name%>
-                </td>
-                
-                <td class="py-4 px-6">
-               <%= link_to "Remove project", "/director_generals/delete_user_project/"+project.id.to_s, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'},class: 'bg-red-700 px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white'%>
-                </td>
-
-      
-            </tr>
-            <%end%>      
-        </tbody>
-    </table>
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="py-3 px-6">
+          Project Full Name
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Project Short Name
+        </th>
+        <th scope="col" class="py-3 px-6">
+        </th>
+      </tr>
+    </thead>
+    <tbody id="abc">
+      <% @projects.each do |project|%>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <%=project.project.full_name %>
+          </th>
+          <td class="py-4 px-6">
+            <%=project.project.short_name%>
+          </td>
+          <td class="py-4 px-6">
+            <%= link_to "Remove project", "/director_generals/delete_user_project/"+project.id.to_s, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'},class: 'bg-red-700 px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white'%>
+          </td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
 </div>

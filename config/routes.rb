@@ -8,11 +8,12 @@ Rails.application.routes.draw do
 
   namespace :guests do
     resources :guests
+    resources :users
   end
 
   namespace :developers do
     resources :developers
-    
+    resources :users
   end
 
   namespace :technical_leads do
