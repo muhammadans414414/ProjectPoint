@@ -1,6 +1,5 @@
 <h1> Assign Project </h1>
 <%= form_with model:[:technical_leads,@user_project], data:{turbo:false} do |f| %>
-
   <div class="field">
     <%= f.label :"Project" %>
     <%= f.collection_select :project_id, Project.all, :id, :full_name, prompt:true,required:true%>

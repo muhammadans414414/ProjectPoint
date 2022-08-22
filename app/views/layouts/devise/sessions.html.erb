@@ -13,10 +13,10 @@
   <body>
     <div class="flex justify-between p-3 px-5 bg-blue-50">
       <div class="mb-2 sm:mb-0 flex ">
-        <div class="h-10 mr-3">
-          <%=image_tag("logo.png",class:"h-10")%>
+        <div class="h-10 mr-3 ">
+          <%=image_tag("logo.png",class:"h-16")%>
         </div>
-        <div>
+        <div class=" pt-3">
           <%= link_to "Visibility", root_path, class:"text-2xl text-purple-600"%>
           <%= link_to "Point", root_path, class:"text-2xl "%>
         </div>
@@ -25,6 +25,7 @@
         <%= link_to "Sign up", new_registration_path(resource_name),class: 'bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-8 border border-blue-500 hover:border-transparent rounded' %>
       </div>
     </div>
+    
     <% if flash[:notice].present? %>
       <div class="flex justify-center w-full mt-[1rem]" id="outtime" style="position:absolute;z-index:1;">
         <div class="flex justify-between text-red-500 shadow-inner rounded p-3 bg-blue-100 p-5 w-1/3 ">

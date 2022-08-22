@@ -7,7 +7,7 @@ Role.create(name:'engineering manager')
 Role.create(name:'director general')
 Role.create(name:'admin')
 
-# Technologies
+# # Technologies
 
 Technology.create(name:'Ruby on Rails')
 Technology.create(name:'Php')
@@ -48,6 +48,7 @@ Technology.create(name:'Mean Stack')
 # Skills
 
 Skill.create(name:"Project Management")
+
 
 
 

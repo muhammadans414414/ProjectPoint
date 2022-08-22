@@ -11,9 +11,12 @@ class Developers::UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
-          redirect_to developers_users_path
+          respond_to do |format|
+            format.turbo_stream
+            format.html {redirect_to developers_users_path, notice: "User was successfully created." }
+          end
         else
-          render :new
+          render :new,status: :unprocessable_entity
         end
     end
 

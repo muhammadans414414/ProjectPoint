@@ -1,47 +1,28 @@
 <section class="h-screen md:h-[88vh]">
   <div class="px-6 h-full text-gray-800">
-    <div
-      class="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6 "
-    >
-       <div
-        class="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-5/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0"
-      >
+    <div class="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6 ">
+       <div class="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-5/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0" >
         <img
           src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-          alt="Sample image"
-        />
+          alt="Sample image" />
       </div>
-      
       <div class="xl:ml-20 xl:w-4/12 lg:w-3/12 md:w-8/12 mb-12 md:mb-0 border border-gray-150 p-12">
-      
-
-    
         <%= form_for(resource, as: resource_name, url: session_path(resource_name),data: {turbo: false}) do |f| %>
-         
-
-          <!-- Email input -->
           <div class="mb-6">
-          
-            <%= f.email_field :email, autofocus: true, required: true,autocomplete: "email", class:"form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", placeholder:"Email"%>
-            
+            <%= f.email_field :email, autofocus: true, required: true,autocomplete: "email", class:"form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", placeholder:"Email"%>           
           </div>
-
-          <!-- Password input -->
           <div class="mb-6">
             <%= f.password_field :password, required: true, autocomplete: "current-password",class:"form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none",placeholder:"Password" %>
           </div>
         <% if devise_mapping.rememberable? %>
           <div class="flex justify-between">
-
           <div>
             <%= f.check_box :remember_me %>
             <%= f.label :remember_me %>
           </div>
-
           <div>
         <%= render "devise/shared/links" %>
         </div>
-
           </div>
         <% end %>
           <div class="w-full mt-5">

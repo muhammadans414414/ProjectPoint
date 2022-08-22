@@ -48,6 +48,8 @@
     <%end%>
   </div>
   <%= yield %>
+
+  <%= turbo_frame_tag "modal" %>
   <script>
     setTimeout(()=>{
            $('#outtime').hide();
