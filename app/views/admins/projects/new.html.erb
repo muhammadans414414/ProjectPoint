@@ -1,61 +1,120 @@
-<div class="bg-grey-lighter min-h-screen flex flex-col mt-[10rem]">
-  <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-    <div class="bg-white px-6 py-8 rounded shadow-xl text-black w-full">
-      <%= render "devise/shared/error_messages", resource: @project %>
-      <h1 class="mb-8 text-3xl text-center">Add Project</h1>
+<div class="p-4 m-[5rem] bg-gray-100 rounded-2xl dark:bg-gray-800 " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <div class="p-5">
+              <p class=" text-3xl text-center m-[3rem]">New Project</p>
       <%= form_with model:[:admins,@project], data:{turbo:false} do |f| %>
-        <div>
-          <%= f.label :"Full Name" %>
-          <%=  f.text_field :full_name, required:true,autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-        </div>
-        <div>
-          <%= f.label :"Short Name" %>
-          <%=  f.text_field :short_name, autofocus: true,required:true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-        </div>
-        <div>
-          <%= f.label :"Staging Url" %>
-          <%=  f.text_area :staging_url, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-        </div>
-        <div>
-          <%= f.label :"Staging Test Username" %>
-          <%=  f.text_field :staging_test_username, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-        </div>
-        <div>
-          <%= f.label :"Staging Test Password" %>
-          <%=  f.text_field :staging_test_password, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-        </div>
-        <div>
-          <%= f.label :"Staging Database Name" %>
-          <%=  f.text_field :staging_database_name, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-        </div>
-        <div>
-          <%= f.label :"Live Url" %>
-          <%=  f.text_area :live_url, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-        </div>
-        <div>
-          <%= f.label :"Live Test Username" %>
-          <%=  f.text_field :live_test_username, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-        </div>
-        <div>
-          <%= f.label :"Live Test Password" %>
-          <%=  f.text_field :live_test_password, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-        </div>
-        <div>
-          <%= f.label :"Live Database Name" %>
-          <%= f.text_field :live_database_name, autofocus: true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-        </div>
-        <div>
-          <%= f.label :status %><br/>
-          <%= f.select :status,Project.statuses,{prompt:"Please Select"},autofocus: true,required:true,class:"bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
-        </div>
-        <div>
-          <%= f.label :"SSH/URL/IP" %><br/>
-          <%= f.text_area :ssh_url_ip, autofocus: true, class:"block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-        </div>
-        <div class="text-center">
-          <%= f.submit class:'bg-purple-400 rounded-md hover:bg-slate-500 text-white py-3 rounded-2xl my-3 px-3' %>
-        </div>
-      <%end%>
-    </div>
-  </div>
-</div>
+                
+                  <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Full Name
+                      </label>
+                      <%= f.text_field :full_name, required:true,autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                    </div>
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Short Name
+                      </label>
+                      <%= f.text_field :short_name, autofocus: true,required:true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                   
+                    </div>
+                    
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                       Staging Test Username
+                      </label>
+                      <%= f.text_field :staging_test_username, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight  focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                
+                    </div>
+
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Staging Test Password
+                      </label>
+                      <%= f.text_field :staging_test_password,autofocus: true,class:"bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-blue-300 border-2 border-gray-300" %>
+                      
+                    </div>
+                  </div>
+              
+                  <div class="flex flex-wrap -mx-3 mb-6">
+                  
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                       Staging Database Name
+                      </label>
+                      <%= f.text_field :staging_database_name, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                    </div>
+                   
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Live Test Username
+                      </label>
+                      <%= f.text_field :live_test_username, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      
+                    </div>
+                     <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Live Test Password
+                      </label>
+                      <%=  f.text_field :live_test_password, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      
+                    </div>
+
+                        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Live Database Name
+                      </label>
+                      <%=  f.text_field :live_database_name, autofocus: true,class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      
+                    </div>
+                    
+                  </div>
+                 
+                  <div class="flex flex-wrap -mx-3 mb-6">
+                  <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        SSH/URL/IP
+                      </label>
+                      <%= f.text_area :ssh_url_ip, autofocus: true, class:"appearance-none block w-full  text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+
+                    </div>
+
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Staging Url
+                      </label>
+                      <%= f.text_area :staging_url, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                      
+                    </div>
+
+                     <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Live Url
+                      </label>
+                      <%= f.text_area :live_url, autofocus: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+                     
+                    </div>
+                    
+                   
+                    <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Status
+                      </label>
+                      <%= f.select :status,Project.statuses,{prompt:"Please Select"},autofocus: true,required:true,class:"border bg-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
+                      
+                    </div>
+                  
+
+
+ 
+                  
+                    
+
+
+                  </div>
+                  
+                  
+                  
+                  <%= f.submit class:'bg-purple-400 rounded-md hover:bg-slate-500 text-white py-3 rounded-2xl my-3 px-3' %>
+                <%end%>
+              </div>
+          </div>

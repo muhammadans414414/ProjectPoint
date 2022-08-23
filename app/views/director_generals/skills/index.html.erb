@@ -1,0 +1,51 @@
+<div class="mt-[10rem] mx-5">
+  <div class="flex justify-between m-10">
+    <div class="text-center">
+      <h1 class="text-2xl">Skill</h1>
+    </div>
+    <div class="">
+      <%= link_to 'Add Skill',  new_director_generals_skill_path, data:{turbo_frame: "modal"}, class:"text-base bg-green-500 p-3  rounded-md text-white"  %>
+    </div>
+  </div>
+  <div class="overflow-x-auto relative shadow-md sm:rounded-lg my-12">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="py-3 px-6">
+            Name
+          </th>
+        </tr>
+      </thead>
+      <tbody id="abc">
+       <%= render @skills%>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  $(document).ready(function()
+
+  {
+
+     $('select').on("change",function(e){
+         var status=e.target.value;
+      //    console.log(data_book)
+         $.ajax({
+          type:"GET",
+          url: "/toggleprojects",
+          data: {data: status},
+
+
+          success: function(status){
+
+              console.log("ok"+status);
+  },
+      error: function(XMLHttpRequest, textStatus, errorThrown){
+       console.log(XMLHttpRequest.responseText);
+      }
+      });
+
+     });
+  }
+  );
+</script>
