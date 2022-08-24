@@ -1,0 +1,2 @@
+module DirectorGenerals::DirectorGeneralsHelper
+end

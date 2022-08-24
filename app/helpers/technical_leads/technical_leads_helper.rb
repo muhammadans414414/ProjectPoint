@@ -1,0 +1,2 @@
+module TechnicalLeads::TechnicalLeadsHelper
+end

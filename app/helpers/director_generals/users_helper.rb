@@ -1,0 +1,2 @@
+module DirectorGenerals::UsersHelper
+end

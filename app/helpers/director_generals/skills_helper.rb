@@ -1,0 +1,2 @@
+module DirectorGenerals::SkillsHelper
+end

@@ -1,0 +1,24 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="fixed z-10 inset-0  overflow-y-auto " aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+      <div class="inline-block align-bottom border-2 border-blue-500  bg-white rounded-xl px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+        <div class="">
+          <div class="">
+            <div class="">
+              <h1 class="text-center text-2xl m-5">Add Skill</h1>
+              <%= form_with model:[:admins,@skill] do |f| %>
+                <%=  f.text_field :name, autofocus: true,required:true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
+                <div class="text-center">
+                  <%= f.submit class:'bg-blue-400 rounded-md hover:bg-slate-500 text-white py-3 rounded-2xl my-3 px-3' %>
+                  <%= link_to 'Cancel',"",class:"bg-red-500 p-3 rounded-md text-white" %>
+                </div>
+              <%end%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

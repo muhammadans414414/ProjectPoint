@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_16_045144) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_19_045737) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -103,14 +103,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_045144) do
     t.datetime "updated_at", null: false
     t.integer "blood_group"
     t.string "profile_image"
-    t.string "mobile", null: false
-    t.string "residence_phone", null: false
+    t.string "mobile"
+    t.string "residence_phone"
     t.string "coordinator"
     t.string "office_phone"
     t.string "official_email", null: false
-    t.string "personal_email", null: false
+    t.string "personal_email"
     t.text "residence_address", null: false
-    t.text "permanent_address", null: false
+    t.text "permanent_address"
     t.index ["user_id"], name: "index_personal_informations_on_user_id"
   end
 
@@ -137,6 +137,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_045144) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "technologies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_projects", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "project_id", null: false
@@ -144,6 +156,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_045144) do
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_user_projects_on_project_id"
     t.index ["user_id"], name: "index_user_projects_on_user_id"
+  end
+
+  create_table "user_skills", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "skill_id", null: false
+    t.integer "level", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["skill_id"], name: "index_user_skills_on_skill_id"
+    t.index ["user_id"], name: "index_user_skills_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -164,13 +186,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_045144) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.integer "role_id", default: 10, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "role_id", null: false
+    t.bigint "technology_id", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
+    t.index ["technology_id"], name: "index_users_on_technology_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -181,5 +205,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_045144) do
   add_foreign_key "personal_informations", "users"
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"
+  add_foreign_key "user_skills", "skills"
+  add_foreign_key "user_skills", "users"
   add_foreign_key "users", "roles"
+  add_foreign_key "users", "technologies"
 end

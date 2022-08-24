@@ -1,0 +1,14 @@
+<div class="bg-grey-lighter min-h-screen flex flex-col">
+  <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+    <div class="bg-white px-6 py-8 rounded shadow-xl text-black w-full">
+      <h1 class="mb-8 text-3xl text-center">Add Skill</h1>
+      <%= form_with model:[:admins,@user_skill] do |f| %>
+        <%= f.collection_select :skill_id, Skill.all, :id, :name,{prompt:"Please Select Your Skill"},autofocus: true,required:true,class:"bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-blue-300 border-2 border-gray-300" %>
+        <%= f.select :level, UserSkill.levels.keys,{prompt:"Please Select Your Level"},autofocus: true,required:true,class:"bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-blue-300 border-2 border-gray-300" %>
+        <div class="text-center">
+          <%= f.submit class:'bg-purple-400 rounded-md hover:bg-slate-500 text-white py-3 rounded-2xl my-3 px-3' %>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>

@@ -9,17 +9,35 @@ class User < ApplicationRecord
   has_many :dependents, dependent: :destroy
   has_many :user_projects, dependent: :destroy
   has_many :projects, through: :user_projects, dependent: :destroy
+
+  belongs_to :technology
+  has_many :user_skills, dependent: :destroy
+  has_many :skills, through: :user_skills, dependent: :destroy
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
 
-  # def combined_name
-  #   "#{fname} #{lname}"
-  # end
-
-  def is_admin?
-    self.role.name == Admin
+  def is_guest?
+    role.name == Guest
   end
 
-  validates :email, :password, :role_id,presence: true
-  
+  def is_developer?
+    role.name == Developer
+  end
+
+  def is_technical_lead?
+    role.name == TechnicalLead
+  end
+
+  def is_engineering_manager?
+    role.name == EngineeringManager
+  end
+
+  def is_director_general?
+    role.name == DirectorGeneral
+  end
+
+  def is_admin?
+    role.name == Admin
+  end  
 end

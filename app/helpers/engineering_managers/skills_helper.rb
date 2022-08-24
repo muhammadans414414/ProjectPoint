@@ -1,0 +1,2 @@
+module EngineeringManagers::SkillsHelper
+end

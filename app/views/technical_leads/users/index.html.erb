@@ -1,0 +1,79 @@
+<div class="flex justify-center items-center mt-[6rem] text-center ">
+  <div class="px-5 w-1/5">
+    <%= form_with do |form| %>
+      <%= form.label :"Filter By Role" %>
+      <%= form.collection_select :id, Role.where("id<?",current_user.role.id), :id, :capitalize_name,{prompt:"Please Select"},class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
+    <%end%>
+  </div>
+  <div class="px-5 w-1/5">
+    <%= form_with do |form| %>
+      <%= form.label :"Filter By Technology" %>
+      <%= form.collection_select :id, Technology.all, :id, :capitalize_name,{prompt:"Please Select"},class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"%>
+    <%end%>
+  </div>
+</div>
+<div class="m-10">
+  <div class="flex justify-between m-10">
+    <div class="text-center">
+      <h1 class="text-2xl">Users</h1>
+    </div>
+    <div class="">
+      <%= link_to 'Create User',  new_technical_leads_user_path, data:{turbo_frame: "modal"}, class:"text-base bg-green-500 p-3  rounded-md text-white"  %>
+    </div>
+  </div>
+  <div class="mt-6 overflow-x-auto relative shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="py-3 px-6">
+            Sr.no
+          </th>
+          <th scope="col" class="py-3 px-6">
+            Email
+          </th>
+          <th scope="col" class="py-3 px-6">
+            Role
+          </th>
+          <th scope="col" class="py-3 px-6">
+            Email Confirmed
+          </th>
+          <th scope="col" class="py-3 px-6">
+            Technology 
+          </th>
+          <th scope="col" class="py-3 px-6">
+          </th>
+        </tr>
+      </thead>
+      <tbody id="abc">
+        <%=render @users%>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  $(document).ready(function()
+
+  {
+     $('select').on("change",function(e){
+
+         var role=e.target.value;
+      //    console.log(data_book)
+         $.ajax({
+          type:"GET",
+          url: "/toggleusers",
+          data: {data: role},
+
+
+          success: function(data){
+
+              console.log("ok"+role);
+  },
+      error: function(XMLHttpRequest, textStatus, errorThrown){
+       console.log(XMLHttpRequest.responseText);
+      }
+      });
+
+     });
+  }
+  );
+</script>

@@ -1,0 +1,2 @@
+module TechnicalLeads::ProjectsHelper
+end

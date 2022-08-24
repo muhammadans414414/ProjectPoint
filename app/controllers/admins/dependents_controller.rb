@@ -1,45 +1,32 @@
 class Admins::DependentsController < ApplicationController
-    def new
-        @dependent=current_user.dependents.new
+  def new
+    @dependent=current_user.dependents.new
+  end
+  def create
+    @dependent = Dependent.new(dependent_params)
+    if @dependent.save
+      redirect_to admins_profile_details_path
+    else
+      render :new, status: :unprocessable_entity
     end
-
-
-    def create
-
-        @dependent = Dependent.new(dependent_params)
-        
-        if @dependent.save
-          redirect_to admins_profile_details_path
-        else
-          render :new, status: :unprocessable_entity
-        end
-      end
-
-      def edit
-        @dependent=Dependent.find(params[:id])
-      end
-
-
-      def update
-        @dependent = Dependent.find(params[:id])
-        if @dependent.update(dependent_params)
-          redirect_to admins_profile_details_path
-        else
-          render :edit
-        end
-
-      end
-
-      def destroy
-        @dependent=Dependent.find(params[:id])
-
-        @dependent.destroy
-
+    end
+    def edit
+    @dependent=Dependent.find(params[:id])
+    end
+    def update
+      @dependent = Dependent.find(params[:id])
+      if @dependent.update(dependent_params)
         redirect_to admins_profile_details_path
+      else
+        render :edit
       end
-
-
-
+    end
+    def destroy
+      @dependent=Dependent.find(params[:id])
+      @dependent.destroy
+      redirect_to admins_profile_details_path
+    end
+    
     private
 
     def dependent_params

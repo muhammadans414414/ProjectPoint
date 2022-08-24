@@ -329,51 +329,51 @@
 </div>
 </div>
 <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
-          <script>
-            $(document).ready(function()
+<script>
+  $(document).ready(function()
 
-            {
+  {
 
-                var marriage_status=$("#personal_information_marital_status").val();
-                console.log(marriage_status);
+      var marriage_status=$("#personal_information_marital_status").val();
+      console.log(marriage_status);
 
-                if (marriage_status=="married"){
-                  $("#personal_information_spouse_name").prop( "readonly", false );
-                }
+      if (marriage_status=="married"){
+        $("#personal_information_spouse_name").prop( "readonly", false );
+      }
 
 
-                if ($("#personal_information_disability").is(":checked")) {
+      if ($("#personal_information_disability").is(":checked")) {
+         $("#personal_information_disability_type").prop( "disabled", false );
+      }
+
+
+
+
+
+     $('#personal_information_marital_status').on("change",function(e){
+
+         var marital_status=e.target.value;
+         alert(marital_status);
+
+       if (marital_status=='married'){
+        $("#personal_information_spouse_name").prop( "readonly", false );
+       }
+       else{
+        $("#personal_information_spouse_name").prop( "readonly", true );
+       }
+     });
+
+
+
+   $('input[type="checkbox"]').click(function(){
+              if($(this).prop("checked") == true){
+                alert("checked");
                    $("#personal_information_disability_type").prop( "disabled", false );
-                }
-
-
-
-
-
-               $('#personal_information_marital_status').on("change",function(e){
-
-                   var marital_status=e.target.value;
-                   alert(marital_status);
-
-                 if (marital_status=='married'){
-                  $("#personal_information_spouse_name").prop( "readonly", false );
-                 }
-                 else{
-                  $("#personal_information_spouse_name").prop( "readonly", true );
-                 }
-               });
-
-
-
-             $('input[type="checkbox"]').click(function(){
-                        if($(this).prop("checked") == true){
-                          alert("checked");
-                             $("#personal_information_disability_type").prop( "disabled", false );
-                        }
-                        else if($(this).prop("checked") == false){
-                           $("#personal_information_disability_type").prop( "disabled", true );
-                        }
-                    });
+              }
+              else if($(this).prop("checked") == false){
+                 $("#personal_information_disability_type").prop( "disabled", true );
+              }
+          });
 
 
 
@@ -390,6 +390,6 @@
 
 
 
-            }
-            );
-          </script>
+  }
+  );
+</script>
