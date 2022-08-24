@@ -4,8 +4,6 @@
   </th>
   <td class="py-4 px-6">
     <%= link_to "See People", "/engineering_managers/skill_users/"+skill.id.to_s,class:"bg-blue-500 p-3 rounded-lg text-white"%>
-
     <%= link_to "Delete", engineering_managers_skill_path(skill),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'},class:"bg-red-500 p-3 rounded-lg text-white"%>
-    
   </td>
 </tr>

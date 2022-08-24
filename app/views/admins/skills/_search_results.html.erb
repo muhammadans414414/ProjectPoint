@@ -1,12 +1,12 @@
 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
   <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-    <%= skill.id %>
+    <%= @skill.id %>
   </th>
   <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-    <%= skill.name %>
+    <%= @skill.name %>
   </th>
   <td class="py-4 px-6">
-    <%= link_to "See People", "/admins/skill_users/"+skill.id.to_s,class:"bg-blue-500 p-3 rounded-lg text-white"%>
-    <%= link_to "Delete", admins_skill_path(skill),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'},class:"bg-red-500 p-3 rounded-lg text-white"%>
+    <%= link_to "See People", "/admins/skill_users/"+@skill.id.to_s,class:"bg-blue-500 p-3 rounded-lg text-white"%>
+    <%= link_to "Delete", admins_skill_path(@skill),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'},class:"bg-red-500 p-3 rounded-lg text-white"%>
   </td>
 </tr>

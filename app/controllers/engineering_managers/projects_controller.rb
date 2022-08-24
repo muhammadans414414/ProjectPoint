@@ -63,11 +63,17 @@ class EngineeringManagers::ProjectsController < ApplicationController
   
   
       def searchproject
-        @projects=Project.where(status:params[:data])
-        respond_to do |format|
-          format.js
-          format.html {root_path}
-      end
+        if (params[:data].empty?)
+        @projects=Project.all
+        else
+          @projects=Project.where(status:params[:data])
+          respond_to do |format|
+            format.js
+            format.html {root_path}
+        end
+        end
+  
+      
       end
   
       private

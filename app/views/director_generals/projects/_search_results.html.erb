@@ -9,23 +9,23 @@
     <td class="py-4 px-6">
       <%= project.status %>
     </td>
-    <td class="py-4 px-6">
+    <td class="py-4 ">
       <%=project.live_url %>
     </td>
-    <td class="py-4 px-6">
+    <td class="py-4">
       <%=project.user_projects.count%>
     </td>
-    <td class="py-4 px-6">
+    <td class="py-4 ">
       <%= link_to "See Developers ", "/admins/project_users/"+project.id.to_s, class:'bg-blue-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
     </td>
-    <td class="py-4 px-6">
-      <%= link_to "Details", admins_project_path(project), class:'bg-green-700 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
-    </td>
-    <td class="py-4 px-6">
-      <%= link_to "Details Pdf", admins_project_path(project,format: :pdf), class:'bg-purple-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
+    <td class="py-4 ">
+      <%= link_to "Details", director_generals_project_path(project), class:'bg-green-700 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
     </td>
     <td class="py-4 ">
-      <%= link_to "Assign Developer", "/admins/project_id/"+project.id.to_s, class:'bg-cyan-500 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
+      <%= link_to "Details Pdf", director_generals_project_path(project,format: :pdf), class:'bg-purple-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
+    </td>
+    <td class="py-4 ">
+      <%= link_to "Assign Developer", "/director_generals/project_id/"+project.id.to_s, class:'bg-cyan-500 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
     </td>
   </tr>
 <%end%>

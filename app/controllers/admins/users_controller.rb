@@ -42,12 +42,30 @@ module Admins
     end
 
     def searchuser
-      @users=User.where(role_id:params[:data])
+      
+      if (params[:data].empty?)
+        @users=User.where("id<?",current_user.id)
+      else
+        @users=User.where(role_id:params[:data])
       
         respond_to do |format|
           format.js
           format.html {admins_users_path}
       end
+      end
+    end
+
+    def searchuser_by_technology
+      if (params[:data].empty?)
+        @users=User.all
+        else
+          @users=User.where(technology_id:params[:data])
+        
+          respond_to do |format|
+            format.js
+            format.html {admins_users_path}
+        end
+        end
     end
 
 

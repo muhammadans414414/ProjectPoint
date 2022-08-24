@@ -3,6 +3,9 @@
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
         <th scope="col" class="py-3 px-6">
+          Sr.no
+        </th>
+        <th scope="col" class="py-3 px-6">
           Email
         </th>
         <th scope="col" class="py-3 px-6">
@@ -13,6 +16,9 @@
     <tbody id="abc">
       <% @users.each do |user|%>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <%=user.id%>
+          </th>
           <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             <%=user.email%>
           </th>

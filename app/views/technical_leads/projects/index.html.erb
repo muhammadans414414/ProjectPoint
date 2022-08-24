@@ -1,95 +1,106 @@
-<div class="mt-[10rem] mx-5 ">
-<div class="w-1/5 text-center">
-  <%= form_with do |form| %>
-    <%= form.label :"Filter by status" %>
-    <%= form.select :status, Project.statuses,{prompt:"Please Select"},autofocus: true,class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-  <%end%>
+<div class="flex justify-center items-center mt-[6rem] text-center ">
+  <div class="px-5 w-1/5">
+    <%= form_with do |form| %>
+      <%= form.label :"Filter by status" %>
+      <%= form.select :status, Project.statuses,{prompt:"Please Select"},autofocus: true,class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+    <%end%>
   </div>
-  <h1 class="text-center mt-5 my-5 text-4xl"> All Projects </h1>
-  <div class="text-center">
+</div>
+<div class="flex justify-between mt-5">
+  <div>
+    <h1 class="text-2xl px-5"> All Projects </h1>
+  </div>
+  <div class="">
     <%= link_to "New Project", new_technical_leads_project_path, class: 'bg-green-900 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
-    <%= link_to 'Download as Excel',technical_leads_projects_path(format: :xlsx), class: 'bg-sky-600 px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white'%>
-    <%= link_to 'Download as Pdf',technical_leads_projects_path(format: :pdf), class: 'bg-purple-700 px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white'%>
+    <%= link_to 'Download as Excel',admins_projects_path(format: :xlsx), class: 'bg-sky-600 px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white'%>
+    <%= link_to 'Download as Pdf',admins_projects_path(format: :pdf), class: 'bg-purple-700 px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white'%>
   </div>
-  <div class="overflow-x-auto relative shadow-md sm:rounded-lg my-12">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-        <tr>
-          <th scope="col" class="py-3 px-6">
-            Project Name
+</div>
+<div class="px-5 overflow-x-auto relative shadow-md sm:rounded-lg my-12">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="py-3 px-6">
+          Sr.no
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Project Name
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Status
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Live Url
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Total Assigned Developers
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Assigned Developers Details
+        </th>
+        <th scope="col" class="py-3 px-6">
+        </th>
+      </tr>
+    </thead>
+    <tbody id="abc">
+      <% @projects.each do |project| %>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <%= project.id %>
           </th>
-          <th scope="col" class="py-3 px-6">
-            Status
+          <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <%= project.full_name %>
           </th>
-          <th scope="col" class="py-3 px-6">
-            Live Url
-          </th>
-          <th scope="col" class="py-3 px-6">
-            Total Assigned Developers
-          </th>
-          <th scope="col" class="py-3 px-6">
-            Assigned Developers Details
-          </th>
-          <th scope="col" class="py-3 px-6">
-          </th>
-        </tr>
-      </thead>
-      <tbody id="abc">
-        <% @projects.each do |project| %>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              <%= project.full_name %>
-            </th>
+          <td class="py-4 px-6">
+            <%= project.status %>
+          </td>
+          <td class="py-4 px-6">
+            <%=project.live_url %>
+          </td>
+          <td class="py-4 px-6">
+            <%=project.user_projects.count%>
+          </td>
+          <td class="py-4 px-6">
+            <%= link_to "See Developers ", "/technical_leads/project_users/"+project.id.to_s, class:'bg-blue-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
             <td class="py-4 px-6">
-              <%= project.status %>
+              <%= link_to "Details", technical_leads_project_path(project), class:'bg-green-700 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
             </td>
             <td class="py-4 px-6">
-              <%=project.live_url %>
+              <%= link_to "Details Pdf", technical_leads_project_path(project,format: :pdf), class:'bg-purple-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
             </td>
-            <td class="py-4 px-6">
-              <%=project.user_projects.count%>
+            <td class="py-4">
+              <%= link_to "Assign Developer", "/technical_leads/project_id/"+project.id.to_s, class:'bg-cyan-500 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
             </td>
-            <td class="py-4 px-6">
-              <%= link_to "See Developers ", "/technical_leads/project_users/"+project.id.to_s, class:'bg-blue-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
-              <td class="py-4 px-6">
-                <%= link_to "Details", technical_leads_project_path(project), class:'bg-green-700 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
-              </td>
-              <td class="py-4 px-6">
-                <%= link_to "Details Pdf", technical_leads_project_path(project,format: :pdf), class:'bg-purple-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
-              </td>
-              <td class="py-4 px-6">
-                <%= link_to "Assign Developer", "/technical_leads/project_id/"+project.id.to_s, class:'bg-cyan-500 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
-              </td>
-            </tr>
-          <%end%>
-        </tbody>
-      </table>
-    </div>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
   </div>
-  <script>
-    $(document).ready(function()
+</div>
+<script>
+  $(document).ready(function()
 
-    {
+  {
 
-       $('select').on("change",function(e){
-           var status=e.target.value;
-        //    console.log(data_book)
-           $.ajax({
-            type:"GET",
-            url: "/toggleprojects",
-            data: {data: status},
+     $('select').on("change",function(e){
+         var status=e.target.value;
+      //    console.log(data_book)
+         $.ajax({
+          type:"GET",
+         url: "/technical_leads/toggleprojects",
+          data: {data: status},
 
 
-            success: function(status){
+          success: function(status){
 
-                console.log("ok"+status);
-    },
-        error: function(XMLHttpRequest, textStatus, errorThrown){
-         console.log(XMLHttpRequest.responseText);
-        }
-        });
+              console.log("ok"+status);
+  },
+      error: function(XMLHttpRequest, textStatus, errorThrown){
+       console.log(XMLHttpRequest.responseText);
+      }
+      });
 
-       });
-    }
-    );
-  </script>
+     });
+  }
+  );
+</script>

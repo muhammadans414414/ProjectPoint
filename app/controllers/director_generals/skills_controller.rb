@@ -26,6 +26,19 @@ class DirectorGenerals::SkillsController < ApplicationController
     def skills_users
         @users=Skill.find(params[:id]).users
     end
+    def searchskill
+        
+        if (params[:data].empty?)
+            @skill=Skill.all
+            else
+              @skill=Skill.find(params[:data])
+            
+              respond_to do |format|
+                format.js
+                format.html {admins_users_path}
+            end
+            end
+    end
 
     private
     def abc

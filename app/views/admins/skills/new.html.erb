@@ -9,10 +9,9 @@
             <div class="">
               <h1 class="text-center text-2xl m-5">Add Skill</h1>
               <%= form_with model:[:admins,@skill] do |f| %>
-          <%=  f.text_field :name, autofocus: true,required:true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
-                
+                <%=  f.text_field :name, autofocus: true,required:true,class:"block border border-grey-light w-full p-3 rounded mb-4"%>
                 <div class="text-center">
-                 <%= f.submit class:'bg-blue-400 rounded-md hover:bg-slate-500 text-white py-3 rounded-2xl my-3 px-3' %>
+                  <%= f.submit class:'bg-blue-400 rounded-md hover:bg-slate-500 text-white py-3 rounded-2xl my-3 px-3' %>
                   <%= link_to 'Cancel',"",class:"bg-red-500 p-3 rounded-md text-white" %>
                 </div>
               <%end%>

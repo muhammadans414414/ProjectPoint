@@ -9,7 +9,7 @@
             <div class="">
               <%= render "devise/shared/error_messages", resource: user %>
               <h1 class="text-center text-2xl m-5">Create New User</h1>
-              <%= form_with model:[:admins,user] do |f| %>
+              <%= form_with model:[:engineering_managers,user] do |f| %>
                 <%= f.collection_select :role_id,Role.where("id <?",current_user.role.id), :id, :capitalize_name, {prompt:"Please Select"},autofocus: true,required:true,class:"mb-2 bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-blue-300 border-2 border-gray-300"%>
                 <%= f.email_field :email, autofocus: true,required:true, autocomplete: "email",class:"mb-2 form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", placeholder:"Email" %>
                 <%= f.collection_select :technology_id, Technology.all,:id,:name,{prompt:"Please Select Technology Stack"},autofocus: true,required:true,class:"mb-[-16px] bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-blue-300 border-2 border-gray-300" %>

@@ -60,14 +60,20 @@ class DirectorGenerals::ProjectsController < ApplicationController
       def project_users
         @users=Project.find(params[:id]).user_projects.all
       end
-  
-  
+
+      
       def searchproject
-        @projects=Project.where(status:params[:data])
-        respond_to do |format|
-          format.js
-          format.html {root_path}
-      end
+        if (params[:data].empty?)
+        @projects=Project.all
+        else
+          @projects=Project.where(status:params[:data])
+          respond_to do |format|
+            format.js
+            format.html {root_path}
+        end
+        end
+  
+      
       end
   
       private

@@ -63,13 +63,20 @@ class TechnicalLeads::ProjectsController < ApplicationController
   
   
       def searchproject
-        @projects=Project.where(status:params[:data])
-        respond_to do |format|
-          format.js
-          format.html {root_path}
-      end
+        if (params[:data].empty?)
+        @projects=Project.all
+        else
+          @projects=Project.where(status:params[:data])
+          respond_to do |format|
+            format.js
+            format.html {root_path}
+        end
+        end
+  
+      
       end
   
+
       private
       def project_params
         params.require(:project).permit(:full_name, :short_name, :staging_url, :staging_test_username, :staging_test_password, :staging_database_name,

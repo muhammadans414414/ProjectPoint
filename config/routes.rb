@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   root 'home#index'
   devise_for :users
   get "toggleusers",to:"admins/users#searchuser"
+
+  get "toggleusers_by_technology",to:"admins/users#searchuser_by_technology"
   get "toggleprojects",to:"admins/projects#searchproject"
+
+  get "toggleskills",to:"admins/skills#searchskill"
+
 
   namespace :guests do
     resources :guests
@@ -30,6 +35,8 @@ Rails.application.routes.draw do
     get "project_id/:id",to:"user_projects#assigndeveloper"
     get "project_users/:id",to:"projects#project_users"
     get "skill_users/:id",to:"skills#skills_users"
+    get "toggleprojects",to:"projects#searchproject"
+    get "toggleskills",to:"skills#searchskill"
   end
 
   namespace :engineering_managers do
@@ -46,6 +53,8 @@ Rails.application.routes.draw do
     get "project_id/:id",to:"user_projects#assigndeveloper"
     get "project_users/:id",to:"projects#project_users"
     get "skill_users/:id",to:"skills#skills_users"
+    get "toggleprojects",to:"projects#searchproject"
+    get "toggleskills",to:"skills#searchskill"
 
   end
 
@@ -64,7 +73,8 @@ Rails.application.routes.draw do
     get "project_id/:id",to:"user_projects#assigndeveloper"
     get "project_users/:id",to:"projects#project_users"
     get "skill_users/:id",to:"skills#skills_users"
-
+    get "toggleprojects",to:"projects#searchproject"
+   get "toggleskills",to:"skills#searchskill"
   end
 
 
