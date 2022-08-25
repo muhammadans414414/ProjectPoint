@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Admins
   class DevelopersController < ApplicationController
+  load_and_authorize_resource
     def index
      @developers = User.joins(:role).where("roles.name =?", "developer")
     end
