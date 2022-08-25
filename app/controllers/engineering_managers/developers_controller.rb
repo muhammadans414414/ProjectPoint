@@ -1,7 +1,7 @@
 class EngineeringManagers::DevelopersController < ApplicationController
-  load_and_authorize_resource
     def index
         @developers = User.joins(:role).where('roles.name =?', 'developer')
+        authorize! :read, @developers if !current_user.is_engineering_manager?
       end
       def destroy
         @developer = User.find(params[:id])
