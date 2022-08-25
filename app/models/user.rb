@@ -17,6 +17,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
 
+  def send_devise_notification(notification, *args)
+    Devise::Mailer.send(notification, self, *args).deliver_later
+  end
+
   def is_guest?
     role.name == Guest
   end

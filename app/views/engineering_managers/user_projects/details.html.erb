@@ -25,6 +25,9 @@
           <td class="py-4 px-6">
             <%= link_to "Remove project", "/engineering_managers/delete_user_project/"+project.id.to_s, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'},class: 'bg-red-700 px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white'%>
           </td>
+           <td class="py-4 px-6">
+            <%= link_to "Project Details", engineering_managers_project_path(project.project.id),class: 'bg-blue-500 px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white'%>
+          </td>
         </tr>
       <%end%>
     </tbody>

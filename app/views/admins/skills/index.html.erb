@@ -1,5 +1,5 @@
 <div class="mt-[10rem] mx-5">
-  <div class="flex justify-center items-center mt-[6rem] text-center ">
+  <div class="flex justify-center items-center mt-[6rem] text-center mb-5">
     <div class="px-5 w-1/5">
       <%= form_with do |form| %>
         <%= form.label :"Filter by Skill" %>
@@ -7,7 +7,7 @@
       <%end%>
     </div>
   </div>
-  <div class="flex justify-between m-10">
+  <div class="flex justify-between">
     <div class="text-center">
       <h1 class="text-2xl">Skills</h1>
     </div>
@@ -35,7 +35,6 @@
 </div>
 <script>
   $(document).ready(function()
-
   {
 
      $('select').on("change",function(e){

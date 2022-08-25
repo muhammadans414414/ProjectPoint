@@ -28,19 +28,19 @@ class Admins::SkillsController < ApplicationController
     end
 
     def searchskill
-        
+        debugger
         if (params[:data].empty?)
-            @skill=Skill.all
-            else
-              @skill=Skill.find(params[:data])
-            
-              respond_to do |format|
-                format.js
-                format.html {admins_users_path}
-            end
-            end
+            redirect_to admins_skills_path
+           
+        else
+            @skill=Skill.find(params[:data])
+          
+        end
+        respond_to do |format|
+            format.js
+            format.html {admins_users_path}
+        end
     end
-
     private
     def abc
     params.require(:skill).permit!

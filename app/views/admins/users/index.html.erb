@@ -13,7 +13,7 @@
   </div>
 </div>
 <div class="m-10">
-  <div class="flex justify-between m-10">
+  <div class="flex justify-between ">
     <div class="text-center">
       <h1 class="text-2xl">Users</h1>
     </div>
@@ -55,12 +55,14 @@
 
   {
      $('#role_select').on("change",function(e){
+        
+      var technology_id=$('#technology_select').val();
 
          var role=e.target.value;
           $.ajax({
           type:"GET",
           url: "/toggleusers",
-          data: {data: role},
+          data: {data: role,technology:technology_id},
           success: function(data){
           console.log("ok"+role);
   },
@@ -71,13 +73,14 @@
      });// end role_select
 
   $('#technology_select').on("change",function(e){
+      var role_id=$('#role_select').val();
 
          var technology=e.target.value;
           $.ajax({
           type:"GET",
           url: "/toggleusers_by_technology",
-          data: {data: technology},
-          success: function(data){
+          data: {data: technology,role:role_id},
+          success: function(technology){
           console.log("ok"+technology);
   },
       error: function(XMLHttpRequest, textStatus, errorThrown){
