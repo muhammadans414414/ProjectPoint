@@ -16,6 +16,9 @@
             <th scope="col" class="py-3 px-6">
               Project Status
             </th>
+            <th scope="col" class="">
+              
+            </th>
           </tr>
         </thead>
         <tbody id="abc">
@@ -24,15 +27,15 @@
               <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <%=project.project.full_name %>
               </th>
-              <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <td scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <%=project.project.short_name %>
-              </th>
-              <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              </td>
+              <td scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <%=project.project.status %>
-              </th>
-              <th scope="row" class="">
-                <%=link_to "See Details",developers_developer_path(project),class:"bg-cyan-500 px-5 py-3 rounded-md hover:bg-slate-500 text-white"%>
-              </th>
+              </td>
+              <td scope="row" class="">
+                <%=link_to "Details",developers_developer_path(project),class:"text-xs bg-cyan-500 px-1 py-3 rounded-md hover:bg-slate-500 text-white sm:text-sm"%>
+              </td>
             </tr>
           <%end%>
         </tbody>

@@ -1,13 +1,11 @@
 class Developers::UsersController < ApplicationController
+    load_and_authorize_resource
     def index
         @users = User.where("role_id<?",current_user.role.id)
     end
-
-
     def new
         @user = User.new
     end
-    
     def create
         @user = User.new(user_params)
         if @user.save
@@ -19,7 +17,6 @@ class Developers::UsersController < ApplicationController
           render :new,status: :unprocessable_entity
         end
     end
-
     def destroy
         @user = User.find(params[:id])
         @user.destroy

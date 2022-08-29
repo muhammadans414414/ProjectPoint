@@ -1,7 +1,7 @@
 class Admins::SkillsController < ApplicationController
+    load_and_authorize_resource
     def index
         @skills=Skill.all
-        
     end
     def new
         @skill=Skill.new
@@ -22,26 +22,26 @@ class Admins::SkillsController < ApplicationController
         @skill.destroy
         redirect_to admins_skills_path
     end
-
     def skills_users
         @users=Skill.find(params[:id]).users
     end
-
     def searchskill
-        
+        debugger
         if (params[:data].empty?)
-            @skill=Skill.all
-            else
-              @skill=Skill.find(params[:data])
-            
-              respond_to do |format|
-                format.js
-                format.html {admins_users_path}
-            end
-            end
+            redirect_to admins_skills_path
+           
+        else
+            @skill=Skill.find(params[:data])
+          
+        end
+        respond_to do |format|
+            format.js
+            format.html {admins_users_path}
+        end
     end
 
     private
+
     def abc
     params.require(:skill).permit!
     end

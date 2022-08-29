@@ -1,8 +1,8 @@
 <div class="mt-[10rem] mb-5">
   <p class="text-4xl text-center">All Developers </p>
 </div>
-<div class="overflow-x-auto relative shadow-md mx-5 sm:rounded-lg ">
-  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg ">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 text-center">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
         <th scope="col" class="py-3 px-6">
@@ -17,11 +17,14 @@
         <th scope="col" class="py-3 px-6">
           Assigned Projects
         </th>
-        <th scope="col" class="py-3 px-6">
+        <th scope="col" class="py-3 px-6"> 
+        Developer Projects
         </th>
         <th scope="col" class="py-3 px-6">
+        Assign Project
         </th>
         <th scope="col" class="py-3 px-6">
+             
         </th>
       </tr>
     </thead>
@@ -31,26 +34,29 @@
           <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             <%= developer.id %>
           </th>
-          <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <th scope="row" class="sm:py-2 sm:px-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             <%= developer.email %>
           </th>
-          <td class="py-4 px-6">
+          <td class="sm:py-2 sm:px-2">
             <%= developer.role.name.capitalize %>
           </td>
-          <td class="py-4 px-6">
+          <td class="sm:py-2 sm:px-2">
             <%= developer.user_projects.count %>
           </td>
-          <td class="py-4 px-6">
-            <%= link_to "Delete", "/admins/developers/"+developer.id.to_s,  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-red-500 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
+          
+          <td class="text-xs sm:text-sm md:text-base">
+            <%= link_to "Projects", "/admins/user_projects_details/"+developer.id.to_s, class:'bg-green-400 sm:px-1 sm:py-2 rounded-md hover:bg-slate-300 text-white p-2 lg:py-3 lg:px-2'%>
+        </td>
+          <td class=" text-xs sm:text-sm md:text-base">
+            <%= link_to "Assign Project", "/admins/developer_id/"+developer.id.to_s, class:'bg-purple-400 sm:py-2 sm:px-1 rounded-md hover:bg-slate-500 text-white p-2 lg:py-3 lg:px-2' %>
           </td>
-          <td class="py-4 px-6">
-            <%= link_to "See Projects", "/admins/user_projects_details/"+developer.id.to_s, class:'bg-green-400 px-5 py-3 rounded-md hover:bg-slate-300 text-white'%>
-          </td>
-          <td class="py-4 px-6">
-            <%= link_to "Assign Project", "/admins/developer_id/"+developer.id.to_s, class:'bg-purple-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white' %>
+          <td class="text-xs sm:text-sm md:text-base">
+            <%= link_to "Delete", "/admins/developers/"+developer.id.to_s,  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-red-500 sm:px-1 sm:py-2 rounded-md hover:bg-slate-500 text-white p-2 lg:py-3 lg:px-2'%>
           </td>
         </tr>
       <%end%>
     </tbody>
   </table>
 </div>
+
+

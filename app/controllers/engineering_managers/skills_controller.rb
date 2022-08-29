@@ -1,7 +1,7 @@
 class EngineeringManagers::SkillsController < ApplicationController
+    load_and_authorize_resource
     def index
-        @skills=Skill.all
-        
+        @skills=Skill.all 
     end
     def new
         @skill=Skill.new
@@ -22,13 +22,10 @@ class EngineeringManagers::SkillsController < ApplicationController
         @skill.destroy
         redirect_to engineering_managers_skills_path
     end
-
     def skills_users
         @users=Skill.find(params[:id]).users
     end
-
-    def searchskill
-        
+    def searchskill 
         if (params[:data].empty?)
             @skill=Skill.all
             else

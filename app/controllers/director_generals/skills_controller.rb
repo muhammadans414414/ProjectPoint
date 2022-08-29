@@ -1,7 +1,7 @@
 class DirectorGenerals::SkillsController < ApplicationController
+    load_and_authorize_resource
     def index
         @skills=Skill.all
-        
     end
     def new
         @skill=Skill.new
@@ -22,17 +22,14 @@ class DirectorGenerals::SkillsController < ApplicationController
         @skill.destroy
         redirect_to director_generals_skills_path
     end
-
     def skills_users
         @users=Skill.find(params[:id]).users
     end
-    def searchskill
-        
+    def searchskill 
         if (params[:data].empty?)
             @skill=Skill.all
             else
               @skill=Skill.find(params[:data])
-            
               respond_to do |format|
                 format.js
                 format.html {admins_users_path}
