@@ -1,13 +1,13 @@
 <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
-<div class="h-auto bg-slate-100 mx-8 border-1 rounded-lg mt-[10rem]">
+<div class="flex h-auto bg-slate-100 mx-8 border-1 rounded-lg mt-[10rem]">
   <% if @personal_information.nil? %>
     <div class="flex">
       <div class="m-10 px-5">
         <%= image_tag("avatar.png",style:"width:100px;height:100px;",class:"rounded-full")%>
       </div>
       <div class="flex">
-        <div class="p-5">
-          <p class="text-2xl my-5">NA</p>
+        <div class="sm:p-5">
+          <p class="sm:text-2xl sm:my-5">NA</p>
           <h3>Employee Code</h3>
           <h3>Designation</h3>
           <h3>Email</h3>
@@ -25,7 +25,7 @@
       <%else%>
         <div class="flex">
           <% if @personal_information.profile_image.attached?%>
-            <div class="m-10 px-5">
+            <div class="sm:m-10 sm:px-5 p-1">
               <%= image_tag(@personal_information.profile_image,style:"width:100px;height:100px;",class:"rounded-full")%>
             </div>
           <%else%>
@@ -34,15 +34,15 @@
             <%end%>
           </div>
           <div class="flex">
-            <div class="p-5">
-              <p class="text-2xl my-5"><%= @personal_information.combined_name.upcase %></p>
+            <div class=" md:p-5 lg:pt-14">
+              <p class="md:text-2xl text-xl my-5"><%= @personal_information.combined_name.upcase %></p>
               <h3>Employee Code</h3>
               <h3>Designation</h3>
               <h3>Email</h3>
               <h3>Mobile</h3>
               <h3>CNIC</h3>
             </div>
-            <div class="mt-16 p-7 border-l-2 border-slate-300">
+            <div class="mt-16 md:p-7 pt-9 md:pt-16  border-l-2 border-slate-300">
               <p class="text-red-500"><%= @personal_information.employee_code %></p>
               <p class="text-red-500"><%= @personal_information.designation %></p>
               <p class="text-red-500"><%= @personal_information.mobile %></p>
@@ -405,9 +405,10 @@
               </div>
             <%end%>
           </div>
+          <%# ------------------------------ emergency_contacts %>
           <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
             <p class="mt-8 text-left font-bold text-2xl"> Emergency Contacts</p>
-            <p class="text-right"> <%= link_to "Add Emergency Contact", new_admins_emergency_contact_path, class:'bg-green-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%></p>
+            <p class="text-right mt-5 sm:mt-0"> <%= link_to "Add Emergency Contact", new_admins_emergency_contact_path, class:'bg-green-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%></p>
             <div class="overflow-x-auto relative shadow-md sm:rounded-lg my-12">
               <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -422,7 +423,10 @@
                       Mobile
                     </th>
                     <th scope="col" class="py-3 px-6">
-                      Actions
+                      
+                    </th>
+                      <th scope="col" class="py-3 px-6">
+                      
                     </th>
                   </tr>
                 </thead>
@@ -440,13 +444,17 @@
                       </td>
                       <td class="py-4 px-6">
                         <%= link_to "Delete", admins_emergency_contact_path(data), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-red-600 px-5 py-3 rounded-md hover:bg-slate-500 text-white' %>
+                      </td>
+                      <td>
                         <%= link_to "Edit", edit_admins_emergency_contact_path(data),class:'bg-cyan-600 px-5 mx-3 py-3 rounded-md hover:bg-slate-500 text-white' %>
+
                       </td>
                     <%end%>
                   </tbody>
                 </table>
               </div>
             </div>
+            <%# ----------------------------education %>
             <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="settings" role="tabpanel" aria-labelledby="settings-tab">
               <p class="mt-8 text-left font-bold text-2xl"> Educations</p>
               <p class="text-right"><%= link_to "Add Education", new_admins_education_path, class:'bg-green-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%></p>
@@ -467,7 +475,10 @@
                         Graduation Date
                       </th>
                       <th scope="col" class="py-3 px-6">
-                        Actions
+                        
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        
                       </th>
                     </tr>
                   </thead>
@@ -488,6 +499,8 @@
                         </td>
                         <td class="py-4 px-6">
                           <%= link_to "Delete", admins_education_path(data), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-red-600 px-5 py-3 rounded-md hover:bg-slate-500 text-white' %>
+                        </td>
+                        <td>
                           <%= link_to "Edit", edit_admins_education_path(data), class:'bg-cyan-500 px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white'%>
                         </td>
                       </tr>
@@ -496,11 +509,12 @@
                 </table>
               </div>
             </div>
+            <%# ---------------------------- dependents  %>
             <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
               <p class="mt-8 text-left font-bold text-2xl"> Dependents</p>
-              <p class="text-right"> <%= link_to "Add Dependent", new_admins_dependent_path, class:'bg-green-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%></p>
+              <p class="text-right mt-5 sm:mt-0"> <%= link_to "Add Dependent", new_admins_dependent_path, class:'bg-green-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%></p>
               <div class="overflow-x-auto relative shadow-md sm:rounded-lg my-12">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 text-center">
                   <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                       <th scope="col" class="py-3 px-6">
@@ -526,6 +540,12 @@
                       </th>
                       <th scope="col" class="py-3 px-6">
                         Action
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        
                       </th>
                     </tr>
                   </thead>
@@ -558,6 +578,8 @@
                         </td>
                         <td class="py-4 px-6">
                           <%= link_to "Delete", admins_dependent_path(data), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-red-600 px-5 py-3 rounded-md hover:bg-slate-500 text-white' %>
+                        </td>
+                        <td>
                           <%= link_to "Edit", edit_admins_dependent_path(data), class:'bg-cyan-500 px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white'%>
                         </td>
                       </tr>
@@ -574,26 +596,29 @@
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                   <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                      <th scope="col" class="py-3 px-6">
+                      <th scope="col" class="py-3 sm:px-6">
                         Name
                       </th>
-                      <th scope="col" class="py-3 px-6">
+                      <th scope="col" class="py-3 sm:px-6">
                         Level
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        
                       </th>
                     </tr>
                   </thead>
                   <tbody id="#abc">
                     <% @user_skills.each do |data|%>
                       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <th scope="row" class="py-4 sm:px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                           <%= data.skill.name%>
                         </th>
-                        <td class="py-4 px-6">
+                        <td class="py-4 sm:px-6">
                           <%= data.level%>
                         </td>
-                        <td class="py-4 px-6">
-                          <%= link_to "Delete", admins_user_skill_path(data), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-red-600 px-5 py-3 rounded-md hover:bg-slate-500 text-white' %>
-                          <%= link_to "Edit", edit_admins_user_skill_path(data), class:'bg-cyan-500 px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white'%>
+                        <td class="py-4 sm:px-6 text-xs">
+                          <%= link_to "Delete", admins_user_skill_path(data), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'bg-red-600 sm:px-5 p-2 py-3 rounded-md hover:bg-slate-500 text-white' %>
+                          <%= link_to "Edit", edit_admins_user_skill_path(data), class:'bg-cyan-500 sm:px-5 py-3 mx-3 rounded-md hover:bg-slate-500 text-white p-2'%>
                         </td>
                       </tr>
                     <%end%>

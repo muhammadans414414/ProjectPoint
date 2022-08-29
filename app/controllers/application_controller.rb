@@ -2,6 +2,10 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def after_inactive_sign_up_path_for(resource)
+    new_user_session_path
+  end
  
   protected
 

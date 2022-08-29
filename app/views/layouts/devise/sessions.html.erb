@@ -13,32 +13,36 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <div class="flex justify-between p-3 px-5 bg-blue-50">
-      <div class="mb-2 sm:mb-0 flex ">
-        <div class="h-10 mr-3 ">
+    <div class="flex justify-between items-center sm:p-3 sm:px-5 bg-blue-50 px-3 py-2">
+
+      <div class="mb-2 sm:mb-0 flex">
+        <div class="h-10 sm:mr-2">
           <%=image_tag("logo.png",class:"h-16")%>
         </div>
-        <div class=" pt-3">
+
+        <div class="pt-3">
           <%= link_to "Visibility", root_path, class:"text-2xl text-purple-600"%>
           <%= link_to "Point", root_path, class:"text-2xl "%>
         </div>
       </div>
+
       <div class="pt-2">
-        <%= link_to "Sign up", new_registration_path(resource_name),class: 'bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-8 border border-blue-500 hover:border-transparent rounded' %>
+        <%= link_to "Sign up", new_registration_path(resource_name),class: 'bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white sm:py-2 sm:px-8 p-2 border border-blue-500 hover:border-transparent rounded' %>
       </div>
     </div>
-    
+ 
     <% if flash[:notice].present? %>
-      <div class="flex justify-center w-full mt-[1rem]" id="outtime" style="position:absolute;z-index:1;">
-        <div class="flex justify-between text-red-500 shadow-inner rounded p-3 bg-blue-100 p-5 w-1/3 ">
+      <div class="flex justify-center w-screen" id="outtime" style="position:absolute;z-index:1;">
+            <div class="flex justify-between text-red-500 shadow-inner rounded bg-blue-100 p-2 w-1/3">
          <p class="block m-auto"><%= notice %></p>
           <strong class="text-xl align-center cursor-pointer alert-del" >&times;</strong>
         </div>
       </div>
     <%end%>
+
     <% if flash[:alert].present? %>
-      <div class="flex justify-center w-full mt-[1rem]" id="outtime" style="position:absolute;z-index:1;">
-        <div class="flex justify-between text-red-500 shadow-inner rounded p-3 bg-blue-100 p-5 w-1/3 ">
+      <div class="flex justify-center w-screen" id="outtime" style="position:absolute;z-index:1;">
+        <div class="flex justify-between text-red-500 shadow-inner rounded bg-blue-100 p-2 w-1/3">
           <p class="block m-auto"><%= alert %></p>
           <strong class="text-xl align-center cursor-pointer alert-del"
           >&times;</strong
@@ -46,6 +50,8 @@
         </div>
       </div>
     <%end%>
+
+
     <%= yield %>
 
 
@@ -54,12 +60,12 @@
     </div>
 
 
-
+<%# 
     <script>
       setTimeout(()=>{
              $('#outtime').hide();
          },3000);
-    </script>
+    </script> %>
 
     <script>
       var alert_del = document.querySelectorAll('.alert-del');

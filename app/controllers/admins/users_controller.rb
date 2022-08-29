@@ -27,6 +27,7 @@ module Admins
       @user.destroy
       redirect_to admins_users_path
     end
+
     def searchuser
       if params[:data].empty? && params[:technology].empty?
         @users=User.all
@@ -42,6 +43,14 @@ module Admins
         format.html {admins_users_path}
     end
     end
+
+
+
+
+
+
+
+    
     def searchuser_by_technology
       if params[:data].empty? && params[:role].empty?
         @users=User.all

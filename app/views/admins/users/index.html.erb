@@ -1,17 +1,18 @@
 <div class="flex justify-center items-center mt-[6rem] text-center ">
-  <div class="px-5 w-1/5">
+  <div class="px-2 sm:w-1/3">
     <%= form_with do |form| %>
-      <%= form.label :"Filter By Role" %>
+      <%= form.label :"Filter By Role", class:"text-xs sm:text-base" %>
       <%= form.collection_select :id, Role.all, :id, :capitalize_name,{prompt:"Please Select"},class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",id:"role_select"%>
     <%end%>
   </div>
-  <div class="px-5 w-1/5">
+  <div class=" sm:w-1/3">
     <%= form_with do |form| %>
-      <%= form.label :"Filter By Technology" %>
+      <%= form.label :"Filter By Technology",class:"text-xs sm:text-base" %>
       <%= form.collection_select :id, Technology.all, :id, :capitalize_name,{prompt:"Please Select"},class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",id:"technology_select"%>
     <%end%>
   </div>
 </div>
+<%# ------------ above is filters area %>
 <div class="m-10">
   <div class="flex justify-between ">
     <div class="text-center">
@@ -55,7 +56,7 @@
 
   {
      $('#role_select').on("change",function(e){
-        
+
       var technology_id=$('#technology_select').val();
 
          var role=e.target.value;
