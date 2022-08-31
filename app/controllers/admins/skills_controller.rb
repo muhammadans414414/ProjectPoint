@@ -26,13 +26,12 @@ class Admins::SkillsController < ApplicationController
         @users=Skill.find(params[:id]).users
     end
     def searchskill
-        debugger
+        
         if (params[:data].empty?)
-            redirect_to admins_skills_path
+            @skills=Skill.all
            
         else
-            @skill=Skill.find(params[:data])
-          
+            @skills=Skill.where("id = ?",params[:data])
         end
         respond_to do |format|
             format.js

@@ -1,31 +1,31 @@
 <% @projects.each do |project| %>
   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-  <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-      <%= project.id %>
-    </th>
-    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-      <%= project.full_name %>
-    </th>
-    <td class="py-4 px-6">
-      <%= project.status %>
-    </td>
-    <td class="py-4 ">
-      <%=project.live_url %>
-    </td>
-    <td class="py-4">
-      <%=project.user_projects.count%>
-    </td>
-    <td class="py-4 ">
-      <%= link_to "See Developers ", "/engineering_managers/project_users/"+project.id.to_s, class:'bg-blue-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
-    </td>
-    <td class="py-4 ">
-      <%= link_to "Details", engineering_managers_project_path(project), class:'bg-green-700 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
-    </td>
-    <td class="py-4 ">
-      <%= link_to "Details Pdf", engineering_managers_project_path(project,format: :pdf), class:'bg-purple-400 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
-    </td>
-    <td class="py-4 ">
-      <%= link_to "Assign Developer", "/engineering_managers/project_id/"+project.id.to_s, class:'bg-cyan-500 px-5 py-3 rounded-md hover:bg-slate-500 text-white'%>
-    </td>
-  </tr>
+          <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <%= project.id %>
+          </th>
+          <th scope="row" class=" py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <%= project.full_name %>
+          </th>
+          <td class="sm:py-2 sm:px-2">
+            <%= project.status %>
+          </td>
+          <td class="sm:py-2 sm:px-2">
+            <%= link_to project.live_url, project.live_url,target: "_blank"%>
+          </td>
+          <td class="sm:py-2 sm:px-2">
+            <%=project.user_projects.count%>
+          </td>
+          <td class="text-xs sm:text-sm md:text-base">
+            <%= link_to "See Developers ", "/technical_leads/project_users/"+project.id.to_s, class:'bg-blue-400 sm:px-1 sm:py-2 rounded-md hover:bg-slate-500 text-white p-2 lg:py-3'%>
+            </td>
+            <td class="text-xs sm:text-sm md:text-base">
+              <%= link_to "See Details", technical_leads_project_path(project), class:'bg-green-700 sm:px-1 p-2 sm:py-2 rounded-md hover:bg-slate-500 text-white lg:py-3'%>
+            </td>
+            <td class="text-xs sm:text-sm md:text-base">
+              <%= link_to "Generate Pdf", technical_leads_project_path(project,format: :pdf), class:'bg-purple-400 sm:px-1 sm:py-2 rounded-md hover:bg-slate-500 text-white p-2 lg:py-3'%>
+            </td>
+            <td class="text-xs sm:text-sm md:text-sm lg:text-sm">
+              <%= link_to "Assign Developer", "/technical_leads/project_id/"+project.id.to_s, class:'bg-cyan-500 sm:px-1 sm:py-2 rounded-md hover:bg-slate-500 text-white p-2 lg:py-3'%>
+            </td>
+          </tr>
 <%end%>
