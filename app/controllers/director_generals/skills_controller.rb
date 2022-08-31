@@ -27,13 +27,13 @@ class DirectorGenerals::SkillsController < ApplicationController
     end
     def searchskill 
         if (params[:data].empty?)
-            @skill=Skill.all
+            @skills=Skill.all
             else
-              @skill=Skill.find(params[:data])
-              respond_to do |format|
+              @skills=Skill.where("id =?",params[:data])
+            end
+            respond_to do |format|
                 format.js
                 format.html {admins_users_path}
-            end
             end
     end
 
