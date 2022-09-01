@@ -17,22 +17,21 @@
         <th scope="col" class="py-3 px-6">
           Assigned Projects
         </th>
-        <th scope="col" class="py-3 px-6"> 
-        Developer Projects
+        <th scope="col" class="py-3 px-6">
+          Developer Projects
         </th>
         <th scope="col" class="py-3 px-6">
-        Assign Project
+          Assign Project
         </th>
         <th scope="col" class="py-3 px-6">
-             
         </th>
       </tr>
     </thead>
     <tbody id="#abc">
-      <% @developers.each do |developer| %>
+      <% @developers.each.with_index(1) do |developer,index| %>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
           <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            <%= developer.id %>
+            <%= index %>
           </th>
           <th scope="row" class="sm:py-2 sm:px-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             <%= developer.email %>
@@ -43,10 +42,9 @@
           <td class="sm:py-2 sm:px-2">
             <%= developer.user_projects.count %>
           </td>
-          
           <td class="text-xs sm:text-sm md:text-base">
             <%= link_to "Projects", "/admins/user_projects_details/"+developer.id.to_s, class:'bg-green-400 sm:px-1 sm:py-2 rounded-md hover:bg-slate-300 text-white p-2 lg:py-3 lg:px-2'%>
-        </td>
+          </td>
           <td class=" text-xs sm:text-sm md:text-base">
             <%= link_to "Assign Project", "/admins/developer_id/"+developer.id.to_s, class:'bg-purple-400 sm:py-2 sm:px-1 rounded-md hover:bg-slate-500 text-white p-2 lg:py-3 lg:px-2' %>
           </td>
@@ -58,5 +56,3 @@
     </tbody>
   </table>
 </div>
-
-

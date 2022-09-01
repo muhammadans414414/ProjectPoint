@@ -66,7 +66,7 @@
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
           Spouse Name
         </label>
-        <%= f.text_field :spouse_name, autofocus: true, disabled: true,class:"appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
+        <%= f.text_field :spouse_name, autofocus: true, readonly: true,class:"appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-blue-300 border-2 border-gray-300 focus:bg-white"%>
       </div>
       <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
@@ -337,7 +337,7 @@
       var marriage_status=$("#personal_information_marital_status").val();
       console.log(marriage_status);
 
-      if (marriage_status=="married"){
+      if (marriage_status=="Married"){
         $("#personal_information_spouse_name").prop( "readonly", false );
       }
 
@@ -355,7 +355,7 @@
          var marital_status=e.target.value;
          alert(marital_status);
 
-       if (marital_status=='married'){
+       if (marital_status=='Married'){
         $("#personal_information_spouse_name").prop( "readonly", false );
        }
        else{

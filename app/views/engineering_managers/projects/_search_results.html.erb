@@ -1,13 +1,13 @@
-<% @projects.each do |project| %>
+<% @projects.each.with_index(1) do |project,index| %>
  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
           <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            <%= project.id %>
+            <%= index %>
           </th>
           <th scope="row" class=" py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             <%= project.full_name %>
           </th>
           <td class="sm:py-2 sm:px-2">
-            <%= project.status %>
+            <%= project.status.capitalize %>
           </td>
           <td class="sm:py-2 sm:px-2">
             <%= link_to project.live_url, project.live_url,target: "_blank"%>
