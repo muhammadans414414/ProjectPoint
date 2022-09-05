@@ -1,20 +1,20 @@
 <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
-<div class="flex h-auto bg-slate-100  border-1 rounded-lg mt-[5rem]">
+<div class="flex h-auto bg-slate-100  border-1 rounded-lg mt-[5rem] mx-5">
   <% if @personal_information.nil? %>
     <div class="w-full flex flex-col justify-center items-center sm:flex-row sm:justify-start sm:justify-items-start ">
       <div class="m-10 px-5">
         <%= image_tag("avatar.png",style:"width:100px;height:100px;",class:"rounded-full")%>
       </div>
       <div class="flex">
-        <div class="sm:p-5">
-          <p class="sm:text-2xl sm:my-5">NA</p>
+        <div class="sm:p-5 pt-16 px-5">
+          <p class="sm:text-2xl sm:my-5 text-2xl">NA</p>
           <h3>Employee Code</h3>
           <h3>Designation</h3>
           <h3>Email</h3>
           <h3>Mobile</h3>
           <h3>CNIC</h3>
         </div>
-        <div class="mt-16 p-7 border-l-2 border-slate-300">
+        <div class="mt-16 p-7 border-l-2  border-slate-300">
           <p class="text-red-500">NA</p>
           <p class="text-red-500">NA</p>
           <p class="text-red-500"> NA         
@@ -35,7 +35,7 @@
           </div>
           <div class="flex">
             <div class=" md:p-5 lg:pt-14">
-              <p class="md:text-2xl text-xl my-5"><%= @personal_information.combined_name.upcase %></p>
+              <p class="md:text-2xl text-2xl my-5"><%= @personal_information.combined_name.upcase %></p>
               <h3>Employee Code</h3>
               <h3>Designation</h3>
               <h3>Email</h3>
@@ -55,7 +55,7 @@
     </div>
     <div id="tab-buttons" class="flex  items-center  justify-around  items-center">
             <a href="javascript:void(0)" onclick="changeTab(event, 0)"
-                class="inline-block text-gray-500 hover:text-gray-600 hover:border-blue-500 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300">Personal Information
+                class="inline-block text-gray-500 hover:text-gray-600 hover:border-blue-500 rounded-t-lg py-4 sm:px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300">Personal Information
                 </a>
             <a href="javascript:void(0)" onclick="changeTab(event, 1)" class="inline-block text-gray-500 hover:text-gray-600 hover:border-blue-500 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300">Emergency Contacts
                 </a>
