@@ -30,13 +30,13 @@ module Admins
 
     def searchuser
       if params[:data].empty? && params[:technology].empty?
-        @users=User.all
+        @users=User.where("role_id<?",current_user.role.id)
       elsif params[:technology].empty? && !params[:data].empty?
-        @users=User.where(role_id:params[:data])
+        @users=User.where(role_id:params[:data]).where("role_id<?",current_user.role.id)
       elsif !params[:technology].empty? && params[:data].empty?
         @users=User.where(technology_id: params[:technology]).where("role_id<?",current_user.role.id)
       else
-        @users=User.where("role_id = ? AND technology_id = ?",params[:data],params[:technology])
+        @users=User.where("role_id = ? AND technology_id = ?",params[:data],params[:technology]).where("role_id<?",current_user.role.id)
       end
       respond_to do |format|
         format.js
@@ -44,22 +44,15 @@ module Admins
     end
     end
 
-
-
-
-
-
-
-    
     def searchuser_by_technology
       if params[:data].empty? && params[:role].empty?
-        @users=User.all
+        @users=User.where("role_id<?",current_user.role.id)
       elsif params[:role].empty? && !params[:data].empty?
-        @users=User.where(technology_id:params[:data])
+        @users=User.where(technology_id:params[:data]).where("role_id<?",current_user.role.id)
       elsif !params[:role].empty? && params[:data].empty?
-        @users=User.where(role_id: params[:role])
+        @users=User.where(role_id: params[:role]).where("role_id<?",current_user.role.id)
       else
-        @users=User.where("role_id = ? AND technology_id = ?",params[:role],params[:data])
+        @users=User.where("role_id = ? AND technology_id = ?",params[:role],params[:data]).where("role_id<?",current_user.role.id)
       end
       respond_to do |format|
         format.js
