@@ -1,7 +1,7 @@
 class EngineeringManagers::UsersController < ApplicationController
     load_and_authorize_resource
     def index
-        @users = User.where("role_id<?",current_user.role.id)
+      @users = User.where("role_id<?",current_user.role.id)
     end
     def new
         @user = User.new

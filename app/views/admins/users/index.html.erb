@@ -1,16 +1,15 @@
+  <%= form_with do |form| %>
 <div class="flex justify-center items-center mt-[6rem] text-center ">
-  <div class="px-2 sm:w-1/3">
-    <%= form_with do |form| %>
-      <%= form.label :"Filter By Role", class:"text-xs sm:text-base" %>
-      <%= form.collection_select :id, Role.all, :id, :capitalize_name,{prompt:"Please Select"},class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",id:"role_select"%>
-    <%end%>
-  </div>
-  <div class=" sm:w-1/3">
-    <%= form_with do |form| %>
-      <%= form.label :"Filter By Technology",class:"text-xs sm:text-base" %>
-      <%= form.collection_select :id, Technology.all, :id, :capitalize_name,{prompt:"Please Select"},class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",id:"technology_select"%>
-    <%end%>
-  </div>
+
+    <div class="px-2 sm:w-1/3">
+        <%= form.label :"Filter By Role", class:"text-xs sm:text-base" %>
+        <%= form.collection_select :role_id, Role.all, :id, :capitalize_name,{prompt:"Please Select"},class:"users_filters bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",id:"role_select"%>
+    </div>
+    <div class="px-2 sm:w-1/3">
+        <%= form.label :"Filter By Technology",class:"text-xs sm:text-base" %>
+        <%= form.collection_select :technology_id, Technology.all, :id, :capitalize_name,{prompt:"Please Select"},class:"users_filters bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",id:"technology_select"%>
+    </div>
+  <% end %>
 </div>
 <%# ------------ above is filters area %>
 <div class="m-10">
@@ -73,45 +72,26 @@
   </div>
 </div>
 <script>
-  $(document).ready(function()
-
-  {
-     $('#role_select').on("change",function(e){
-
-      var technology_id=$('#technology_select').val();
-
-         var role=e.target.value;
-          $.ajax({
-          type:"GET",
-          url: "/toggleusers",
-          data: {data: role,technology:technology_id},
-          success: function(data){
-          console.log("ok"+role);
-  },
+$(document).ready(function(){
+  $('.users_filters').on("change",function(e){
+    // initialize variables
+    var role_id = $('#role_select').val();
+    var technology_id = $('#technology_select').val();
+    url = "/toggleusers";
+    data = {role_id: role_id, technology_id: technology_id};
+        
+    // Ajax call
+    $.ajax({
+      type:"GET",
+      url: url,
+      data: data,
+      success: function(data){
+        console.log("ok"+data);
+      },
       error: function(XMLHttpRequest, textStatus, errorThrown){
-       console.log(XMLHttpRequest.responseText);
+        console.log(XMLHttpRequest.responseText);
       }
-      });//end ajax
-     });// end role_select
-
-  $('#technology_select').on("change",function(e){
-      var role_id=$('#role_select').val();
-
-         var technology=e.target.value;
-          $.ajax({
-          type:"GET",
-          url: "/toggleusers_by_technology",
-          data: {data: technology,role:role_id},
-          success: function(technology){
-          console.log("ok"+technology);
-  },
-      error: function(XMLHttpRequest, textStatus, errorThrown){
-       console.log(XMLHttpRequest.responseText);
-      }
-      });//end ajax
-     });// end role_select
-
-
-  }
-  );
+    });//end ajax
+  });// end user filters
+});// end ready function
 </script>

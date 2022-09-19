@@ -22,9 +22,21 @@ Bundler.require(*Rails.groups)
 
 module ProjectPoint
   class Application < Rails::Application
+    
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-    
+    config.session_store :cookie_store, key: '_interslice_session'
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*' 
+        resource '*',
+        headers: :any,
+        expose: ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+        methods: [:get, :post, :options, :delete, :put, :patch]
+      end
+    end
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

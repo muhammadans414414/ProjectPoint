@@ -13,7 +13,7 @@ gem 'sprockets-rails'
 
 # Use postgresql as the database for Active Record
 gem 'cancancan'
-
+gem 'active_model_serializers', '~> 0.10.2'
 gem 'caxlsx'
 gem 'caxlsx_rails'
 gem 'devise'
@@ -22,6 +22,8 @@ gem 'rubyzip', '>= 1.2.1'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'material_icons'
+gem 'rack-cors'
+gem 'simple_command'
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
 
@@ -54,7 +56,7 @@ gem 'bootsnap', require: false
 
 # Use Sass to process CSS
 gem 'sassc-rails'
-
+gem 'devise_token_auth', git: "https://github.com/lynndylanhurley/devise_token_auth"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

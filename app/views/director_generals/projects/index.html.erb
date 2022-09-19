@@ -6,19 +6,17 @@
     <%end%>
   </div>
 </div>
-<%# ---------------------- above is search filter %> 
+<%# ---------------------- above is search filter %>
 <div class="sm:flex sm:justify-between mt-5 px-5">
   <div>
     <h1 class="text-2xl text-center"> All Projects </h1>
   </div>
-
   <div class="text-center mt-2">
     <%= link_to "New Project", new_director_generals_project_path, class: 'bg-green-900 p-2 sm:p-3 rounded-md hover:bg-slate-500 text-white text-xs sm:text-base'%>
     <%= link_to 'Export Excel',director_generals_projects_path(format: :xlsx), class: 'bg-sky-600 p-2 sm:p-3  rounded-md hover:bg-slate-500 text-white text-xs sm:text-base'%>
     <%= link_to 'Export Pdf',director_generals_projects_path(format: :pdf), class: 'bg-purple-700 p-2  sm:p-3 rounded-md hover:bg-slate-500 text-white text-xs sm:text-base'%>
   </div>
 </div>
-
 <%# ---------------------------- above is buttons projects %>
 <div class=" overflow-x-auto relative shadow-md sm:rounded-lg my-12">
   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -42,13 +40,13 @@
         <th scope="col" class="py-3 px-6">
           Assigned Developers Details
         </th>
-          <th scope="col" class="py-3 px-6">
+        <th scope="col" class="py-3 px-6">
           Projects Details
         </th>
-          <th scope="col" class="py-3 px-6">
-           Get Projects PDF
+        <th scope="col" class="py-3 px-6">
+          Get Projects PDF
         </th>
-          <th scope="col" class="py-3 px-6">
+        <th scope="col" class="py-3 px-6">
           Assign Developers 
         </th>
       </tr>
@@ -73,46 +71,37 @@
           </td>
           <td class="text-xs sm:text-sm md:text-base">
             <%= link_to "See Developers ", "/director_generals/project_users/"+project.id.to_s, class:'bg-blue-400 sm:px-1 sm:py-2 rounded-md hover:bg-slate-500 text-white p-2 lg:py-3'%>
-            </td>
-            <td class="text-xs sm:text-sm md:text-base">
-              <%= link_to "See Details", director_generals_project_path(project), class:'bg-green-700 sm:px-1 sm:py-2 rounded-md hover:bg-slate-500 text-white p-2 lg:py-3'%>
-            </td>
-            <td class="text-xs sm:text-sm md:text-base">
-              <%= link_to "Generate Pdf", director_generals_project_path(project,format: :pdf), class:'bg-purple-400 sm:px-1 sm:py-2 rounded-md hover:bg-slate-500 text-white p-2 lg:py-3'%>
-            </td>
-            <td class="text-xs sm:text-sm md:text-sm lg:text-sm">
-              <%= link_to "Assign Developer", "/director_generals/project_id/"+project.id.to_s, class:'bg-cyan-500 sm:px-1 sm:py-2 rounded-md hover:bg-slate-500 text-white p-2 lg:py-3'%>
-            </td>
-          </tr>
-        <%end%>
-      </tbody>
-    </table>
-  </div>
+          </td>
+          <td class="text-xs sm:text-sm md:text-base">
+            <%= link_to "See Details", director_generals_project_path(project), class:'bg-green-700 sm:px-1 sm:py-2 rounded-md hover:bg-slate-500 text-white p-2 lg:py-3'%>
+          </td>
+          <td class="text-xs sm:text-sm md:text-base">
+            <%= link_to "Generate Pdf", director_generals_project_path(project,format: :pdf), class:'bg-purple-400 sm:px-1 sm:py-2 rounded-md hover:bg-slate-500 text-white p-2 lg:py-3'%>
+          </td>
+          <td class="text-xs sm:text-sm md:text-sm lg:text-sm">
+            <%= link_to "Assign Developer", "/director_generals/project_id/"+project.id.to_s, class:'bg-cyan-500 sm:px-1 sm:py-2 rounded-md hover:bg-slate-500 text-white p-2 lg:py-3'%>
+          </td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>
 </div>
 <script>
-  $(document).ready(function()
-
-  {
-
-     $('select').on("change",function(e){
-         var status=e.target.value;
-      //    console.log(data_book)
-         $.ajax({
-          type:"GET",
-          url: "/director_generals/toggleprojects",
-          data: {data: status},
-
-
-          success: function(status){
-
-              console.log("ok"+status);
+  $(document).ready(function() {
+  $('select').on("change",function(e){
+    var status=e.target.value;
+    $.ajax({
+    type:"GET",
+    url: "/director_generals/toggleprojects",
+    data: {status: status},
+    success: function(data){
+    console.log("ok"+data);
   },
-      error: function(XMLHttpRequest, textStatus, errorThrown){
-       console.log(XMLHttpRequest.responseText);
-      }
-      });
-
-     });
+  error: function(XMLHttpRequest, textStatus, errorThrown){
+    console.log(XMLHttpRequest.responseText);
   }
-  );
+      }); // end ajax request
+     }); // end on change
+  }); // end ready function
 </script>

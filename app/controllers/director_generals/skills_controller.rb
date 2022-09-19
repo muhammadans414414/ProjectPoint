@@ -26,18 +26,14 @@ class DirectorGenerals::SkillsController < ApplicationController
         @users=Skill.find(params[:id]).users
     end
     def searchskill 
-        if (params[:data].empty?)
-            @skills=Skill.all
-            else
-              @skills=Skill.where("id =?",params[:data])
-            end
-            respond_to do |format|
-                format.js
-                format.html {admins_users_path}
-            end
+    @command=SearchSkill.call(params)
+    respond_to do |format|
+        format.js
+    end
     end
 
     private
+    
     def abc
     params.require(:skill).permit!
     end

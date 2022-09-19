@@ -9,12 +9,13 @@
             <div class="">
               <%= render "devise/shared/error_messages", resource: user %>
               <h1 class="text-center text-2xl m-5">Create New User</h1>
-              <%= form_with model:[:admins,user] do |f| %>
-                <%= f.collection_select :role_id,Role.where("id <?",current_user.role.id), :id, :capitalize_name, {prompt:"Please Select"},autofocus: true,required:true,class:"mb-2 bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-blue-300 border-2 border-gray-300"%>
+              <%= form_with model:[:director_generals,user] do |f| %>
+                <%= f.collection_select :lead_id,Lead.all, :id, :capitalize_name, {prompt:"Please Select lead"},autofocus: true,required:true,class:"leads mb-2 bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-blue-300 border-2 border-gray-300"%>
+                <%= f.collection_select :role_id,Role.all, :id, :capitalize_name, {prompt:"Please Select role"},autofocus: true,required:true,disabled: true,class:"mb-2 bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-blue-300 border-2 border-gray-300"%>
                 <%= f.email_field :email, autofocus: true,required:true, autocomplete: "email",class:"mb-2 form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", placeholder:"Email" %>
                 <%= f.collection_select :technology_id, Technology.all,:id,:name,{prompt:"Please Select Technology Stack"},autofocus: true,required:true,class:"mb-[-16px] bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-blue-300 border-2 border-gray-300" %>
                 <% if @minimum_password_length %>
-                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
                 <% end %><br />
                 <%= f.password_field :password, autocomplete: "new-password",required:true, class:"form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", placeholder:"Password"%>
                 <div class="">
@@ -28,4 +29,60 @@
       </div>
     </div>
   </div>
+
+
+<script>
+$(document).ready(function(){
+  $("#user_lead_id").on("change",function(e){
+     
+    var lead_id = e.target.value;
+    // checking if Lead select is selected or not
+if (lead_id != "") {
+  $("#user_role_id").prop( "disabled", false );
+  $.ajax({
+  type: "GET",
+  url: "/get_users",
+  data: {
+      lead_id: lead_id
+  },
+  success: function(response) {
+  if (response.status == true) {
+    // removing predefined options from roles select
+    $("#user_role_id option").remove();
+    let rdata = response.data;
+    // checking if roles are found against the given lead
+    if (rdata.length > 0) {
+      var row = "<option value=\"" + "" + "\">" + "Please Select" + "</option>";
+      $(row).appendTo("#user_role_id");
+      //// Fill sub category select
+      $.each(rdata, function(i) {
+        console.log(rdata[i])
+        row = "<option value=\"" + rdata[i].id + "\">" + rdata[i].name + "</option>";
+        $(row).appendTo("#user_role_id");
+      });
+    }
+    else {
+      var row = "<option value=\"" + "" + "\">" + "Please Select" + "</option>";
+      $(row).appendTo("#user_role_id").remove();
+    }
+  }
+},
+  error: function(data) {
+    console.log("In error function");
+      $("#role_select").remove();
+      var row = "<option value=\"" + "" + "\">" + "No Role Found" + "</option>";
+      $(row).appendTo("#role_select");
+  }
+  });
+  }
+  else{
+    $("#user_role_id option").remove();
+     var row = "<option value=\"" + "" + "\">" + "Please Select" + "</option>";
+      $(row).appendTo("#user_role_id")
+    $("#user_role_id").prop( "disabled", true );
+  }
+  });
+});
+</script>
 <% end %>
+

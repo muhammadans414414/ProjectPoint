@@ -1,1 +1,2 @@
-$("#abc").html("<%= escape_javascript render(partial: 'search_results', locales: { users: @users }) %>");
+
+$("#abc").html("<%= escape_javascript render(partial: 'search_results', object:@command.result) %>");

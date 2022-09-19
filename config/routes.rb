@@ -1,14 +1,59 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+
   root 'home#index'
   devise_for :users
   get "toggleusers",to:"admins/users#searchuser"
-
-  get "toggleusers_by_technology",to:"admins/users#searchuser_by_technology"
   get "toggleprojects",to:"admins/projects#searchproject"
 
   get "toggleskills",to:"admins/skills#searchskill"
+
+
+  get "/get_users", to: "director_generals/users#get_users"
+
+
+
+  # api routes 
+  namespace :api do
+    namespace :v1 do
+      resources :projects
+      resources :roles, only: [:index,:create,:destroy]
+      resources :technologies,only:[:index,:create,:destroy]
+      resources :skills,only:[:index,:create,:destroy]
+      resources :users
+      resources :user_skills
+      resources :user_projects
+      resources :emergency_contacts
+      resources :educations
+      resources :dependents
+      mount_devise_token_auth_for 'User', at: 'auth'
+    end
+  end
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   namespace :guests do

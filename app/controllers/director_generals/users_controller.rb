@@ -1,7 +1,7 @@
 class DirectorGenerals::UsersController < ApplicationController
     load_and_authorize_resource
-    def index
-        @users = User.where("role_id<?",current_user.role.id)
+    def index      
+        @users = User.all
     end
     def new
         @user = User.new
@@ -23,9 +23,20 @@ class DirectorGenerals::UsersController < ApplicationController
         redirect_to director_generals_users_path
     end
 
+    def get_users
+      lead_id = params[:lead_id]
+		if lead_id.present?
+      lead=Lead.find(lead_id)
+      roles=lead.roles
+			render json: {status: true, data: roles.as_json}, status: 200
+		else
+			render json: {status: false, data: []}, status: 400
+		end
+    end
+
     private
 
     def user_params
-      params.require(:user).permit(:email, :password, :role_id,:technology_id)
+      params.require(:user).permit(:email, :password, :role_id,:technology_id,:lead_id)
     end
 end

@@ -55,29 +55,21 @@
 </div>
 <script>
   $(document).ready(function()
-
-
   {
-
-     $('select').on("change",function(e){
-         var skill=e.target.value;
-      //    console.log(data_book)
-         $.ajax({
-          type:"GET",
-          url: "/director_generals/toggleskills",
-          data: {data: skill},
-
-
-          success: function(skill){
-
-              console.log("ok"+skill);
+  $('select').on("change",function(e){
+    var skill=e.target.value;
+    $.ajax({
+    type:"GET",
+    url: "/director_generals/toggleskills",
+    data: {skill: skill},
+    success: function(data){
+    console.log("ok"+data);
   },
-      error: function(XMLHttpRequest, textStatus, errorThrown){
-       console.log(XMLHttpRequest.responseText);
-      }
-      });
-
-     });
+  error: function(XMLHttpRequest, textStatus, errorThrown){
+    console.log(XMLHttpRequest.responseText);
+  }
+  });
+  });
   }
   );
 </script>

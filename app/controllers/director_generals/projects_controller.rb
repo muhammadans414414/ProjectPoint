@@ -53,14 +53,9 @@ class DirectorGenerals::ProjectsController < ApplicationController
         @users=Project.find(params[:id]).user_projects.all
       end
       def searchproject
-        if (params[:data].empty?)
-        @projects=Project.all
-        else
-          @projects=Project.where(status:params[:data])
-          respond_to do |format|
-            format.js
-            format.html {root_path}
-        end
+        @command=SearchProject.call(params)
+        respond_to do |format|
+          format.js
         end
       end
   

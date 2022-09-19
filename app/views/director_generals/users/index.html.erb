@@ -1,16 +1,19 @@
-<div class="flex justify-center items-center mt-[6rem] text-center ">
-  <div class="px-2 sm:w-1/3">
-    <%= form_with do |form| %>
+ <%= form_with do |form| %>
+  <div class="flex justify-center items-center mt-[6rem] text-center ">
+   <div class="px-2 sm:w-1/3">
+      <%= form.label :"Filter By Lead", class:"text-xs sm:text-base" %>
+      <%= form.collection_select :lead_id,  Lead.all, :id, :capitalize_name,{prompt:"Please Select"},class:"users_filters bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",id:"lead_select"%>
+    </div>
+    <div class="px-2 sm:w-1/3">
       <%= form.label :"Filter By Role", class:"text-xs sm:text-base" %>
-      <%= form.collection_select :id, Role.where("id<?",current_user.role.id), :id, :capitalize_name,{prompt:"Please Select"},class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",id:"role_select"%>
-    <%end%>
-  </div>
-  <div class=" sm:w-1/3">
-    <%= form_with do |form| %>
+      <%= form.collection_select :role_id,  current_user.lead.roles, :id, :capitalize_name,{prompt:"Please Select"},disabled: true,class:"users_filters bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",id:"role_select"%>
+    </div>
+
+    <div class="px-2 sm:w-1/3">
       <%= form.label :"Filter By Technology",class:"text-xs sm:text-base" %>
-      <%= form.collection_select :id, Technology.all, :id, :capitalize_name,{prompt:"Please Select"},class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",id:"technology_select"%>
-    <%end%>
-  </div>
+      <%= form.collection_select :technology_id, Technology.all, :id, :capitalize_name,{prompt:"Please Select"},disabled: true,class:"users_filters bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",id:"technology_select"%>
+    </div>
+  <% end %>
 </div>
 <%# ------------ above is filters area %>
 <div class="m-10">
@@ -36,6 +39,9 @@
             Role
           </th>
           <th scope="col" class="py-3 px-6">
+            Lead
+          </th>
+          <th scope="col" class="py-3 px-6">
             Email Confirmed
           </th>
           <th scope="col" class="py-3 px-6">
@@ -46,72 +52,113 @@
         </tr>
       </thead>
       <tbody id="abc">
-      <% @users.each.with_index(1) do |user,index| %>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-          <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            <%=index%>
-          </th>
-          <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            <%=user.email %>
-          </th>
-          <td class="py-4 px-6">
-            <%=user.role.name.titleize %>
-          </td>
-          <td class="py-4 px-6">
-            <%=user.confirmed?%>
-          </td>
-          <td class="py-4 px-6">
-            <%=user.technology.name%>
-          </td>
-          <td class="py-4 px-6">
-            <%= link_to "Delete", admins_user_path(user),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'},class:"bg-red-500 p-3 rounded-lg text-white"%>
-          </td>
-        </tr>
+        <% @users.each.with_index(1) do |user,index| %>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <%=index%>
+            </th>
+            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <%=user.email %>
+            </th>
+            <td class="py-4 px-6">
+              <%=user.role.name.titleize %>
+            </td>
+              <td class="py-4 px-6">
+              <%=user.lead.name.titleize %>
+            </td>
+            <td class="py-4 px-6">
+              <%=user.confirmed?%>
+            </td>
+            <td class="py-4 px-6">
+              <%=user.technology.name%>
+            </td>
+            <td class="py-4 px-6">
+              <%= link_to "Delete", admins_user_path(user),  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'},class:"bg-red-500 p-3 rounded-lg text-white"%>
+            </td>
+          </tr>
         <%end%>
       </tbody>
     </table>
   </div>
 </div>
 <script>
-  $(document).ready(function()
+$(document).ready(function(){
+  $('.users_filters').on("change",function(e){
+      $("#role_select").prop("disabled", false );
+      $("#technology_select").prop("disabled", false );
+    // initialize variables
+    var role_id = $('#role_select').val();
+    var technology_id = $('#technology_select').val();
+    var lead_id = $('#lead_select').val();
+    // checking if Lead select is selected or not
+    if(lead_id != ""){
+    if (lead_id != "" && role_id == "") {
+      $.ajax({
+      type: "GET",
+      url: "/get_users",
+      data: {
+          lead_id: lead_id
+      },
+      success: function(response) {
+      if (response.status == true) {
+        // removing predefined options from roles select
 
-  {
-     $('#role_select').on("change",function(e){
-
-      var technology_id=$('#technology_select').val();
-
-         var role=e.target.value;
-          $.ajax({
-          type:"GET",
-          url: "/toggleusers",
-          data: {data: role,technology:technology_id},
-          success: function(data){
-          console.log("ok"+role);
-  },
-      error: function(XMLHttpRequest, textStatus, errorThrown){
-       console.log(XMLHttpRequest.responseText);
+        $("#role_select option").remove();
+        let rdata = response.data;
+        // checking if roles are found against the given lead
+        if (rdata.length > 0) {
+          // alert("appending options in select");
+          var row = "<option value=\"" + "" + "\">" + "Please Select" + "</option>";
+          $(row).appendTo("#role_select");
+          //// Fill sub category select
+          $.each(rdata, function(i) {
+            console.log(rdata[i])
+            row = "<option value=\"" + rdata[i].id + "\">" + rdata[i].name + "</option>";
+            $(row).appendTo("#role_select");
+          });
+        }
+        else {
+          var row = "<option value=\"" + "" + "\">" + "Please Select" + "</option>";
+          $(row).appendTo("#role_select").remove();
+        }
       }
-      });//end ajax
-     });// end role_select
-
-  $('#technology_select').on("change",function(e){
-      var role_id=$('#role_select').val();
-
-         var technology=e.target.value;
-          $.ajax({
-          type:"GET",
-          url: "/toggleusers_by_technology",
-          data: {data: technology,role:role_id},
-          success: function(technology){
-          console.log("ok"+technology);
-  },
-      error: function(XMLHttpRequest, textStatus, errorThrown){
-       console.log(XMLHttpRequest.responseText);
+    },
+      error: function(data) {
+        alert("I am in error");
+        $("#role_select").remove();
+        var row = "<option value=\"" + "" + "\">" + "No Role Found" + "</option>";
+        $(row).appendTo("#role_select");
       }
-      });//end ajax
-     });// end role_select
-
-
+  });
   }
-  );
+  else{}
+  }
+  else{
+    $("#role_select option").remove();
+    $("#technology_select option").remove();
+    var row = "<option value=\"" + "" + "\">" + "Please Select" + "</option>";
+    $(row).appendTo("#role_select").remove();
+    var row = "<option value=\"" + "" + "\">" + "Please Select" + "</option>";
+    $(row).appendTo("#technology_select").remove();
+    $("#role_select").prop("disabled", true );
+    $("#technology_select").prop("disabled", true );
+    technology_id=""
+    role_id=""
+  }
+    url = "/toggleusers";
+    data = {role_id: role_id, technology_id: technology_id,lead_id: lead_id};
+    // Ajax call
+    $.ajax({
+      type:"GET",
+      url: url,
+      data: data,
+      success: function(data){
+        console.log("ok"+data);
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown){
+        console.log(XMLHttpRequest.responseText);
+      }
+    });//end ajax
+  });// end user filters
+});// end ready function
 </script>
